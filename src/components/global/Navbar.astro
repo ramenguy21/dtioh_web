@@ -1,0 +1,165 @@
+---
+const navLinks = [
+  { href: '/about', label: 'About Us' },
+  { href: '/clinics', label: 'Clinics' },
+  { href: '/courses', label: 'Courses' },
+  { href: '/blog', label: 'Blogs' },
+  { href: '/contact', label: 'Contact Us' },
+];
+---
+
+<!--
+  Header is always transparent — only the glass pill (#nav-pill) has a
+  visible background, keeping the logo floating freely on the left.
+-->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 py-4">
+  <div class="max-w-7xl mx-auto px-6 lg:px-16">
+    <div class="flex items-center justify-between gap-6">
+
+      <!-- Logo — floats freely, no pill background -->
+      <a href="/" class="flex items-center gap-2.5 shrink-0">
+        <div class="w-8 h-8 shrink-0">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="7" fill="#219169" fill-opacity="0.18"/>
+            <rect x="13" y="5" width="6" height="22" rx="2.5" fill="#C0F180"/>
+            <rect x="5" y="13" width="22" height="6" rx="2.5" fill="#C0F180"/>
+          </svg>
+        </div>
+        <div
+          class="logo-text font-button font-semibold uppercase leading-snug"
+          style="font-size: 0.6rem; letter-spacing: 0.06em; max-width: 96px;"
+        >
+          Dr. Tasneem's<br />Institute of Health
+        </div>
+      </a>
+
+      <!--
+        Glass pill — holds nav links + CTA on desktop, hamburger on mobile.
+        Dark-glass over hero; light-glass when .scrolled is added by JS.
+      -->
+      <div id="nav-pill" class="flex items-center rounded-full px-3 py-2 gap-0.5">
+
+        <!-- Desktop nav links -->
+        <nav class="hidden lg:flex items-center" aria-label="Main navigation">
+          {navLinks.map(link => (
+            <a
+              href={link.href}
+              class="nav-link font-button font-medium text-[0.8125rem] uppercase tracking-wider px-4 py-2.5 rounded-full transition-all duration-200"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <!-- CTA (desktop) -->
+        <a
+          href="/contact"
+          class="hidden lg:inline-flex items-center gap-2 ml-2 px-6 py-2.5 rounded-full bg-teal text-white font-button font-semibold text-sm hover:bg-cta-hover hover:scale-105 transition-all duration-200 shrink-0"
+        >
+          Book Now
+        </a>
+
+        <!-- Hamburger (mobile only) -->
+        <button
+          id="hamburger"
+          class="navbar-icon lg:hidden p-2 rounded-lg transition-colors duration-200"
+          aria-label="Open menu"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile overlay -->
+<div
+  id="drawer-overlay"
+  class="fixed inset-0 bg-dark-blue/60 z-40 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"
+></div>
+
+<!-- Mobile drawer -->
+<aside
+  id="mobile-drawer"
+  class="fixed top-0 right-0 h-full w-72 bg-white z-50 translate-x-full transition-transform duration-300 ease-out lg:hidden flex flex-col shadow-2xl"
+>
+  <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+    <a href="/" class="flex items-center gap-2.5">
+      <div class="w-8 h-8 shrink-0">
+        <svg viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="7" fill="#219169" fill-opacity="0.12"/>
+          <rect x="13" y="5" width="6" height="22" rx="2.5" fill="#219169"/>
+          <rect x="5" y="13" width="22" height="6" rx="2.5" fill="#219169"/>
+        </svg>
+      </div>
+      <span
+        class="font-button font-semibold text-dark-blue uppercase leading-snug"
+        style="font-size: 0.6rem; letter-spacing: 0.06em; max-width: 96px;"
+      >
+        Dr. Tasneem's<br />Institute of Health
+      </span>
+    </a>
+    <button id="close-drawer" class="p-1.5 text-dark-blue/50 hover:text-dark-blue rounded-lg hover:bg-gray-100 transition-colors" aria-label="Close menu">
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <nav class="flex-1 px-4 py-5 flex flex-col gap-0.5" aria-label="Mobile navigation">
+    {navLinks.map(link => (
+      <a
+        href={link.href}
+        class="font-button font-medium text-sm uppercase tracking-wider text-dark-blue/65 hover:text-teal hover:bg-teal/5 rounded-xl px-4 py-3.5 transition-colors duration-150"
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+
+  <div class="px-6 py-6 border-t border-gray-100">
+    <a
+      href="/contact"
+      class="flex items-center justify-center w-full py-4 rounded-full bg-teal text-white font-button font-semibold text-sm hover:bg-cta-hover transition-all duration-200"
+    >
+      Book Now
+    </a>
+  </div>
+</aside>
+
+<script>
+  const navbar = document.getElementById('navbar')!;
+  const drawer = document.getElementById('mobile-drawer')!;
+  const overlay = document.getElementById('drawer-overlay')!;
+
+  const hero = document.querySelector('[data-hero]');
+  if (hero) {
+    const observer = new IntersectionObserver(
+      ([entry]) => navbar.classList.toggle('scrolled', !entry.isIntersecting),
+      { threshold: 0.4 }
+    );
+    observer.observe(hero);
+  } else {
+    navbar.classList.add('scrolled');
+  }
+
+  function openDrawer() {
+    drawer.classList.remove('translate-x-full');
+    overlay.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    drawer.classList.add('translate-x-full');
+    overlay.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('hamburger')!.addEventListener('click', openDrawer);
+  document.getElementById('close-drawer')!.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+</script>

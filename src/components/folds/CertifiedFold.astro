@@ -1,0 +1,38 @@
+---
+import CTAButton from '../global/CTAButton.astro';
+---
+
+<section class="fold">
+  <!-- Background image with light wash overlay -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/images/certified-bg.jpg"
+      alt=""
+      class="w-full h-full object-cover object-center"
+    />
+    <div class="absolute inset-0 bg-white/75"></div>
+  </div>
+
+  <!-- Content — centered -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 text-center">
+    <h2
+      class="font-heading font-bold text-[1.75rem] leading-tight lg:text-[3.5rem] lg:leading-[1.15] text-dark-blue"
+    >
+      Become a Certified<br />
+      <span class="text-teal">Aesthetic</span> Professional
+    </h2>
+    <p
+      class="font-body text-dark-blue/60 text-base lg:text-lg mt-5 max-w-xl mx-auto leading-relaxed"
+    >
+      Advance your career with Pakistan's leading
+      <strong class="text-teal font-semibold">DUHS</strong> &
+      <strong class="text-teal font-semibold">SBTE-accredited</strong>
+      training programs, designed for hands-on expertise and industry
+      recognition.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+      <CTAButton href="/courses" variant="primary">Explore Courses</CTAButton>
+      <CTAButton href="/about" variant="secondary">Learn More</CTAButton>
+    </div>
+  </div>
+</section>

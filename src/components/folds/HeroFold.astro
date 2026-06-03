@@ -1,0 +1,42 @@
+---
+import ScrollIndicator from '../global/ScrollIndicator.astro';
+---
+
+<section class="fold" data-hero>
+  <!-- Background image + gradient overlay -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/images/hero.jpg"
+      alt=""
+      class="w-full h-full object-cover object-center"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(135deg, #0C2E3C 0%, #0C2E3C80 100%)"
+    ></div>
+  </div>
+
+  <!-- Content — bottom-left -->
+  <div class="absolute bottom-16 lg:bottom-20 left-0 right-0 z-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+      <h1
+        class="font-heading font-bold text-[2rem] leading-tight lg:text-[3.5rem] lg:leading-[1.1] text-white max-w-xl"
+      >
+        Leaders of professional<br />
+        <span class="text-lime">healthcare</span> and
+        <span class="text-lime">aesthetic<br />education</span> Pakistan
+      </h1>
+      <p
+        class="font-body text-white/70 text-sm lg:text-base mt-4 max-w-[340px] leading-relaxed"
+      >
+        Paving the way for professional healthcare and aesthetic education in
+        Pakistan. Since 2020, our focus has been on shaping the next generation
+        of certified professionals
+      </p>
+    </div>
+  </div>
+
+  <!-- Scroll indicator — bottom-right -->
+  <ScrollIndicator class="absolute bottom-8 right-8 lg:right-16 z-10 text-white/80" />
+</section>

@@ -1,0 +1,177 @@
+---
+const services = [
+  {
+    title: 'PRP (Face & Hair)',
+    desc: 'Stimulate natural healing and regeneration with PRP/PRF therapies for hair restoration and skin rejuvenation.',
+    image: '/images/services/prp.jpg',
+    href: '/clinics/prp',
+  },
+  {
+    title: 'Laser Hair Removal',
+    desc: 'Enjoy long-term hair reduction with advanced laser technology performed by experienced professionals.',
+    image: '/images/services/laser-hair.jpg',
+    href: '/clinics/laser-hair-removal',
+  },
+  {
+    title: 'Hydra Facial',
+    desc: 'Revitalize your skin with innovative vortex-fusion technology for deep cleansing, exfoliation, and hydration.',
+    image: '/images/services/hydra-facial.jpg',
+    href: '/clinics/hydra-facial',
+  },
+  {
+    title: 'Weight Loss Management',
+    desc: 'Achieve sustainable results with our medically supervised weight management program.',
+    image: '/images/services/weight-loss.jpg',
+    href: '/clinics/weight-loss',
+  },
+  {
+    title: 'Cupping Therapy',
+    desc: 'Traditional therapeutic cupping to relieve muscle tension, improve circulation and support overall wellness.',
+    image: '/images/services/cupping.jpg',
+    href: '/clinics/cupping',
+  },
+  {
+    title: 'Microneedling',
+    desc: 'Stimulate collagen production and achieve younger-looking skin with precision microneedling treatments.',
+    image: '/images/services/microneedling.jpg',
+    href: '/clinics/microneedling',
+  },
+  {
+    title: 'Mesotherapy',
+    desc: 'Targeted microinjections of vitamins and nutrients to rejuvenate skin and address localized fat deposits.',
+    image: '/images/services/mesotherapy.jpg',
+    href: '/clinics/mesotherapy',
+  },
+  {
+    title: 'Botox & Fillers',
+    desc: 'Smooth fine lines and restore facial volume with expertly administered Botox and dermal fillers.',
+    image: '/images/services/botox.jpg',
+    href: '/clinics/botox-fillers',
+  },
+];
+---
+
+<!--
+  Full dark-blue background. Fold flex-direction is overridden to column so
+  the text row and the marquee row stack naturally and both span 100 vw.
+-->
+<section
+  class="fold"
+  style="flex-direction: column; align-items: stretch; background: #0C2E3C;"
+>
+  <!-- Subtle background image (drop transform-bg.jpg into public/images/ to activate) -->
+  <img
+    src="/images/transform-bg.jpg"
+    alt=""
+    class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
+    aria-hidden="true"
+    loading="lazy"
+  />
+
+  <!-- ── Text row (upper, flex-1) ──────────────────────────── -->
+  <div class="flex-1 flex items-center relative z-10 mt-20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16 w-full flex justify-end">
+      <div class="max-w-lg text-right">
+        <h2
+          class="font-heading font-bold text-white leading-[1.1]"
+          style="font-size: clamp(1.875rem, 3.2vw, 3.25rem)"
+        >
+          Transform Your<br />
+          <span class="text-lime">Confidence</span>—Inside &amp; Out
+        </h2>
+        <p class="font-body text-white/55 text-sm lg:text-base mt-4 leading-relaxed">
+          At Dr. Tasneem's Clinic, we offer advanced aesthetic and wellness
+          treatments designed to enhance your
+          <strong class="text-teal font-medium">natural beauty</strong>. From
+          regenerative therapies to cutting-edge skincare and body solutions,
+          each service is delivered with clinical precision, personalised care,
+          and a refined patient experience.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Marquee row (lower, fixed height) ────────────────── -->
+  <div class="relative pb-12 pt-1 z-10" style="flex-shrink: 0">
+
+    <!-- Left fade — dissolves cards into dark-blue -->
+    <div
+      class="absolute inset-y-0 left-0 w-28 z-20 pointer-events-none"
+      style="background: linear-gradient(to right, #0C2E3C 20%, transparent)"
+    ></div>
+    <!-- Right fade -->
+    <div
+      class="absolute inset-y-0 right-0 w-28 z-20 pointer-events-none"
+      style="background: linear-gradient(to left, #0C2E3C 20%, transparent)"
+    ></div>
+
+    <!--
+      Track is rendered twice. translateX(-50%) shifts by one full set width,
+      creating a seamless infinite loop. The duplicate set is aria-hidden.
+    -->
+    <div class="marquee-track flex gap-6">
+      {
+        [services, services].map((set, i) =>
+          set.map((s) => (
+            <article
+              class="shrink-0 w-72 my-4 rounded-2xl overflow-hidden flex flex-col"
+              style={[
+                'backdrop-filter: blur(18px);',
+                '-webkit-backdrop-filter: blur(18px);',
+                'background: rgba(255, 255, 255, 0.07);',
+                'border: 1px solid rgba(255, 255, 255, 0.12);',
+                'box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);',
+              ].join(' ')}
+              aria-hidden={i === 1 ? 'true' : undefined}
+            >
+              <!-- Image + discount badge -->
+              <div  
+                class="relative shrink-0 overflow-hidden"
+                style="height: 180px; background: rgba(102,166,172,0.25);"
+              >
+                <img
+                  src={s.image}
+                  alt={i === 0 ? s.title : ''}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <span class="absolute top-3 right-3 bg-teal text-white text-[0.65rem] font-button font-semibold px-2.5 py-1 rounded-full leading-none">
+                  12% off
+                </span>
+              </div>
+
+              <!-- Body -->
+              <div class="flex flex-col flex-1 p-5 gap-3">
+                <h3 class="font-heading font-semibold text-base text-lime leading-snug">
+                  {s.title}
+                </h3>
+                <p class="font-body text-[0.75rem] text-white/58 leading-relaxed flex-1">
+                  {s.desc}
+                </p>
+                <a
+                  href={s.href}
+                  class="mt-1 inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-full text-[0.75rem] font-button font-medium text-white/90 transition-all duration-200 hover:bg-white/10"
+                  style="border: 1px solid rgba(255,255,255,0.22);"
+                  tabindex={i === 1 ? '-1' : undefined}
+                >
+                  Learn More
+                  <svg
+                    class="w-3 h-3 shrink-0"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M2 10L10 2M10 2H4.5M10 2V7.5" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))
+        )
+      }
+    </div>
+  </div>
+</section>

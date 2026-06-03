@@ -1,17 +1,18 @@
 ---
-
+import Base from '../layouts/Base.astro';
+import HeroFold from '../components/folds/HeroFold.astro';
+import CertifiedFold from '../components/folds/CertifiedFold.astro';
+import PromisesFold from '../components/folds/PromisesFold.astro';
+import TransformFold from '../components/folds/TransformFold.astro';
+import CoursesFold from '../components/folds/CoursesFold.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+  <main>
+    <HeroFold />
+    <CertifiedFold />
+    <PromisesFold />
+    <TransformFold />
+    <CoursesFold />
+  </main>
+</Base>
