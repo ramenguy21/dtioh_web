@@ -1,0 +1,239 @@
+---
+const milestones = [
+  {
+    year: 'Present',
+    title: 'Excellence',
+    desc: 'Today, the institute stands as a premier center for education—integrating clinical expertise with comprehensive training to deliver meaningful, career-defining outcomes.',
+    image: '/images/journey/present.jpg',
+    active: true,
+  },
+  {
+    year: '2025',
+    title: 'Curriculum Innovation',
+    desc: 'Ongoing investment in advanced methodologies and technology ensures a future-ready curriculum aligned with global healthcare benchmarks.',
+    image: '/images/journey/2025.jpg',
+  },
+  {
+    year: '2023',
+    title: 'Recognition',
+    desc: 'Accreditation and recognition from leading bodies positioned the institute as a trusted provider of high-quality, accredited aesthetic healthcare programs.',
+    image: '/images/journey/2023.jpg',
+  },
+  {
+    year: '2022',
+    title: 'Expansion',
+    desc: 'Broadened its course portfolio and introduced state-of-the-art training facilities aligned with industry standards.',
+    image: '/images/journey/2022.jpg',
+  },
+  {
+    year: '2021',
+    title: 'Foundation',
+    desc: "Dr. Tasneem established the institute with a vision to transform professional healthcare education in Pakistan—built on clinical excellence, safety, integrity, and innovation, with a strong emphasis on hands-on aesthetic training.",
+    image: '/images/journey/2021.jpg',
+  },
+];
+---
+
+<!--
+  Horizontal scrollable timeline. All content is absolutely positioned so the
+  fold's height is fixed at min-height: 100dvh — keeping scroll-snap consistent.
+  The track is dragged via pointer events and converts vertical wheel input
+  into horizontal motion, with a teal→lime progress bar tracking position.
+-->
+<section class="fold journey-fold" style="background: #F4F4F4;">
+  <!-- Background image + soft cream wash -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/images/journey-bg.jpg"
+      alt=""
+      class="w-full h-full object-cover object-center"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-cool-cream/82"></div>
+  </div>
+
+  <!-- Heading (upper-left) -->
+  <div class="absolute z-20 inset-x-0" style="top: 5.5rem;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+      <h2
+        class="font-heading font-bold text-dark-blue leading-[1.15]"
+        style="font-size: clamp(1.625rem, 2.8vw, 2.375rem)"
+      >
+        The Heart of<br />Our <span class="text-teal">Journey</span>
+      </h2>
+    </div>
+  </div>
+
+  <!-- Horizontal timeline (vertically centered) -->
+  <div class="absolute inset-x-0 z-10" style="top: 58%; transform: translateY(-50%)">
+    <div id="journey-track" class="overflow-x-auto hide-scrollbar cursor-grab">
+      <div class="relative flex items-center" style="width: max-content; padding: 0 8vw;">
+
+        <!-- Connecting line -->
+        <div
+          class="absolute left-0 right-0 z-0 pointer-events-none"
+          style="top: 50%; height: 1px; background: linear-gradient(90deg, transparent, rgba(12,46,60,0.18) 8%, rgba(12,46,60,0.18) 92%, transparent)"
+        ></div>
+
+        {
+          milestones.map((m, i) => {
+            const imageBlock = (
+              <div
+                class="rounded-xl overflow-hidden"
+                style="width: 168px; height: 124px; box-shadow: 0 12px 32px rgba(12,46,60,0.14)"
+              >
+                <img
+                  src={m.image}
+                  alt={m.title}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            );
+            const textBlock = (
+              <div class="text-left" style="max-width: 230px">
+                <h3
+                  class:list={[
+                    'font-heading font-bold text-base lg:text-lg leading-snug',
+                    m.active ? 'text-teal' : 'text-dark-blue',
+                  ]}
+                >
+                  {m.year} — {m.title}
+                </h3>
+                <p class="font-body text-dark-blue/55 text-xs lg:text-[0.8125rem] mt-1.5 leading-relaxed">
+                  {m.desc}
+                </p>
+              </div>
+            );
+            const imageOnTop = i % 2 === 0;
+
+            return (
+              <div class="journey-item shrink-0 flex flex-col items-center" style="width: 280px">
+                <div class="flex items-end justify-center pb-5" style="height: 168px">
+                  {imageOnTop ? imageBlock : textBlock}
+                </div>
+
+                <div
+                  class:list={['relative z-10 rounded-full shrink-0', m.active && 'journey-dot-active']}
+                  style={
+                    m.active
+                      ? 'width: 14px; height: 14px; background: #219169; border: 3px solid #C0F180;'
+                      : 'width: 10px; height: 10px; background: #ffffff; border: 2px solid rgba(12,46,60,0.35);'
+                  }
+                ></div>
+
+                <div class="flex items-start justify-center pt-5" style="height: 168px">
+                  {imageOnTop ? textBlock : imageBlock}
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <!-- Scroll-progress indicator -->
+    <div class="mx-auto mt-7 rounded-full overflow-hidden" style="width: 220px; height: 3px; background: rgba(12,46,60,0.10)">
+      <div
+        id="journey-progress"
+        class="h-full rounded-full"
+        style="width: 0%; background: linear-gradient(90deg, #219169, #C0F180); transition: width 0.1s linear"
+      ></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .journey-dot-active {
+    position: relative;
+  }
+  .journey-dot-active::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(33, 145, 105, 0.4);
+    animation: journey-pulse 2.4s ease-out infinite;
+  }
+  @keyframes journey-pulse {
+    0%   { transform: scale(0.8); opacity: 0.8; }
+    80%  { transform: scale(1.9); opacity: 0; }
+    100% { transform: scale(1.9); opacity: 0; }
+  }
+  #journey-track.dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .journey-dot-active::after { animation: none; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const track = document.getElementById('journey-track') as HTMLElement | null;
+  const progressBar = document.getElementById('journey-progress') as HTMLElement | null;
+
+  if (track) {
+    // Convert vertical wheel input into horizontal motion — lets visitors
+    // explore the timeline with a normal scroll gesture, no shift key needed.
+    track.addEventListener(
+      'wheel',
+      (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          e.preventDefault();
+          track.scrollLeft += e.deltaY;
+        }
+      },
+      { passive: false }
+    );
+
+    // Drag to scroll
+    let dragging = false;
+    let startX = 0;
+    let startScroll = 0;
+
+    track.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      startX = e.clientX;
+      startScroll = track.scrollLeft;
+      track.classList.add('dragging');
+      track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      track.scrollLeft = startScroll - (e.clientX - startX);
+    });
+    const endDrag = () => {
+      dragging = false;
+      track.classList.remove('dragging');
+    };
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointerleave', endDrag);
+
+    // Progress bar tracks horizontal scroll position
+    const updateProgress = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      const pct = max > 0 ? (track.scrollLeft / max) * 100 : 0;
+      if (progressBar) progressBar.style.width = `${pct}%`;
+    };
+    track.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  // Entrance animation — staggered fade/rise as the fold scrolls into view
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.from('.journey-item', {
+      scrollTrigger: { trigger: '.journey-fold', start: 'top 65%' },
+      y: 32,
+      opacity: 0,
+      stagger: 0.08,
+      duration: 0.7,
+      ease: 'power3.out',
+    });
+  }
+</script>

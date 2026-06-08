@@ -39,9 +39,13 @@ const courses = [
 ];
 ---
 
+<!--
+  All content is absolutely positioned so the fold's height is determined
+  solely by min-height: 100dvh, giving scroll-snap a consistent snap target.
+-->
 <section
   class="fold"
-  style="flex-direction: column; align-items: stretch; padding-top: 5rem; background: linear-gradient(160deg, #dff5cd 0%, #eef9f0 35%, #f5fdf6 65%, #f9fdfb 100%)"
+  style="background: linear-gradient(160deg, #dff5cd 0%, #eef9f0 35%, #f5fdf6 65%, #f9fdfb 100%)"
 >
   <!-- Background blobs -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -55,9 +59,9 @@ const courses = [
     ></div>
   </div>
 
-  <!-- ── Heading section ───────────────────────────────────── -->
-  <div class="flex-1 flex items-center justify-center relative z-10 px-6 pb-6">
-    <div class="max-w-2xl w-full text-center">
+  <!-- ── Heading block (upper-center) ─────────────────────── -->
+  <div class="absolute z-10 inset-x-0 px-6 text-center" style="top: 5.5rem;">
+    <div class="max-w-2xl mx-auto">
       <h2
         class="font-heading font-bold text-dark-blue leading-[1.15]"
         style="font-size: clamp(1.875rem, 3.5vw, 2.75rem)"
@@ -80,8 +84,8 @@ const courses = [
     </div>
   </div>
 
-  <!-- ── Course cards row ─────────────────────────────────── -->
-  <div class="relative z-10 pb-10" style="flex-shrink: 0">
+  <!-- ── Course cards row (pinned to bottom) ───────────────── -->
+  <div class="absolute z-10 left-0 right-0" style="bottom: 2.5rem;">
     <div class="overflow-x-auto hide-scrollbar">
       <div class="flex gap-5 px-6 lg:px-16 pb-1">
         {
@@ -91,7 +95,7 @@ const courses = [
               <!-- Image -->
               <div
                 class="relative shrink-0 overflow-hidden"
-                style="height: 196px; background: rgba(102,166,172,0.18)"
+                style="height: 176px; background: rgba(102,166,172,0.18)"
               >
                 <img
                   src={course.image}
@@ -102,8 +106,8 @@ const courses = [
               </div>
 
               <!-- Body -->
-              <div class="flex flex-col flex-1 p-5 gap-3">
-                <h3 class="font-heading font-semibold text-[1.0625rem] text-teal leading-snug">
+              <div class="flex flex-col flex-1 p-4 gap-2.5">
+                <h3 class="font-heading font-semibold text-[1rem] text-teal leading-snug">
                   {course.title}
                 </h3>
 
@@ -119,12 +123,12 @@ const courses = [
 
                 <!-- Description + read more -->
                 <div class="flex-1">
-                  <p class="font-body text-[0.775rem] text-dark-blue/58 leading-relaxed line-clamp-3">
+                  <p class="font-body text-[0.75rem] text-dark-blue/58 leading-relaxed line-clamp-2">
                     {course.desc}
                   </p>
                   <a
                     href={course.href}
-                    class="text-teal text-[0.775rem] font-body font-medium hover:underline mt-0.5 inline-block"
+                    class="text-teal text-[0.75rem] font-body font-medium hover:underline mt-0.5 inline-block"
                   >
                     read more
                   </a>
@@ -133,7 +137,7 @@ const courses = [
                 <!-- View Curriculum CTA -->
                 <a
                   href={course.href}
-                  class="mt-1 flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-teal text-white font-button font-semibold text-sm hover:bg-cta-hover transition-all duration-200 hover:scale-[1.02]"
+                  class="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-teal text-white font-button font-semibold text-sm hover:bg-cta-hover transition-all duration-200 hover:scale-[1.02]"
                 >
                   View Curriculum
                   <svg

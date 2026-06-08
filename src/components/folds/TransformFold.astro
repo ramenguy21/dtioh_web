@@ -52,13 +52,11 @@ const services = [
 ---
 
 <!--
-  Full dark-blue background. Fold flex-direction is overridden to column so
-  the text row and the marquee row stack naturally and both span 100 vw.
+  All content is absolutely positioned so the fold's height is determined
+  solely by min-height: 100dvh, giving scroll-snap a consistent snap target.
 -->
-<section
-  class="fold"
-  style="flex-direction: column; align-items: stretch; background: #0C2E3C;"
->
+<section class="fold" style="background: #0C2E3C;">
+
   <!-- Subtle background image (drop transform-bg.jpg into public/images/ to activate) -->
   <img
     src="/images/transform-bg.jpg"
@@ -68,33 +66,35 @@ const services = [
     loading="lazy"
   />
 
-  <!-- ── Text row (upper, flex-1) ──────────────────────────── -->
-  <div class="flex-1 flex items-center relative z-10 mt-20">
-    <div class="max-w-7xl mx-auto px-6 lg:px-16 w-full flex justify-end">
-      <div class="max-w-lg text-right">
-        <h2
-          class="font-heading font-bold text-white leading-[1.1]"
-          style="font-size: clamp(1.875rem, 3.2vw, 3.25rem)"
-        >
-          Transform Your<br />
-          <span class="text-lime">Confidence</span>—Inside &amp; Out
-        </h2>
-        <p class="font-body text-white/55 text-sm lg:text-base mt-4 leading-relaxed">
-          At Dr. Tasneem's Clinic, we offer advanced aesthetic and wellness
-          treatments designed to enhance your
-          <strong class="text-teal font-medium">natural beauty</strong>. From
-          regenerative therapies to cutting-edge skincare and body solutions,
-          each service is delivered with clinical precision, personalised care,
-          and a refined patient experience.
-        </p>
+  <!-- ── Text block (upper-right) ──────────────────────────── -->
+  <div class="absolute z-10 inset-x-0" style="top: 5.5rem;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+      <div class="flex justify-end">
+        <div class="max-w-lg text-right">
+          <h2
+            class="font-heading font-bold text-white leading-[1.1]"
+            style="font-size: clamp(1.875rem, 3.2vw, 3.25rem)"
+          >
+            Transform Your<br />
+            <span class="text-lime">Confidence</span>—Inside &amp; Out
+          </h2>
+          <p class="font-body text-white/55 text-sm lg:text-base mt-4 leading-relaxed">
+            At Dr. Tasneem's Clinic, we offer advanced aesthetic and wellness
+            treatments designed to enhance your
+            <strong class="text-teal font-medium">natural beauty</strong>. From
+            regenerative therapies to cutting-edge skincare and body solutions,
+            each service is delivered with clinical precision, personalised care,
+            and a refined patient experience.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ── Marquee row (lower, fixed height) ────────────────── -->
-  <div class="relative pb-12 pt-1 z-10" style="flex-shrink: 0">
+  <!-- ── Marquee (pinned to bottom) ────────────────────────── -->
+  <div class="absolute z-10 left-0 right-0" style="bottom: 2.5rem;">
 
-    <!-- Left fade — dissolves cards into dark-blue -->
+    <!-- Left fade -->
     <div
       class="absolute inset-y-0 left-0 w-28 z-20 pointer-events-none"
       style="background: linear-gradient(to right, #0C2E3C 20%, transparent)"
@@ -106,15 +106,15 @@ const services = [
     ></div>
 
     <!--
-      Track is rendered twice. translateX(-50%) shifts by one full set width,
-      creating a seamless infinite loop. The duplicate set is aria-hidden.
+      Track rendered twice. translateX(-50%) shifts by one full set → seamless loop.
+      Duplicate set is aria-hidden.
     -->
     <div class="marquee-track flex gap-6">
       {
         [services, services].map((set, i) =>
           set.map((s) => (
             <article
-              class="shrink-0 w-72 my-4 rounded-2xl overflow-hidden flex flex-col"
+              class="shrink-0 w-72 rounded-2xl overflow-hidden flex flex-col"
               style={[
                 'backdrop-filter: blur(18px);',
                 '-webkit-backdrop-filter: blur(18px);',
@@ -124,10 +124,10 @@ const services = [
               ].join(' ')}
               aria-hidden={i === 1 ? 'true' : undefined}
             >
-              <!-- Image + discount badge -->
-              <div  
+              <!-- Image -->
+              <div
                 class="relative shrink-0 overflow-hidden"
-                style="height: 180px; background: rgba(102,166,172,0.25);"
+                style="height: 168px; background: rgba(102,166,172,0.25);"
               >
                 <img
                   src={s.image}
@@ -141,16 +141,16 @@ const services = [
               </div>
 
               <!-- Body -->
-              <div class="flex flex-col flex-1 p-5 gap-3">
-                <h3 class="font-heading font-semibold text-base text-lime leading-snug">
+              <div class="flex flex-col flex-1 p-4 gap-2.5">
+                <h3 class="font-heading font-semibold text-[0.9375rem] text-lime leading-snug">
                   {s.title}
                 </h3>
-                <p class="font-body text-[0.75rem] text-white/58 leading-relaxed flex-1">
+                <p class="font-body text-[0.72rem] text-white/55 leading-relaxed flex-1 line-clamp-3">
                   {s.desc}
                 </p>
                 <a
                   href={s.href}
-                  class="mt-1 inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-full text-[0.75rem] font-button font-medium text-white/90 transition-all duration-200 hover:bg-white/10"
+                  class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-[0.72rem] font-button font-medium text-white/85 transition-all duration-200 hover:bg-white/10"
                   style="border: 1px solid rgba(255,255,255,0.22);"
                   tabindex={i === 1 ? '-1' : undefined}
                 >
@@ -174,4 +174,5 @@ const services = [
       }
     </div>
   </div>
+
 </section>

@@ -83,3 +83,7 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; overflow-x: auto; }
 }
+
+/* ── Utilities ───────────────────────────────────────────── */
+.hide-scrollbar               { scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
