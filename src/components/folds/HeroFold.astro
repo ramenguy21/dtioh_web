@@ -5,16 +5,29 @@ import ScrollIndicator from '../global/ScrollIndicator.astro';
 <section class="fold" data-hero>
   <!-- Background image + layered overlay for strong text legibility -->
   <div class="absolute inset-0 z-0">
-    <img
-      src="/images/hero.jpg"
-      alt=""
-      width="1920"
-      height="1080"
-      class="w-full h-full object-cover object-center"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-    />
+    <!-- LCP image: AVIF/WebP with responsive widths, JPG fallback -->
+    <picture>
+      <source
+        type="image/avif"
+        srcset="/images/hero-960.avif 960w, /images/hero-1920.avif 1920w"
+        sizes="100vw"
+      />
+      <source
+        type="image/webp"
+        srcset="/images/hero-960.webp 960w, /images/hero-1920.webp 1920w"
+        sizes="100vw"
+      />
+      <img
+        src="/images/hero.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
     <!-- Brand diagonal tint -->
     <div
       class="absolute inset-0"

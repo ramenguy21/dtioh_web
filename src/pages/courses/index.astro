@@ -6,7 +6,7 @@ const courses = [
   {
     slug: 'non-invasive-beautician',
     title: 'Non-Invasive Beautician',
-    image: '/images/courses/non-invasive.jpg',
+    image: '/images/courses/non-invasive.webp',
     color: '#219169',
     duration: '8 Weeks',
     hours: '120+ Hours',
@@ -18,7 +18,7 @@ const courses = [
   {
     slug: 'health-wellness-specialist',
     title: 'Health & Wellness Specialist',
-    image: '/images/courses/health-wellness.jpg',
+    image: '/images/courses/health-wellness.webp',
     color: '#0C2E3C',
     duration: '12 Weeks',
     hours: '200+ Hours',
@@ -30,7 +30,7 @@ const courses = [
   {
     slug: 'health-and-nutrition',
     title: 'Health and Nutrition',
-    image: '/images/courses/nutrition.jpg',
+    image: '/images/courses/nutrition.webp',
     color: '#66A6AC',
     duration: '10 Weeks',
     hours: '80+ Hours',
@@ -42,7 +42,7 @@ const courses = [
   {
     slug: 'cupping-therapy',
     title: 'Cupping Therapy',
-    image: '/images/courses/cupping.jpg',
+    image: '/images/courses/cupping.webp',
     color: '#219169',
     duration: '6 Weeks',
     hours: '60+ Hours',
@@ -65,7 +65,11 @@ const courses = [
     <!-- ══════════════════════════════════════════════════════ -->
     <section class="fold courses-hero" data-hero>
       <div class="absolute inset-0 z-0">
-        <img src="/images/hero.jpg" alt="" class="w-full h-full object-cover object-center" loading="eager" />
+        <picture>
+          <source type="image/avif" srcset="/images/hero-960.avif 960w, /images/hero-1920.avif 1920w" sizes="100vw" />
+          <source type="image/webp" srcset="/images/hero-960.webp 960w, /images/hero-1920.webp 1920w" sizes="100vw" />
+          <img src="/images/hero.jpg" alt="" class="w-full h-full object-cover object-center" loading="eager" fetchpriority="high" decoding="async" />
+        </picture>
         <div class="absolute inset-0" style="background: linear-gradient(135deg, #0C2E3C 0%, rgba(12,46,60,0.65) 100%)"></div>
       </div>
 
@@ -179,7 +183,7 @@ const courses = [
     <!-- ══════════════════════════════════════════════════════ -->
     <section class="fold courses-cta">
       <div class="absolute inset-0 z-0">
-        <img src="/images/course-cta-bg.png" alt="" class="w-full h-full object-cover object-center" loading="lazy" />
+        <img src="/images/course-cta-bg.webp" alt="" class="w-full h-full object-cover object-center" loading="lazy" />
         <div class="absolute inset-0" style="background: linear-gradient(100deg, #0C2E3C 30%, rgba(12,46,60,0.85) 60%, rgba(12,46,60,0.55) 100%)"></div>
       </div>
 

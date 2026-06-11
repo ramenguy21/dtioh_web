@@ -8,6 +8,7 @@ interface Props {
   description?: string;
   image?: string;
   ogType?: string;
+  preloadHero?: boolean;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   description = "Pakistan's leading DUHS & SBTE accredited aesthetic and healthcare training institute in Malir Cantt, Karachi.",
   image = '/images/hero.jpg',
   ogType = 'website',
+  preloadHero = false,
 } = Astro.props;
 
 const siteBase = Astro.site ?? new URL(Astro.url.origin);
@@ -56,6 +58,16 @@ const orgSchema = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    {preloadHero && (
+      <link
+        rel="preload"
+        as="image"
+        type="image/avif"
+        imagesrcset="/images/hero-960.avif 960w, /images/hero-1920.avif 1920w"
+        imagesizes="100vw"
+        fetchpriority="high"
+      />
+    )}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Open Graph -->

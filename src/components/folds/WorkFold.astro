@@ -3,17 +3,17 @@ const works = [
   {
     title: 'Badar Expo',
     desc: 'Partnering on premium public platforms to promote healthcare and aesthetic awareness.',
-    image: '/images/work/badar-expo.jpg',
+    image: '/images/work/badar-expo.webp',
   },
   {
     title: 'DUHS Collaboration',
     desc: 'Partnering with Dow University of Health Sciences to deliver accredited clinical training programs.',
-    image: '/images/work/duhs.jpg',
+    image: '/images/work/duhs.webp',
   },
   {
     title: 'Community Outreach',
     desc: 'Bringing free aesthetic consultations and health screenings to underserved communities across Karachi.',
-    image: '/images/work/community.jpg',
+    image: '/images/work/community.webp',
   },
 ];
 
@@ -28,7 +28,7 @@ const tags = [
 
   <!-- Background texture -->
   <img
-    src="/images/work-bg.jpg"
+    src="/images/work-bg.webp"
     alt=""
     class="absolute inset-0 w-full h-full object-cover opacity-[0.08] pointer-events-none"
     aria-hidden="true"
@@ -67,7 +67,8 @@ const tags = [
                   src={w.image}
                   alt={w.title}
                   class="w-full h-full object-cover"
-                  loading={i === 0 ? 'eager' : 'lazy'}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 
