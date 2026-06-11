@@ -20,6 +20,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+  Tone down page snapping on mobile & tablet. Mandatory full-viewport
+  snapping fights natural touch scrolling — it traps scroll on folds taller
+  than the viewport and jitters as the mobile browser toolbar resizes the
+  viewport. Full-page snap stays on desktop (pointer: fine) only.
+*/
+@media (max-width: 1023px) {
+  html {
+    scroll-snap-type: none;
+  }
+}
+
 .fold {
   scroll-snap-align: start;
   min-height: 100dvh;
