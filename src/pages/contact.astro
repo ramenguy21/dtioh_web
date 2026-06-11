@@ -1,0 +1,301 @@
+---
+import Base from '../layouts/Base.astro';
+import ScrollIndicator from '../components/global/ScrollIndicator.astro';
+
+const contactItems = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.14a16 16 0 006 6l1.5-1.5a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
+    label: 'Phone',
+    value: '+92 302 2301918',
+    sub: 'Mon–Fri, 10am – 6pm',
+    href: 'tel:+923022301918',
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+    label: 'Email',
+    value: 'hello@dtioh.com',
+    sub: 'We reply within 24 hours',
+    href: 'mailto:hello@dtioh.com',
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+    label: 'Locations',
+    value: 'Clifton & Malir Cantt',
+    sub: 'Karachi, Pakistan',
+    href: null,
+  },
+];
+
+const subjects = [
+  'Treatment Inquiry',
+  'Course Information',
+  'Book an Appointment',
+  'Free Consultation',
+  'Partnership Opportunity',
+  'General Inquiry',
+  'Feedback',
+];
+
+const faqs = [
+  {
+    q: 'How quickly will you respond?',
+    a: 'We typically respond to all inquiries within 24 hours on weekdays.',
+  },
+  {
+    q: 'Do you offer free consultations?',
+    a: 'Yes! We offer complimentary consultations for both treatment inquiries and course information.',
+  },
+  {
+    q: 'How do I book an appointment?',
+    a: 'You can book via this contact form, by phone at +92 302 2301918, or by emailing hello@dtioh.com.',
+  },
+  {
+    q: 'Are your programs officially recognized?',
+    a: 'Yes — our programs are accredited by SBTE and affiliated with Dow University of Health Sciences (DUHS).',
+  },
+];
+---
+
+<Base
+  title="Contact | Dr. Tasneem's Institute of Health — Get In Touch"
+  description="Contact Dr. Tasneem's Institute of Health in Karachi. Phone: +92 302 2301918. Email: hello@dtioh.com. Locations in Clifton and Malir Cantt."
+>
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOLD 1 — HERO                                          -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="fold contact-hero" data-hero>
+      <div class="absolute inset-0 z-0">
+        <img src="/images/certified-bg.jpg" alt="" class="w-full h-full object-cover object-center" loading="eager" />
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, #0C2E3C 0%, rgba(12,46,60,0.70) 100%)"></div>
+      </div>
+
+      <div class="absolute bottom-16 lg:bottom-20 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16">
+          <p class="font-button font-medium text-lime text-sm tracking-widest uppercase mb-4">Let's Talk</p>
+          <h1
+            class="font-heading font-bold text-white leading-[1.1]"
+            style="font-size: clamp(2.25rem, 5vw, 3.75rem);"
+          >
+            Get In <span class="text-lime">Touch</span>
+          </h1>
+          <p class="font-body text-white/65 text-sm lg:text-base mt-5 max-w-md leading-relaxed">
+            We'd love to hear from you. Whether it's a treatment inquiry, course information, or just a question — let's start a conversation.
+          </p>
+
+          <!-- Contact chips -->
+          <div class="flex flex-wrap gap-3 mt-8">
+            {contactItems.map((c) => (
+              <a
+                href={c.href ?? undefined}
+                class:list={['inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-white/20 font-body text-sm text-white/80 transition-all duration-200', c.href ? 'hover:bg-white/10 hover:border-white/35' : 'cursor-default']}
+                style="backdrop-filter: blur(8px); background: rgba(255,255,255,0.06);"
+              >
+                <span class="w-4 h-4 text-lime shrink-0" set:html={c.icon} />
+                <span class="font-medium">{c.value}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <ScrollIndicator class="absolute bottom-8 right-8 lg:right-16 z-10 text-white/80" />
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2 — FORM + FAQ                                 -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section
+      class="contact-form-section relative"
+      style="scroll-snap-align: start; min-height: 100dvh; background: linear-gradient(160deg, #dff5cd 0%, #eef9f0 40%, #f5fdf6 100%);"
+    >
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl" style="background: rgba(192,241,128,0.20)"></div>
+        <div class="absolute bottom-0 right-0 w-[350px] h-[350px] rounded-full blur-3xl" style="background: rgba(102,166,172,0.10)"></div>
+      </div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-28">
+        <div class="grid lg:grid-cols-2 gap-14 lg:gap-20">
+
+          <!-- LEFT: Contact form -->
+          <div>
+            <p class="font-button font-medium text-teal text-xs tracking-widest uppercase mb-3">Send a Message</p>
+            <h2
+              class="font-heading font-bold text-dark-blue leading-[1.15] mb-8"
+              style="font-size: clamp(1.5rem, 2.5vw, 2rem);"
+            >
+              We're here to help
+            </h2>
+
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              class="flex flex-col gap-4"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="bot-field" />
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="flex flex-col gap-1.5">
+                  <label class="font-button text-xs font-medium text-dark-blue/70 uppercase tracking-wider" for="name">Full Name *</label>
+                  <input
+                    id="name" name="name" type="text" required
+                    placeholder="Your full name"
+                    class="w-full px-4 py-3 rounded-xl border border-dark-blue/15 bg-white font-body text-sm text-dark-blue placeholder-dark-blue/35 focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all duration-200"
+                  />
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <label class="font-button text-xs font-medium text-dark-blue/70 uppercase tracking-wider" for="email">Email Address *</label>
+                  <input
+                    id="email" name="email" type="email" required
+                    placeholder="you@email.com"
+                    class="w-full px-4 py-3 rounded-xl border border-dark-blue/15 bg-white font-body text-sm text-dark-blue placeholder-dark-blue/35 focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all duration-200"
+                  />
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="flex flex-col gap-1.5">
+                  <label class="font-button text-xs font-medium text-dark-blue/70 uppercase tracking-wider" for="phone">Phone Number</label>
+                  <input
+                    id="phone" name="phone" type="tel"
+                    placeholder="+92 3XX XXXXXXX"
+                    class="w-full px-4 py-3 rounded-xl border border-dark-blue/15 bg-white font-body text-sm text-dark-blue placeholder-dark-blue/35 focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all duration-200"
+                  />
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <label class="font-button text-xs font-medium text-dark-blue/70 uppercase tracking-wider" for="subject">Subject</label>
+                  <select
+                    id="subject" name="subject"
+                    class="w-full px-4 py-3 rounded-xl border border-dark-blue/15 bg-white font-body text-sm text-dark-blue focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all duration-200 appearance-none"
+                  >
+                    <option value="" disabled selected>Select a subject</option>
+                    {subjects.map((s) => <option value={s}>{s}</option>)}
+                  </select>
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-1.5">
+                <label class="font-button text-xs font-medium text-dark-blue/70 uppercase tracking-wider" for="message">Message *</label>
+                <textarea
+                  id="message" name="message" required rows="4"
+                  placeholder="Tell us how we can help..."
+                  class="w-full px-4 py-3 rounded-xl border border-dark-blue/15 bg-white font-body text-sm text-dark-blue placeholder-dark-blue/35 focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all duration-200 resize-none"
+                ></textarea>
+              </div>
+
+              <label class="flex items-start gap-3 cursor-pointer group">
+                <input type="checkbox" name="consent" required class="mt-0.5 w-4 h-4 rounded border-dark-blue/20 accent-teal shrink-0" />
+                <span class="font-body text-xs text-dark-blue/55 leading-relaxed">
+                  I agree to be contacted by Dr. Tasneem's Institute of Health regarding my inquiry. Your information will not be shared with third parties.
+                </span>
+              </label>
+
+              <button
+                type="submit"
+                class="flex items-center justify-center gap-2 w-full py-4 rounded-full bg-teal text-white font-button font-semibold text-sm hover:bg-cta-hover transition-all duration-200 hover:scale-[1.02] mt-1"
+              >
+                Send Message
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 13L13 3M6 3H13V10" />
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- RIGHT: Contact details + FAQ -->
+          <div class="flex flex-col gap-10">
+
+            <!-- Contact cards -->
+            <div class="flex flex-col gap-4">
+              <p class="font-button font-medium text-teal text-xs tracking-widest uppercase">Contact Details</p>
+              {contactItems.map((c) => (
+                <div class="flex items-start gap-4 p-4 rounded-2xl bg-white shadow-[0_4px_16px_rgba(12,46,60,0.07)]">
+                  <div class="w-10 h-10 rounded-xl bg-teal/10 flex items-center justify-center text-teal shrink-0">
+                    <span class="w-5 h-5" set:html={c.icon} />
+                  </div>
+                  <div>
+                    <p class="font-button font-semibold text-dark-blue text-sm">{c.label}</p>
+                    {c.href
+                      ? <a href={c.href} class="font-body text-teal text-sm font-medium hover:underline">{c.value}</a>
+                      : <p class="font-body text-dark-blue text-sm font-medium">{c.value}</p>
+                    }
+                    <p class="font-body text-dark-blue/45 text-xs mt-0.5">{c.sub}</p>
+                  </div>
+                </div>
+              ))}
+
+              <!-- Locations detail -->
+              <div class="p-4 rounded-2xl bg-white shadow-[0_4px_16px_rgba(12,46,60,0.07)] text-sm font-body text-dark-blue/60 leading-relaxed">
+                <p class="font-semibold text-dark-blue mb-1">Clifton Branch</p>
+                <p>Suite #212, 2nd Floor, The Plaza, 2 Talwar, Clifton, Karachi</p>
+                <p class="font-semibold text-dark-blue mt-3 mb-1">Malir Cantt Branch</p>
+                <p>1st Floor, AD Mart Near Checkpost 6, Malir Cantt, Karachi</p>
+              </div>
+            </div>
+
+            <!-- FAQ -->
+            <div>
+              <p class="font-button font-medium text-teal text-xs tracking-widest uppercase mb-4">FAQ</p>
+              <div class="flex flex-col gap-3">
+                {faqs.map((faq) => (
+                  <details class="group rounded-xl border border-dark-blue/10 bg-white overflow-hidden">
+                    <summary class="flex items-center justify-between gap-4 px-4 py-3.5 cursor-pointer list-none font-button font-semibold text-dark-blue text-sm select-none">
+                      {faq.q}
+                      <svg class="w-4 h-4 shrink-0 text-teal transition-transform duration-200 group-open:rotate-45" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8 3v10M3 8h10" />
+                      </svg>
+                    </summary>
+                    <p class="px-4 pb-3.5 font-body text-dark-blue/60 text-sm leading-relaxed">{faq.a}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Base>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function snapReveal(selector: string, staggerMs = 120) {
+    if (reduced) return;
+    const els = [...document.querySelectorAll<HTMLElement>(selector)];
+    if (!els.length) return;
+    els.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = `opacity .6s ease ${i * staggerMs}ms, transform .6s ease ${i * staggerMs}ms`;
+    });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement;
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        io.unobserve(el);
+      });
+    }, { threshold: 0.05 });
+    els.forEach(el => io.observe(el));
+  }
+
+  if (!reduced) {
+    gsap.from('.contact-hero .absolute.bottom-16 > div > *', {
+      y: 32, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', delay: 0.2,
+    });
+  }
+
+  snapReveal('.contact-form-section .grid > *', 150);
+</script>

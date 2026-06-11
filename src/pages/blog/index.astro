@@ -1,0 +1,181 @@
+---
+import Base from '../../layouts/Base.astro';
+import ScrollIndicator from '../../components/global/ScrollIndicator.astro';
+
+const posts = [
+  {
+    slug: 'hydrafacial-benefits',
+    title: 'HydraFacial Benefits: The Science Behind Hydration-Based Skincare',
+    excerpt: 'Discover the science-backed benefits of HydraFacial treatments, how they work, and why dermatologists recommend this non-invasive facial for optimal skin health and radiance.',
+    category: 'Aesthetic Health',
+    date: 'January 15, 2025',
+    readTime: '5 min read',
+    image: '/images/blog/hydrafacial.jpg',
+    color: '#66A6AC',
+  },
+  {
+    slug: 'botox-vs-fillers',
+    title: 'Botox vs. Dermal Fillers: Complete Comparison for Health & Wellness Results',
+    excerpt: 'Comprehensive guide comparing Botox and dermal fillers: how they work differently, which is right for you, and expert advice on combining treatments for optimal results.',
+    category: 'Aesthetic Health',
+    date: 'January 12, 2025',
+    readTime: '7 min read',
+    image: '/images/blog/botox-fillers.jpg',
+    color: '#219169',
+  },
+];
+---
+
+<Base
+  title="Blog | Dr. Tasneem's Institute of Health — Aesthetic Health & Wellness"
+  description="Expert insights on aesthetic treatments, skincare science, wellness education, and career advice from Dr. Tasneem's Institute of Health in Karachi."
+>
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOLD 1 — HERO                                          -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="fold blog-hero" data-hero>
+      <div class="absolute inset-0 z-0">
+        <img src="/images/work-bg.jpg" alt="" class="w-full h-full object-cover object-center" loading="eager" />
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, #0C2E3C 0%, rgba(12,46,60,0.75) 100%)"></div>
+      </div>
+
+      <div class="absolute bottom-16 lg:bottom-20 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16">
+          <p class="font-button font-medium text-lime text-sm tracking-widest uppercase mb-4">Knowledge Hub</p>
+          <h1
+            class="font-heading font-bold text-white leading-[1.1]"
+            style="font-size: clamp(2.25rem, 5vw, 3.75rem);"
+          >
+            Our <span class="text-lime">Blog</span>
+          </h1>
+          <p class="font-body text-white/65 text-sm lg:text-base mt-5 max-w-md leading-relaxed">
+            Expert insights on aesthetic treatments, skincare science, wellness education, and career advice — straight from DTIOH's clinical team.
+          </p>
+          <div class="flex flex-wrap gap-2.5 mt-7">
+            {['Aesthetic Health', 'Skincare Science', 'Career Advice', 'Wellness'].map((t) => (
+              <span class="px-4 py-1.5 rounded-full border border-white/20 text-white/70 text-xs font-button font-medium" style="background: rgba(255,255,255,0.06);">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <ScrollIndicator class="absolute bottom-8 right-8 lg:right-16 z-10 text-white/80" />
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2 — BLOG POSTS GRID                            -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section
+      class="blog-posts relative"
+      style="scroll-snap-align: start; min-height: 100dvh; background: linear-gradient(160deg, #dff5cd 0%, #eef9f0 40%, #f9fdfb 100%);"
+    >
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl" style="background: rgba(192,241,128,0.20)"></div>
+        <div class="absolute bottom-0 right-0 w-[350px] h-[350px] rounded-full blur-3xl" style="background: rgba(102,166,172,0.10)"></div>
+      </div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-28">
+        <div class="flex items-end justify-between gap-6 mb-12">
+          <div>
+            <h2
+              class="font-heading font-bold text-dark-blue leading-[1.15]"
+              style="font-size: clamp(1.875rem, 3.5vw, 2.75rem);"
+            >
+              Latest <span class="text-teal">Articles</span>
+            </h2>
+            <p class="font-body text-dark-blue/55 text-sm mt-2">
+              {posts.length} article{posts.length !== 1 ? 's' : ''} published
+            </p>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-8">
+          {posts.map((p) => (
+            <article class="rounded-2xl overflow-hidden flex flex-col bg-white shadow-[0_4px_24px_rgba(12,46,60,0.08)] hover:shadow-[0_10px_36px_rgba(12,46,60,0.13)] transition-all duration-300 group hover:-translate-y-1">
+
+              <!-- Cover image -->
+              <div class="relative overflow-hidden shrink-0" style={`height: 240px; background: ${p.color}22;`}>
+                <img src={p.image} alt={p.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <span
+                  class="absolute top-4 left-4 px-3 py-1.5 rounded-full font-button font-semibold text-[0.65rem] text-white"
+                  style={`background: ${p.color};`}
+                >
+                  {p.category}
+                </span>
+              </div>
+
+              <!-- Body -->
+              <div class="flex flex-col flex-1 p-6 gap-3">
+                <div class="flex items-center gap-3 text-dark-blue/40 text-xs font-body">
+                  <span>{p.date}</span>
+                  <span>·</span>
+                  <span>{p.readTime}</span>
+                </div>
+
+                <h3 class="font-heading font-bold text-dark-blue text-[1.0625rem] leading-snug group-hover:text-teal transition-colors duration-200">
+                  {p.title}
+                </h3>
+
+                <p class="font-body text-[0.8125rem] text-dark-blue/58 leading-relaxed flex-1 line-clamp-3">
+                  {p.excerpt}
+                </p>
+
+                <a
+                  href={`/blog/${p.slug}`}
+                  class="inline-flex items-center gap-2 text-teal font-button font-semibold text-sm hover:gap-3 transition-all duration-200 mt-1"
+                >
+                  Read Article
+                  <svg class="w-4 h-4 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 8h10M9 4l4 4-4 4" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Base>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function snapReveal(selector: string, staggerMs = 100) {
+    if (reduced) return;
+    const els = [...document.querySelectorAll<HTMLElement>(selector)];
+    if (!els.length) return;
+    els.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = `opacity .6s ease ${i * staggerMs}ms, transform .6s ease ${i * staggerMs}ms`;
+    });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement;
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        io.unobserve(el);
+      });
+    }, { threshold: 0.05 });
+    els.forEach(el => io.observe(el));
+  }
+
+  if (!reduced) {
+    gsap.from('.blog-hero .absolute.bottom-16 > div > *', {
+      y: 32, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', delay: 0.2,
+    });
+  }
+
+  snapReveal('.blog-posts article', 100);
+</script>

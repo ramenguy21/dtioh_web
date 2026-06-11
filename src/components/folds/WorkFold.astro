@@ -1,0 +1,228 @@
+---
+const works = [
+  {
+    title: 'Badar Expo',
+    desc: 'Partnering on premium public platforms to promote healthcare and aesthetic awareness.',
+    image: '/images/work-bg.jpg',
+  },
+  {
+    title: 'DUHS Collaboration',
+    desc: 'Partnering with Dow University of Health Sciences to deliver accredited clinical training programs.',
+    image: '/images/work-bg.jpg',
+  },
+  {
+    title: 'Community Outreach',
+    desc: 'Bringing free aesthetic consultations and health screenings to underserved communities across Karachi.',
+    image: '/images/work-bg.jpg',
+  },
+];
+
+const tags = [
+  { label: '+4 Active partnerships', lime: false },
+  { label: 'Community Impact', lime: false },
+  { label: 'Healthcare Excellence', lime: true },
+];
+---
+
+<section class="fold work-fold" style="background: #0C2E3C;">
+
+  <!-- Background texture -->
+  <img
+    src="/images/work-bg.jpg"
+    alt=""
+    class="absolute inset-0 w-full h-full object-cover opacity-[0.08] pointer-events-none"
+    aria-hidden="true"
+    loading="lazy"
+  />
+  <!-- Gradient overlay — darker on right to let text breathe -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style="background: linear-gradient(110deg, rgba(12,46,60,0.35) 0%, rgba(12,46,60,0.72) 60%, rgba(12,46,60,0.88) 100%)"
+    aria-hidden="true"
+  ></div>
+
+  <!-- ── Content grid ──────────────────────────────────────── -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- LEFT — image carousel card -->
+      <div class="work-left flex flex-col items-center lg:items-start gap-5">
+
+        <!-- Card wrapper -->
+        <div
+          class="work-card relative w-full rounded-2xl overflow-hidden"
+          style="max-width: 520px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13); box-shadow: 0 16px 48px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);"
+        >
+          <!-- Slides -->
+          {works.map((w, i) => (
+            <div
+              class="work-slide"
+              data-index={i}
+              aria-hidden={i !== 0 ? 'true' : undefined}
+              style={i !== 0 ? 'display:none' : undefined}
+            >
+              <!-- Image -->
+              <div class="overflow-hidden" style="height: 300px; background: rgba(102,166,172,0.15);">
+                <img
+                  src={w.image}
+                  alt={w.title}
+                  class="w-full h-full object-cover"
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+
+              <!-- Caption -->
+              <div class="p-5">
+                <h3 class="font-heading font-bold text-lime leading-snug" style="font-size: 1.125rem;">
+                  {w.title}
+                </h3>
+                <p class="font-body text-white/58 text-sm mt-1.5 leading-relaxed">
+                  {w.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Dot indicators -->
+        <div class="flex items-center gap-2.5" role="tablist" aria-label="Work examples">
+          {works.map((_, i) => (
+            <button
+              class="work-dot rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime"
+              data-dot={i}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-label={`Slide ${i + 1}`}
+              style={
+                i === 0
+                  ? 'width: 22px; height: 7px; background: #C0F180;'
+                  : 'width: 7px; height: 7px; background: rgba(255,255,255,0.3);'
+              }
+            />
+          ))}
+        </div>
+      </div>
+
+      <!-- RIGHT — text block -->
+      <div class="work-right max-w-lg">
+
+        <h2
+          class="font-heading font-bold text-white leading-[1.1]"
+          style="font-size: clamp(2.25rem, 4vw, 3.5rem);"
+        >
+          Our <span class="text-lime">Work</span>
+        </h2>
+
+        <!-- Tag pills -->
+        <div class="flex flex-wrap gap-2.5 mt-6">
+          {tags.map((t) => (
+            <span
+              class:list={[
+                'inline-flex items-center px-4 py-1.5 rounded-full text-sm font-button font-medium',
+                t.lime
+                  ? 'text-lime border border-lime/40'
+                  : 'text-white/80 border border-white/20',
+              ]}
+              style="backdrop-filter: blur(8px); background: rgba(255,255,255,0.05);"
+            >
+              {t.label}
+            </span>
+          ))}
+        </div>
+
+        <!-- Body copy -->
+        <p class="font-body text-white/60 text-base leading-relaxed mt-6">
+          We collaborate with leading institutions and organizations to elevate
+          standards in healthcare and aesthetics, while building strong,
+          impact-driven professional networks.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<style>
+  .work-dot { cursor: pointer; border: none; padding: 0; }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── Carousel logic ───────────────────────────────────────
+  const slides = Array.from(document.querySelectorAll<HTMLElement>('.work-slide'));
+  const dots   = Array.from(document.querySelectorAll<HTMLElement>('.work-dot'));
+  let current  = 0;
+  let timer: ReturnType<typeof setInterval> | null = null;
+
+  function goTo(index: number) {
+    if (index === current) return;
+
+    // Hide current
+    slides[current].style.display = 'none';
+    slides[current].setAttribute('aria-hidden', 'true');
+    dots[current].style.width  = '7px';
+    dots[current].style.background = 'rgba(255,255,255,0.3)';
+    dots[current].setAttribute('aria-selected', 'false');
+
+    // Show next
+    current = index;
+    slides[current].style.display = 'block';
+    slides[current].removeAttribute('aria-hidden');
+    dots[current].style.width  = '22px';
+    dots[current].style.background = '#C0F180';
+    dots[current].setAttribute('aria-selected', 'true');
+
+    gsap.fromTo(
+      slides[current],
+      { opacity: 0, y: 12 },
+      { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }
+    );
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      goTo(i);
+      restartTimer();
+    });
+  });
+
+  function restartTimer() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(() => goTo((current + 1) % slides.length), 4000);
+  }
+
+  // Only auto-play when the fold is in view
+  ScrollTrigger.create({
+    trigger: '.work-fold',
+    start: 'top 80%',
+    end: 'bottom 20%',
+    onEnter: restartTimer,
+    onLeave: () => { if (timer) { clearInterval(timer); timer = null; } },
+    onEnterBack: restartTimer,
+    onLeaveBack: () => { if (timer) { clearInterval(timer); timer = null; } },
+  });
+
+  // ── Entrance animations ──────────────────────────────────
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.from('.work-left', {
+      scrollTrigger: { trigger: '.work-fold', start: 'top 65%' },
+      x: -40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+    });
+    gsap.from('.work-right > *', {
+      scrollTrigger: { trigger: '.work-fold', start: 'top 65%' },
+      x: 40,
+      opacity: 0,
+      stagger: 0.12,
+      duration: 0.8,
+      ease: 'power3.out',
+    });
+  }
+</script>

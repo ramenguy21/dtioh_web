@@ -1,0 +1,261 @@
+---
+import Base from '../../layouts/Base.astro';
+import ScrollIndicator from '../../components/global/ScrollIndicator.astro';
+
+const courses = [
+  {
+    slug: 'non-invasive-beautician',
+    title: 'Non-Invasive Beautician',
+    image: '/images/courses/non-invasive.jpg',
+    color: '#219169',
+    duration: '8 Weeks',
+    hours: '120+ Hours',
+    level: 'Beginner',
+    desc: 'Master non-surgical skin and beauty treatments including facials, chemical peels, and advanced skincare routines for clinics and spas.',
+    badges: ['CPD Certified', 'Max 12 Students'],
+    href: '/courses/listing/non-invasive-beautician',
+  },
+  {
+    slug: 'health-wellness-specialist',
+    title: 'Health & Wellness Specialist',
+    image: '/images/courses/health-wellness.jpg',
+    color: '#0C2E3C',
+    duration: '12 Weeks',
+    hours: '200+ Hours',
+    level: 'Advanced',
+    desc: 'Advanced procedures including PRP, dermal fillers, threads, Botox, HydraFacial, and skin rejuvenation — the complete injectable specialist course.',
+    badges: ['CPD Certified', 'Max 8 Students'],
+    href: '/courses/listing/health-wellness-specialist',
+  },
+  {
+    slug: 'health-and-nutrition',
+    title: 'Health and Nutrition',
+    image: '/images/courses/nutrition.jpg',
+    color: '#66A6AC',
+    duration: '10 Weeks',
+    hours: '80+ Hours',
+    level: 'All Levels',
+    desc: 'Explore beauty nutrition and wellness diet science. Learn holistic methods to improve skin health, hair growth, and body wellness through nutrition.',
+    badges: ['CPD Certified', 'Flexible Schedule'],
+    href: '/courses/listing/health-and-nutrition',
+  },
+  {
+    slug: 'cupping-therapy',
+    title: 'Cupping Therapy',
+    image: '/images/courses/cupping.jpg',
+    color: '#219169',
+    duration: '6 Weeks',
+    hours: '60+ Hours',
+    level: 'All Levels',
+    desc: 'Combine traditional Hijama methods with modern clinical safety standards. Covers wet cupping, dry cupping, and therapeutic protocols.',
+    badges: ['CPD Certified', 'Max 10 Students'],
+    href: '/courses/listing/cupping-therapy',
+  },
+];
+---
+
+<Base
+  title="Courses | Dr. Tasneem's Institute of Health — DUHS & SBTE Accredited Aesthetic Programs"
+  description="DUHS affiliated & SBTE certified aesthetic and healthcare courses in Karachi. Non-Invasive Beautician, Health & Wellness Specialist, Cupping Therapy, Laser Aesthetics and more."
+>
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOLD 1 — HERO                                          -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="fold courses-hero" data-hero>
+      <div class="absolute inset-0 z-0">
+        <img src="/images/hero.jpg" alt="" class="w-full h-full object-cover object-center" loading="eager" />
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, #0C2E3C 0%, rgba(12,46,60,0.65) 100%)"></div>
+      </div>
+
+      <div class="absolute bottom-16 lg:bottom-20 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16">
+          <p class="font-button font-medium text-lime text-sm tracking-widest uppercase mb-4">DUHS Affiliated · SBTE Recognized</p>
+          <h1
+            class="font-heading font-bold text-white leading-[1.1] max-w-2xl"
+            style="font-size: clamp(2rem, 4.5vw, 3.5rem);"
+          >
+            Certify Yourself<br />Through the <span class="text-lime">Experts</span>
+          </h1>
+          <p class="font-body text-white/65 text-sm lg:text-base mt-5 max-w-lg leading-relaxed">
+            Committed to preparing the next generation of beauty and wellness professionals through hands-on training, advanced knowledge, and real-world application. Our certifications are respected in Pakistan and carry weight internationally.
+          </p>
+
+          <!-- Accreditation badges -->
+          <div class="flex flex-wrap gap-3 mt-8">
+            {['Officially Recognized Certifications', 'Strong Academic Credibility', 'Hands-On Training'].map((b) => (
+              <span
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 font-button text-xs font-medium text-white/80"
+                style="backdrop-filter: blur(8px); background: rgba(255,255,255,0.07);"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-lime shrink-0"></span>
+                {b}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <ScrollIndicator class="absolute bottom-8 right-8 lg:right-16 z-10 text-white/80" />
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2 — COURSES GRID                               -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section
+      class="courses-grid relative"
+      style="scroll-snap-align: start; min-height: 100dvh; background: linear-gradient(160deg, #dff5cd 0%, #eef9f0 35%, #f5fdf6 65%, #f9fdfb 100%);"
+    >
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-20 -left-20 w-[440px] h-[440px] rounded-full blur-3xl" style="background: rgba(192,241,128,0.22)"></div>
+        <div class="absolute bottom-0 right-[8%] w-[360px] h-[360px] rounded-full blur-3xl" style="background: rgba(102,166,172,0.12)"></div>
+      </div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-28">
+        <div class="text-center mb-12">
+          <h2
+            class="font-heading font-bold text-dark-blue leading-[1.15]"
+            style="font-size: clamp(1.875rem, 3.5vw, 2.75rem);"
+          >
+            Our <span class="text-teal">Programs</span>
+          </h2>
+          <p class="font-body text-dark-blue/55 text-sm lg:text-base mt-3 max-w-lg mx-auto leading-relaxed">
+            Comprehensive certification programs designed to transform your career in health, wellness, and aesthetics
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {courses.map((c) => (
+            <article class="rounded-2xl overflow-hidden flex flex-col bg-white shadow-[0_4px_24px_rgba(12,46,60,0.08)] hover:shadow-[0_10px_36px_rgba(12,46,60,0.13)] transition-all duration-300 group hover:-translate-y-1">
+
+              <!-- Image -->
+              <div class="relative overflow-hidden shrink-0" style={`height: 200px; background: ${c.color}22;`}>
+                <img src={c.image} alt={c.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <div class="absolute inset-0" style={`background: linear-gradient(to top, ${c.color}55 0%, transparent 50%);`}></div>
+                <!-- Duration + Hours badges -->
+                <span class="absolute bottom-3 left-3 bg-white/90 text-dark-blue text-[0.65rem] font-button font-semibold px-2.5 py-1 rounded-full leading-none backdrop-blur-sm">
+                  {c.duration}
+                </span>
+                <span class="absolute bottom-3 right-3 bg-dark-blue/80 text-white text-[0.65rem] font-button font-semibold px-2.5 py-1 rounded-full leading-none backdrop-blur-sm">
+                  {c.hours}
+                </span>
+              </div>
+
+              <!-- Body -->
+              <div class="flex flex-col flex-1 p-5 gap-3">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="font-heading font-bold text-dark-blue text-[1rem] leading-snug">{c.title}</h3>
+                  <span class="shrink-0 px-2.5 py-1 rounded-full bg-teal/10 text-teal text-[0.65rem] font-button font-medium leading-none mt-0.5">{c.level}</span>
+                </div>
+
+                <p class="font-body text-[0.8125rem] text-dark-blue/58 leading-relaxed flex-1">{c.desc}</p>
+
+                <!-- Badge pills -->
+                <div class="flex flex-wrap gap-1.5">
+                  {c.badges.map((b) => (
+                    <span class="px-2.5 py-1 rounded-full border border-dark-blue/12 text-dark-blue/50 text-[0.65rem] font-button leading-none">{b}</span>
+                  ))}
+                </div>
+
+                <a
+                  href={c.href}
+                  class="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-dark-blue text-white font-button font-semibold text-sm hover:bg-teal transition-all duration-300 mt-1"
+                >
+                  View Curriculum
+                  <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12L12 2M12 2H4.5M12 2V9.5" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOLD 3 — ENROLL CTA                                    -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="fold courses-cta">
+      <div class="absolute inset-0 z-0">
+        <img src="/images/course-cta-bg.png" alt="" class="w-full h-full object-cover object-center" loading="lazy" />
+        <div class="absolute inset-0" style="background: linear-gradient(100deg, #0C2E3C 30%, rgba(12,46,60,0.85) 60%, rgba(12,46,60,0.55) 100%)"></div>
+      </div>
+
+      <div class="absolute z-10 inset-x-0" style="bottom: 16%;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16">
+          <div class="max-w-xl">
+            <p class="font-button font-medium text-lime text-sm tracking-widest uppercase mb-4">Start Your Journey</p>
+            <h2
+              class="font-heading font-bold text-white leading-[1.15]"
+              style="font-size: clamp(1.75rem, 3.5vw, 3rem);"
+            >
+              Ready to become a<br />
+              <span class="text-lime">certified professional</span>?
+            </h2>
+            <p class="font-body text-white/60 text-base mt-4 max-w-md leading-relaxed">
+              With advanced facilities, expert instructors, and SBTE-accredited certifications, you'll leave equipped for real-world success.
+            </p>
+            <div class="flex flex-wrap gap-4 mt-8">
+              <a href="/contact" class="inline-flex items-center gap-2.5 bg-lime text-dark-blue font-button font-semibold text-sm px-8 py-4 rounded-full hover:scale-105 hover:bg-white transition-all duration-200">
+                Enroll Now
+              </a>
+              <a href="/contact" class="inline-flex items-center gap-2.5 border border-white/30 text-white font-button font-semibold text-sm px-8 py-4 rounded-full hover:bg-white/10 transition-all duration-200">
+                Free Consultation
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Base>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // IntersectionObserver-based reveal — works reliably with scroll-snap jumps.
+  // gsap.from + ScrollTrigger sets opacity:0 immediately and may never fire on snap.
+  function snapReveal(selector: string, staggerMs = 70) {
+    if (reduced) return;
+    const els = [...document.querySelectorAll<HTMLElement>(selector)];
+    if (!els.length) return;
+    els.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = `opacity .55s ease ${i * staggerMs}ms, transform .55s ease ${i * staggerMs}ms`;
+    });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement;
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        io.unobserve(el);
+      });
+    }, { threshold: 0.05 });
+    els.forEach(el => io.observe(el));
+  }
+
+  if (!reduced) {
+    // Hero: no ScrollTrigger needed — plays on load
+    gsap.from('.courses-hero .absolute.bottom-16 > div > *', {
+      y: 32, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', delay: 0.2,
+    });
+    // CTA fold: reached by normal scroll from below, ScrollTrigger works fine here
+    gsap.from('.courses-cta .max-w-xl > *', {
+      scrollTrigger: { trigger: '.courses-cta', start: 'top 65%' },
+      y: 28, opacity: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out',
+    });
+  }
+
+  // Grid section — use IO so snap jumps are caught
+  snapReveal('.courses-grid .text-center > *', 80);
+  snapReveal('.courses-grid article', 70);
+</script>

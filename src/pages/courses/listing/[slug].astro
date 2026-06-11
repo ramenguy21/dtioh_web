@@ -1,0 +1,667 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ScrollIndicator from '../../../components/global/ScrollIndicator.astro';
+
+const allCourses = [
+  {
+    slug: 'non-invasive-beautician',
+    title: 'Non-Invasive Beautician',
+    subtitle: 'Certification Program',
+    tagline: 'Master non-surgical skin and beauty treatments with hands-on training from industry experts',
+    desc: 'Our comprehensive Non-Invasive Beautician certification program equips you with practical skills, product knowledge, and business acumen needed to excel in the booming beauty industry.',
+    image: '/images/courses/non-invasive.jpg',
+    color: '#219169',
+    stats: [
+      { label: 'Duration', value: '8 Weeks' },
+      { label: 'Training Hours', value: '120+' },
+      { label: 'Treatments Covered', value: '10+' },
+      { label: 'Class Size', value: 'Max 12' },
+    ],
+    accreditation: 'CPD Certified',
+    nextCohort: 'February 2026',
+    fee: '£1,995',
+    paymentPlans: [
+      { label: 'Pay in Full', detail: 'Save £100' },
+      { label: '2 Installments', detail: '£998 / month' },
+    ],
+    inclusions: [
+      'Complete training manual & resources',
+      'Professional beauty kit (valued at £300)',
+      'CPD-certified qualification',
+      'Ongoing mentorship & support',
+      'Job placement assistance',
+    ],
+    modules: [
+      {
+        title: 'Skin Science & Analysis',
+        items: [
+          'Skin structure & types analysis',
+          'Skin conditions & disorders',
+          'Product knowledge & chemistry',
+          'Client consultation techniques',
+        ],
+      },
+      {
+        title: 'Practical Treatments',
+        items: [
+          'Professional facials (European & HydraFacial)',
+          'Chemical peels & exfoliation',
+          'Threading & waxing techniques',
+          'Massage & lymphatic drainage',
+        ],
+      },
+      {
+        title: 'Professional Practice',
+        items: [
+          'Salon management & client relations',
+          'Health & safety protocols',
+          'Starting your beauty business',
+          'Marketing & social media',
+        ],
+      },
+    ],
+    prerequisites: [
+      'Minimum age: 18 years',
+      'High school diploma or equivalent',
+      'Passion for beauty and skincare',
+    ],
+    assessment: [
+      'Practical demonstrations on models and clients',
+      'Portfolio of completed treatments',
+      'Theoretical examination',
+      'Mandatory 90% minimum attendance',
+    ],
+    faq: [
+      {
+        q: 'Do I need prior experience?',
+        a: 'No prior beauty experience is required. Our comprehensive curriculum starts from the fundamentals.',
+      },
+      {
+        q: 'How much time do I need to commit?',
+        a: 'The course runs for 8 weeks with 3–4 days per week of in-person training, plus approximately 5–10 hours of self-study weekly.',
+      },
+      {
+        q: 'What career opportunities are available?',
+        a: 'Graduates work in luxury spas, salons, wellness centres, hotels, or start independent beauty businesses. Job placement assistance is included.',
+      },
+      {
+        q: 'Is the certification internationally recognised?',
+        a: 'Yes — our certification is CPD-accredited and internationally recognised by leading beauty and wellness organisations.',
+      },
+    ],
+  },
+  {
+    slug: 'health-wellness-specialist',
+    title: 'Health & Wellness Specialist',
+    subtitle: 'Certification Program',
+    tagline: 'Master advanced health and wellness procedures and build a thriving career',
+    desc: 'This advanced certification program covers the full spectrum of injectable and non-injectable aesthetic treatments — from dermal fillers and anti-wrinkle injections to HydraFacial and skin rejuvenation.',
+    image: '/images/courses/health-wellness.jpg',
+    color: '#0C2E3C',
+    stats: [
+      { label: 'Duration', value: '12 Weeks' },
+      { label: 'Training Hours', value: '200+' },
+      { label: 'Procedures Covered', value: '15+' },
+      { label: 'Class Size', value: 'Max 8' },
+    ],
+    accreditation: 'CPD Certified',
+    nextCohort: 'March 2026',
+    fee: '£4,995',
+    paymentPlans: [
+      { label: 'Pay in Full', detail: 'Save £200' },
+      { label: '3 Installments', detail: '£1,698 / month' },
+      { label: '6 Installments', detail: '£865 / month' },
+    ],
+    inclusions: [
+      'Complete training manual & resources',
+      'Professional starter kit (£800 value)',
+      'CPD-certified qualification',
+      '12 months post-course mentorship',
+      'Exclusive practitioner network access',
+      'Business setup guidance',
+    ],
+    modules: [
+      {
+        title: 'Foundational Sciences',
+        items: [
+          'Facial anatomy & physiology',
+          'Skin biology & ageing processes',
+          'Pharmacology of injectables',
+          'Patient assessment protocols',
+        ],
+      },
+      {
+        title: 'Clinical Techniques',
+        items: [
+          'Advanced injection methods',
+          'Dermal filler applications',
+          'Anti-wrinkle treatments',
+          'Complication management',
+        ],
+      },
+      {
+        title: 'Business & Practice',
+        items: [
+          'Setting up your practice',
+          'Marketing & client acquisition',
+          'Legal & ethical frameworks',
+          'Insurance & risk management',
+        ],
+      },
+    ],
+    prerequisites: [
+      'Level 3 qualification in Beauty Therapy, Nursing, or equivalent healthcare background',
+      'Current professional indemnity insurance',
+      'Minimum age: 21 years',
+      '95% mandatory attendance minimum',
+    ],
+    assessment: [
+      'Written examination',
+      'Practical injection technique assessment',
+      'Portfolio of minimum 20 case studies',
+      '95% mandatory attendance',
+    ],
+    faq: [
+      {
+        q: 'What background do I need?',
+        a: 'A Level 3 qualification in Beauty Therapy, Nursing, or an equivalent healthcare background is required. You must also hold current professional indemnity insurance.',
+      },
+      {
+        q: 'How much time does this course take?',
+        a: 'Two full days per week for 12 weeks, plus 5–8 hours of self-study. Clinical observation sessions are also scheduled.',
+      },
+      {
+        q: 'What support is available after graduation?',
+        a: '12 months of post-course mentorship, access to the exclusive practitioner network, CPD opportunities, and discounted advanced courses.',
+      },
+      {
+        q: 'Is this the right course if I am a nurse?',
+        a: 'Absolutely — this program is ideal for nurses looking to transition into or expand within aesthetic medicine.',
+      },
+    ],
+  },
+  {
+    slug: 'health-and-nutrition',
+    title: 'Health and Nutrition',
+    subtitle: 'Certification Program',
+    tagline: 'Master the science of nutrition and wellness for holistic aesthetic health',
+    desc: 'Explore the deep connection between nutrition, wellness, and aesthetic health. This program equips you with evidence-based tools to help clients achieve lasting improvements in skin, hair, weight, and overall wellbeing.',
+    image: '/images/courses/nutrition.jpg',
+    color: '#66A6AC',
+    stats: [
+      { label: 'Duration', value: '10 Weeks' },
+      { label: 'Training Hours', value: '80+' },
+      { label: 'Topics Covered', value: '15+' },
+      { label: 'Class Size', value: 'Max 15' },
+    ],
+    accreditation: 'CPD Certified',
+    nextCohort: 'April 2026',
+    fee: '£2,495',
+    paymentPlans: [
+      { label: 'Pay in Full', detail: 'Save £125' },
+      { label: '2 Installments', detail: '£1,310 / month' },
+      { label: '3 Installments', detail: '£875 / month' },
+    ],
+    inclusions: [
+      'Complete nutrition manual & recipe books',
+      'Meal planning templates',
+      'CPD-certified qualification',
+      '6 months post-course mentorship',
+      'Professional resource library access',
+    ],
+    modules: [
+      {
+        title: 'Nutrition Fundamentals',
+        items: [
+          'Macronutrients, micronutrients & metabolism',
+          'Energy production & digestive health',
+          'Gut microbiome science',
+          'Nutritional assessment methods',
+        ],
+      },
+      {
+        title: 'Aesthetic Nutrition',
+        items: [
+          'Nutrition for skin health & anti-ageing',
+          'Hair growth & scalp nutrition',
+          'Body composition & weight management',
+          'Supplement protocols',
+        ],
+      },
+      {
+        title: 'Wellness Coaching',
+        items: [
+          'Client assessment & goal setting',
+          'Personalised nutrition planning',
+          'Lifestyle coaching techniques',
+          'Business setup guidance',
+        ],
+      },
+    ],
+    prerequisites: [
+      'Minimum age: 18 years',
+      'High school diploma or equivalent',
+      'Passion for health and wellness',
+    ],
+    assessment: [
+      'Written examinations on nutrition science',
+      'Portfolio of minimum 10 meal plans and protocols',
+      'Final wellness programme project',
+      '90% mandatory attendance',
+    ],
+    faq: [
+      {
+        q: 'Do I need a science background?',
+        a: 'No science background is required. The programme starts from the fundamentals and builds up to advanced evidence-based practice.',
+      },
+      {
+        q: 'Can I fit this around work?',
+        a: 'Yes — the schedule is 2–3 days per week with flexible options including evenings and weekends.',
+      },
+      {
+        q: 'What can I do after this course?',
+        a: 'Graduates work as nutrition coaches, wellness advisors, or integrate these skills into an existing beauty or healthcare career.',
+      },
+      {
+        q: 'Is the certification recognised?',
+        a: 'Yes — the CPD-certified qualification is recognised by wellness and nutrition organisations nationally and internationally.',
+      },
+    ],
+  },
+  {
+    slug: 'cupping-therapy',
+    title: 'Cupping Therapy',
+    subtitle: 'Certification Program',
+    tagline: 'Master traditional and modern cupping techniques for therapeutic and cosmetic benefits',
+    desc: 'This programme combines traditional Islamic medicine (Hijama) with modern therapeutic techniques and safety protocols. You will learn to deliver cupping safely and effectively for pain relief, circulation, toxin release, and aesthetic skin improvements.',
+    image: '/images/courses/cupping.jpg',
+    color: '#219169',
+    stats: [
+      { label: 'Duration', value: '6 Weeks' },
+      { label: 'Training Hours', value: '60+' },
+      { label: 'Techniques Covered', value: '8+' },
+      { label: 'Class Size', value: 'Max 10' },
+    ],
+    accreditation: 'CPD Certified',
+    nextCohort: 'February 2026',
+    fee: '£1,495',
+    paymentPlans: [
+      { label: 'Pay in Full', detail: 'Save £75' },
+      { label: '2 Installments', detail: '£785 / month' },
+    ],
+    inclusions: [
+      'Complete cupping therapy manual',
+      'Professional cupping equipment kit (valued at £250)',
+      'CPD-certified qualification',
+      'Ongoing mentorship & support',
+      'Professional liability guidance',
+    ],
+    modules: [
+      {
+        title: 'Foundational Theory',
+        items: [
+          'History & principles of cupping therapy',
+          'Hijama (Islamic medicine) fundamentals',
+          'Anatomy & physiology of treatment zones',
+          'How cupping affects the body',
+        ],
+      },
+      {
+        title: 'Practical Techniques',
+        items: [
+          'Dry cupping methods',
+          'Wet cupping (Hijama) with safety protocols',
+          'Fire cupping & modern cupping devices',
+          'Specialised treatment applications',
+        ],
+      },
+      {
+        title: 'Safety & Professional Practice',
+        items: [
+          'Hygiene & sterilisation protocols',
+          'Contraindications & safety precautions',
+          'Client consultation & consent',
+          'Professional standards & liability',
+        ],
+      },
+    ],
+    prerequisites: [
+      'Minimum age: 18 years',
+      'High school diploma or equivalent',
+      'Interest in traditional and modern therapies',
+    ],
+    assessment: [
+      'Practical demonstrations of techniques',
+      'Written examination on theory and safety',
+      'Portfolio of minimum 25 completed treatments',
+      '95% mandatory attendance',
+    ],
+    faq: [
+      {
+        q: 'Do I need any prior experience?',
+        a: 'No prior experience is needed. The programme is designed for complete beginners and covers everything from theory to hands-on practice.',
+      },
+      {
+        q: 'What is included in the equipment kit?',
+        a: 'You will receive a professional cupping kit valued at £250, covering all the equipment needed to practise safely from day one.',
+      },
+      {
+        q: 'Is wet cupping (Hijama) covered?',
+        a: 'Yes — wet cupping (Hijama) is a core module, taught alongside dry cupping and modern cupping device techniques.',
+      },
+      {
+        q: 'What can I do after qualifying?',
+        a: 'Graduates practise in wellness centres, physiotherapy clinics, holistic health practices, or start their own cupping therapy business.',
+      },
+    ],
+  },
+];
+
+export function getStaticPaths() {
+  return allCourses.map((c) => ({
+    params: { slug: c.slug },
+    props: { course: c },
+  }));
+}
+
+interface Props { course: typeof allCourses[0]; }
+const { course } = Astro.props;
+---
+
+<Base
+  title={`${course.title} ${course.subtitle} | Dr. Tasneem's Institute of Health`}
+  description={`${course.tagline}. ${course.stats[0].value} programme. ${course.accreditation}. Next cohort: ${course.nextCohort}.`}
+>
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOLD 1 — HERO                                          -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="fold course-listing-hero" data-hero>
+      <div class="absolute inset-0 z-0">
+        <img src={course.image} alt={course.title} class="w-full h-full object-cover object-center" loading="eager" />
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, #0C2E3C 0%, rgba(12,46,60,0.82) 55%, rgba(12,46,60,0.55) 100%)"></div>
+      </div>
+
+      <div class="absolute bottom-14 lg:bottom-20 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16">
+
+          <a href="/courses" class="inline-flex items-center gap-2 text-white/50 hover:text-white font-button text-xs font-medium mb-6 transition-colors duration-200 group">
+            <svg class="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7H2M6 3L2 7l4 4"/></svg>
+            All Courses
+          </a>
+
+          <p class="font-button font-medium text-lime text-xs tracking-widest uppercase mb-3">{course.accreditation}</p>
+          <h1 class="font-heading font-bold text-white leading-[1.05] max-w-2xl" style="font-size: clamp(2rem, 4.5vw, 3.25rem);">
+            {course.title}<br />
+            <span class="text-lime" style="font-size: 0.65em; font-weight: 500; letter-spacing: 0.02em;">{course.subtitle}</span>
+          </h1>
+          <p class="font-body text-white/65 text-sm lg:text-base mt-4 max-w-lg leading-relaxed">
+            {course.tagline}
+          </p>
+
+          <!-- Stats strip -->
+          <div class="flex flex-wrap gap-x-8 gap-y-4 mt-8">
+            {course.stats.map((s) => (
+              <div>
+                <p class="font-heading font-bold text-lime leading-none" style="font-size: clamp(1.375rem, 2.5vw, 1.875rem);">{s.value}</p>
+                <p class="font-body text-white/50 text-xs mt-1">{s.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- Enroll CTAs -->
+          <div class="flex flex-wrap gap-4 mt-8">
+            <a href="/contact?subject=Course+Information" class="inline-flex items-center gap-2.5 bg-teal text-white font-button font-semibold text-sm px-8 py-4 rounded-full hover:bg-cta-hover hover:scale-105 transition-all duration-200">
+              Enroll Now
+            </a>
+            <a href="#curriculum" class="inline-flex items-center gap-2.5 border border-white/30 text-white font-button font-semibold text-sm px-8 py-4 rounded-full hover:bg-white/10 transition-all duration-200">
+              View Curriculum
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <ScrollIndicator class="absolute bottom-8 right-8 lg:right-16 z-10 text-white/80" />
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2 — CURRICULUM                                 -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section
+      id="curriculum"
+      class="course-listing-curriculum relative"
+      style="scroll-snap-align: start; min-height: 100dvh; background: linear-gradient(160deg, #dff5cd 0%, #eef9f0 40%, #f9fdfb 100%);"
+    >
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-20 -left-20 w-[440px] h-[440px] rounded-full blur-3xl" style="background: rgba(192,241,128,0.20)"></div>
+        <div class="absolute bottom-0 right-[8%] w-[360px] h-[360px] rounded-full blur-3xl" style="background: rgba(102,166,172,0.10)"></div>
+      </div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-28">
+
+        <div class="text-center mb-14">
+          <p class="font-button font-medium text-teal text-xs tracking-widest uppercase mb-3">What You'll Learn</p>
+          <h2 class="font-heading font-bold text-dark-blue" style="font-size: clamp(1.875rem, 3.5vw, 2.75rem);">
+            Course <span class="text-teal">Curriculum</span>
+          </h2>
+          <p class="font-body text-dark-blue/55 text-sm lg:text-base mt-3 max-w-lg mx-auto leading-relaxed">
+            {course.desc}
+          </p>
+        </div>
+
+        <!-- Module cards -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
+          {course.modules.map((mod, i) => (
+            <div class="rounded-2xl bg-white shadow-[0_4px_24px_rgba(12,46,60,0.08)] overflow-hidden">
+              <!-- Module header -->
+              <div class="px-6 py-4" style={`background: ${course.color}14; border-bottom: 1px solid ${course.color}20;`}>
+                <div class="flex items-center gap-3">
+                  <span class="w-7 h-7 rounded-full flex items-center justify-center font-heading font-bold text-white text-xs shrink-0" style={`background: ${course.color};`}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 class="font-heading font-bold text-dark-blue text-[0.9375rem] leading-snug">{mod.title}</h3>
+                </div>
+              </div>
+              <!-- Module items -->
+              <ul class="px-6 py-4 flex flex-col gap-2.5">
+                {mod.items.map((item) => (
+                  <li class="flex items-start gap-2.5">
+                    <svg class="w-4 h-4 text-teal shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 8l4 4 6-6"/>
+                    </svg>
+                    <span class="font-body text-dark-blue/65 text-[0.8125rem] leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <!-- Assessment -->
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="rounded-2xl bg-white shadow-[0_4px_24px_rgba(12,46,60,0.07)] p-6">
+            <p class="font-button font-semibold text-dark-blue text-sm uppercase tracking-wider mb-4">Assessment</p>
+            <ul class="flex flex-col gap-2.5">
+              {course.assessment.map((a) => (
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-4 h-4 text-teal shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-6"/></svg>
+                  <span class="font-body text-dark-blue/65 text-[0.8125rem] leading-relaxed">{a}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="rounded-2xl bg-white shadow-[0_4px_24px_rgba(12,46,60,0.07)] p-6">
+            <p class="font-button font-semibold text-dark-blue text-sm uppercase tracking-wider mb-4">Entry Requirements</p>
+            <ul class="flex flex-col gap-2.5">
+              {course.prerequisites.map((p) => (
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-4 h-4 text-teal shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-6"/></svg>
+                  <span class="font-body text-dark-blue/65 text-[0.8125rem] leading-relaxed">{p}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- SECTION 3 — PRICING + FAQ                              -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section
+      class="course-listing-pricing relative"
+      style="scroll-snap-align: start; min-height: 100dvh; background: #F4F4F4;"
+    >
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-3xl" style="background: rgba(192,241,128,0.12)"></div>
+      </div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-28">
+        <div class="grid lg:grid-cols-2 gap-14 lg:gap-20">
+
+          <!-- Pricing card -->
+          <div>
+            <p class="font-button font-medium text-teal text-xs tracking-widest uppercase mb-3">Investment</p>
+            <h2 class="font-heading font-bold text-dark-blue mb-8" style="font-size: clamp(1.5rem, 2.5vw, 2rem);">Course Fee & Inclusions</h2>
+
+            <div class="rounded-2xl overflow-hidden shadow-[0_8px_32px_rgba(12,46,60,0.10)]">
+              <!-- Price header -->
+              <div class="p-6" style={`background: #0C2E3C;`}>
+                <div class="flex items-end gap-3">
+                  <p class="font-heading font-bold text-white" style="font-size: 2.5rem; line-height: 1;">{course.fee}</p>
+                  <p class="font-body text-white/50 text-sm mb-1">full course</p>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4">
+                  {course.paymentPlans.map((plan) => (
+                    <span class="px-3 py-1.5 rounded-full text-xs font-button font-medium text-white border border-white/20" style="background: rgba(255,255,255,0.08);">
+                      {plan.label} — {plan.detail}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <!-- Inclusions -->
+              <div class="bg-white p-6">
+                <p class="font-button font-semibold text-dark-blue/60 text-xs uppercase tracking-wider mb-4">Everything included</p>
+                <ul class="flex flex-col gap-3">
+                  {course.inclusions.map((inc) => (
+                    <li class="flex items-start gap-3">
+                      <span class="w-5 h-5 rounded-full bg-teal/15 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg class="w-3 h-3 text-teal" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+                      </span>
+                      <span class="font-body text-dark-blue/70 text-sm leading-relaxed">{inc}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <!-- Next cohort -->
+              <div class="bg-teal/8 border-t border-teal/15 px-6 py-4 flex items-center gap-3">
+                <svg class="w-4 h-4 text-teal shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="14" height="12" rx="2"/><path d="M11 1v4M5 1v4M1 7h14"/></svg>
+                <p class="font-body text-dark-blue/65 text-sm">
+                  Next cohort starts <strong class="text-dark-blue font-semibold">{course.nextCohort}</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ -->
+          <div>
+            <p class="font-button font-medium text-teal text-xs tracking-widest uppercase mb-3">Common Questions</p>
+            <h2 class="font-heading font-bold text-dark-blue mb-8" style="font-size: clamp(1.5rem, 2.5vw, 2rem);">FAQ</h2>
+            <div class="flex flex-col gap-3">
+              {course.faq.map((item) => (
+                <details class="group rounded-xl border border-dark-blue/10 bg-white overflow-hidden shadow-[0_2px_8px_rgba(12,46,60,0.05)]">
+                  <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer list-none font-button font-semibold text-dark-blue text-sm select-none">
+                    {item.q}
+                    <svg class="w-4 h-4 shrink-0 text-teal transition-transform duration-200 group-open:rotate-45" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 3v10M3 8h10"/>
+                    </svg>
+                  </summary>
+                  <p class="px-5 pb-4 font-body text-dark-blue/60 text-sm leading-relaxed">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOLD 4 — ENROLL CTA                                    -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="fold course-listing-cta">
+      <div class="absolute inset-0 z-0">
+        <img src="/images/course-cta-bg.png" alt="" class="w-full h-full object-cover object-center" loading="lazy" />
+        <div class="absolute inset-0" style="background: linear-gradient(100deg, #0C2E3C 30%, rgba(12,46,60,0.88) 60%, rgba(12,46,60,0.60) 100%)"></div>
+      </div>
+
+      <div class="absolute z-10 inset-x-0" style="bottom: 16%;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16">
+          <div class="max-w-xl">
+            <p class="font-button font-medium text-lime text-sm tracking-widest uppercase mb-4">Book Your Place</p>
+            <h2 class="font-heading font-bold text-white leading-[1.15]" style="font-size: clamp(1.75rem, 3.5vw, 3rem);">
+              Start <span class="text-lime">{course.title}</span><br />in {course.nextCohort}
+            </h2>
+            <p class="font-body text-white/60 text-base mt-4 leading-relaxed">
+              Limited to {course.stats.find(s => s.label === 'Class Size')?.value} students per cohort. Secure your place today.
+            </p>
+            <div class="flex flex-wrap gap-4 mt-8">
+              <a href="/contact?subject=Course+Information" class="inline-flex items-center gap-2.5 bg-lime text-dark-blue font-button font-semibold text-sm px-8 py-4 rounded-full hover:scale-105 hover:bg-white transition-all duration-200">
+                Book Your Place Now
+              </a>
+              <a href="/contact" class="inline-flex items-center gap-2.5 border border-white/30 text-white font-button font-semibold text-sm px-8 py-4 rounded-full hover:bg-white/10 transition-all duration-200">
+                Schedule a Call
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Base>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function snapReveal(selector: string, staggerMs = 80) {
+    if (reduced) return;
+    const els = [...document.querySelectorAll<HTMLElement>(selector)];
+    if (!els.length) return;
+    els.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = `opacity .55s ease ${i * staggerMs}ms, transform .55s ease ${i * staggerMs}ms`;
+    });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement;
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        io.unobserve(el);
+      });
+    }, { threshold: 0.05 });
+    els.forEach(el => io.observe(el));
+  }
+
+  if (!reduced) {
+    gsap.from('.course-listing-hero .absolute.bottom-14 > div > *', {
+      y: 32, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', delay: 0.2,
+    });
+    gsap.from('.course-listing-cta .max-w-xl > *', {
+      scrollTrigger: { trigger: '.course-listing-cta', start: 'top 65%' },
+      y: 28, opacity: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out',
+    });
+  }
+
+  snapReveal('.course-listing-curriculum .grid > *', 90);
+  snapReveal('.course-listing-curriculum ol li', 50);
+  snapReveal('.course-listing-pricing .grid > *', 130);
+</script>

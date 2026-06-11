@@ -1,0 +1,326 @@
+---
+import Base from '../../layouts/Base.astro';
+import ScrollIndicator from '../../components/global/ScrollIndicator.astro';
+
+const allPosts = [
+  {
+    slug: 'hydrafacial-benefits',
+    title: 'HydraFacial Benefits: The Science Behind Hydration-Based Skincare',
+    excerpt: 'Discover the science-backed benefits of HydraFacial treatments, how they work, and why dermatologists recommend this non-invasive facial for optimal skin health and radiance.',
+    category: 'Aesthetic Health',
+    date: 'January 15, 2025',
+    readTime: '5 min read',
+    image: '/images/blog/hydrafacial.jpg',
+    color: '#66A6AC',
+    body: [
+      {
+        type: 'h2',
+        text: 'What Is a HydraFacial?',
+      },
+      {
+        type: 'p',
+        text: 'A HydraFacial is a multi-step, non-invasive facial treatment that cleanses, exfoliates, extracts impurities, and delivers intensive hydration to the skin — all in a single session. Unlike traditional facials, it uses a patented Vortex-Fusion® technology to infuse antioxidants, peptides, and hyaluronic acid deep into the skin simultaneously.',
+      },
+      {
+        type: 'h2',
+        text: 'How It Works: The 4-Step Process',
+      },
+      {
+        type: 'p',
+        text: 'The HydraFacial works through four carefully sequenced stages. First, the skin is cleansed and gently exfoliated to remove dead cells and reveal a fresh surface. Next, a gentle glycolic and salicylic acid peel loosens debris from pores without irritation. The third step uses painless vortex extraction to remove blackheads and impurities. Finally, the skin is saturated with antioxidants, peptides, and hydrating serums tailored to your skin type.',
+      },
+      {
+        type: 'h2',
+        text: 'Key Benefits Backed by Science',
+      },
+      {
+        type: 'list',
+        items: [
+          'Deep cleansing without the redness of chemical peels or microdermabrasion',
+          'Immediate, visible hydration — skin appears plumper within 24 hours',
+          'Reduction in fine lines and wrinkles through peptide infusion',
+          'Minimised pore size and improved skin texture',
+          'Addresses hyperpigmentation and uneven skin tone',
+          'Zero downtime — you can return to normal activity immediately',
+        ],
+      },
+      {
+        type: 'h2',
+        text: 'Who Is HydraFacial Suitable For?',
+      },
+      {
+        type: 'p',
+        text: 'One of the greatest advantages of HydraFacial is its universal suitability. Whether you have oily, acne-prone skin, dry sensitive skin, or mature skin with fine lines, the treatment can be customised with different booster serums to address your specific concerns. It is safe for all skin tones and Fitzpatrick types, making it one of the most inclusive aesthetic treatments available today.',
+      },
+      {
+        type: 'h2',
+        text: 'How Often Should You Get One?',
+      },
+      {
+        type: 'p',
+        text: 'For optimal results, dermatologists and aestheticians recommend a HydraFacial every 4–6 weeks, aligning with your skin\'s natural cell turnover cycle. Those targeting specific concerns such as acne or hyperpigmentation may benefit from monthly treatments for the first three months, followed by a maintenance schedule.',
+      },
+      {
+        type: 'h2',
+        text: 'What to Expect at Dr. Tasneem\'s Clinic',
+      },
+      {
+        type: 'p',
+        text: 'At Dr. Tasneem\'s Clinic in Karachi, our certified practitioners perform HydraFacial treatments using medical-grade equipment and curated serums matched to your skin\'s unique profile. Sessions typically take 45–60 minutes. Most clients notice visibly glowing, hydrated skin immediately after treatment — and the results continue to improve over the following 48 hours.',
+      },
+    ],
+  },
+  {
+    slug: 'botox-vs-fillers',
+    title: 'Botox vs. Dermal Fillers: Complete Comparison for Health & Wellness Results',
+    excerpt: 'Comprehensive guide comparing Botox and dermal fillers: how they work differently, which is right for you, and expert advice on combining treatments for optimal facial health and wellness results.',
+    category: 'Aesthetic Health',
+    date: 'January 12, 2025',
+    readTime: '7 min read',
+    image: '/images/blog/botox-fillers.jpg',
+    color: '#219169',
+    body: [
+      {
+        type: 'h2',
+        text: 'Understanding the Fundamental Difference',
+      },
+      {
+        type: 'p',
+        text: 'Botox and dermal fillers are both injectable aesthetic treatments, but they work through completely different mechanisms. Botox (botulinum toxin type A) temporarily relaxes the facial muscles that cause dynamic wrinkles — lines formed by repeated expressions like squinting and smiling. Dermal fillers, on the other hand, add volume to areas that have lost it due to ageing, restoring fullness to cheeks, lips, and nasolabial folds.',
+      },
+      {
+        type: 'h2',
+        text: 'When Botox Is the Right Choice',
+      },
+      {
+        type: 'p',
+        text: 'Botox is most effective for dynamic wrinkles — those that appear when your face is in motion. The most common treatment areas include horizontal forehead lines, glabellar lines (the "11" lines between the brows), and crow\'s feet around the eyes. Results typically appear within 3–7 days and last 3–4 months. It can also be used for preventative treatment in younger patients who want to slow the formation of deep-set lines.',
+      },
+      {
+        type: 'h2',
+        text: 'When Dermal Fillers Are the Right Choice',
+      },
+      {
+        type: 'p',
+        text: 'Dermal fillers are ideal for static wrinkles (present even at rest), volume loss, and contour enhancement. Hyaluronic acid fillers are the most popular — they attract and bind water molecules, creating natural-looking volume. Common applications include lip augmentation, cheek contouring, under-eye hollow correction, and smoothing nasolabial folds. Results are immediate and can last 6–18 months depending on the product used and the area treated.',
+      },
+      {
+        type: 'h2',
+        text: 'Key Comparison at a Glance',
+      },
+      {
+        type: 'list',
+        items: [
+          'Botox targets muscle movement; fillers restore lost volume',
+          'Botox results appear in 3–7 days; filler results are immediate',
+          'Botox lasts 3–4 months; fillers last 6–18 months',
+          'Botox is best for upper face; fillers work throughout the face',
+          'Both are reversible — fillers can be dissolved with hyaluronidase',
+          'Both require a trained, certified practitioner for safe administration',
+        ],
+      },
+      {
+        type: 'h2',
+        text: 'Can You Combine Botox and Fillers?',
+      },
+      {
+        type: 'p',
+        text: 'Absolutely — in fact, combining both treatments is often called a "liquid facelift" and delivers the most comprehensive facial rejuvenation. Botox relaxes expression lines while fillers restore structural volume, addressing two distinct aspects of facial ageing simultaneously. Our practitioners at Dr. Tasneem\'s Clinic routinely create bespoke combination treatment plans for patients seeking natural, balanced results.',
+      },
+      {
+        type: 'h2',
+        text: 'Safety and What to Expect',
+      },
+      {
+        type: 'p',
+        text: 'Both treatments are considered very safe when administered by a qualified professional using approved products. Common side effects are mild and temporary — slight swelling, redness, or bruising at injection sites. Serious complications are rare but can occur with untrained practitioners. At DTIOH\'s clinic in Karachi, all injectable treatments are performed by certified aesthetic practitioners following strict clinical protocols, ensuring your safety at every step.',
+      },
+      {
+        type: 'h2',
+        text: 'Which Is Right for You?',
+      },
+      {
+        type: 'p',
+        text: 'The best way to determine which treatment — or combination — is right for you is through a professional consultation. Our practitioners will assess your facial anatomy, discuss your aesthetic goals, and recommend a personalised treatment plan. We offer complimentary consultations at both our Clifton and Malir Cantt locations in Karachi.',
+      },
+    ],
+  },
+];
+
+export function getStaticPaths() {
+  return allPosts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
+}
+
+interface Props { post: typeof allPosts[0]; }
+const { post } = Astro.props;
+---
+
+<Base
+  title={`${post.title} | Dr. Tasneem's Institute of Health`}
+  description={post.excerpt}
+>
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOLD 1 — HERO                                          -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="fold blog-post-hero" data-hero>
+      <div class="absolute inset-0 z-0">
+        <img src={post.image} alt={post.title} class="w-full h-full object-cover object-center" loading="eager" />
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, #0C2E3C 0%, rgba(12,46,60,0.85) 60%, rgba(12,46,60,0.60) 100%)"></div>
+      </div>
+
+      <div class="absolute bottom-16 lg:bottom-20 left-0 right-0 z-10">
+        <div class="max-w-4xl mx-auto px-6 lg:px-16">
+          <a href="/blog" class="inline-flex items-center gap-2 text-white/55 hover:text-white font-button text-xs font-medium mb-6 transition-colors duration-200 group">
+            <svg class="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 7H2M6 3L2 7l4 4" />
+            </svg>
+            All Articles
+          </a>
+
+          <div class="flex items-center gap-3 mb-4">
+            <span
+              class="px-3 py-1.5 rounded-full font-button font-semibold text-[0.7rem] text-white"
+              style={`background: ${post.color};`}
+            >
+              {post.category}
+            </span>
+            <span class="text-white/45 text-xs font-body">{post.date}</span>
+            <span class="text-white/45 text-xs font-body">·</span>
+            <span class="text-white/45 text-xs font-body">{post.readTime}</span>
+          </div>
+
+          <h1
+            class="font-heading font-bold text-white leading-[1.15] max-w-3xl"
+            style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);"
+          >
+            {post.title}
+          </h1>
+          <p class="font-body text-white/60 text-base mt-4 max-w-2xl leading-relaxed">
+            {post.excerpt}
+          </p>
+        </div>
+      </div>
+
+      <ScrollIndicator class="absolute bottom-8 right-8 lg:right-16 z-10 text-white/80" />
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2 — ARTICLE BODY                               -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section
+      class="blog-post-body relative"
+      style="scroll-snap-align: start; min-height: 100dvh; background: #F4F4F4;"
+    >
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-20 right-[5%] w-[380px] h-[380px] rounded-full blur-3xl" style="background: rgba(192,241,128,0.14)"></div>
+      </div>
+
+      <div class="relative z-10 w-full max-w-3xl mx-auto px-6 lg:px-8 py-24">
+
+        <!-- Article content -->
+        <div class="blog-article">
+          {post.body.map((block) => {
+            if (block.type === 'h2') return (
+              <h2 class="font-heading font-bold text-dark-blue mt-10 mb-4 first:mt-0" style="font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.25;">
+                {block.text}
+              </h2>
+            );
+            if (block.type === 'p') return (
+              <p class="font-body text-dark-blue/65 text-base leading-relaxed mb-5">
+                {block.text}
+              </p>
+            );
+            if (block.type === 'list') return (
+              <ul class="flex flex-col gap-2.5 mb-6 pl-1">
+                {block.items!.map((item) => (
+                  <li class="flex items-start gap-3">
+                    <span class="w-5 h-5 rounded-full bg-teal flex items-center justify-center shrink-0 mt-0.5">
+                      <svg class="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 6l3 3 5-5" />
+                      </svg>
+                    </span>
+                    <span class="font-body text-dark-blue/65 text-base leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            );
+          })}
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-dark-blue/10 my-12"></div>
+
+        <!-- In-article CTA -->
+        <div
+          class="rounded-2xl p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6"
+          style="background: #0C2E3C;"
+        >
+          <div class="flex-1">
+            <p class="font-heading font-bold text-white text-lg leading-snug">Ready to experience this treatment?</p>
+            <p class="font-body text-white/55 text-sm mt-1 leading-relaxed">Book a free consultation at our Karachi clinic — Clifton or Malir Cantt.</p>
+          </div>
+          <a
+            href="/contact"
+            class="shrink-0 inline-flex items-center gap-2 bg-lime text-dark-blue font-button font-semibold text-sm px-6 py-3.5 rounded-full hover:scale-105 hover:bg-white transition-all duration-200"
+          >
+            Book Free Consult
+          </a>
+        </div>
+
+        <!-- Author / institute note -->
+        <div class="flex items-center gap-4 mt-10">
+          <div class="w-11 h-11 rounded-full shrink-0 flex items-center justify-center" style="background: rgba(33,145,105,0.15);">
+            <svg class="w-5 h-5 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-button font-semibold text-dark-blue text-sm">Dr. Tasneem's Institute of Health</p>
+            <p class="font-body text-dark-blue/50 text-xs">DUHS Affiliated · SBTE Recognized · Karachi, Pakistan</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</Base>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function snapReveal(selector: string, staggerMs = 40) {
+    if (reduced) return;
+    const els = [...document.querySelectorAll<HTMLElement>(selector)];
+    if (!els.length) return;
+    els.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = `opacity .5s ease ${i * staggerMs}ms, transform .5s ease ${i * staggerMs}ms`;
+    });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement;
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        io.unobserve(el);
+      });
+    }, { threshold: 0.05 });
+    els.forEach(el => io.observe(el));
+  }
+
+  if (!reduced) {
+    gsap.from('.blog-post-hero .absolute.bottom-16 > div > *', {
+      y: 32, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', delay: 0.2,
+    });
+  }
+
+  snapReveal('.blog-article > *', 40);
+</script>

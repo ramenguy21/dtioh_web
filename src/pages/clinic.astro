@@ -1,0 +1,359 @@
+---
+import Base from '../layouts/Base.astro';
+import ScrollIndicator from '../components/global/ScrollIndicator.astro';
+
+const services = [
+  {
+    title: 'PRP (Face & Hair)',
+    desc: 'Harness your body\'s natural healing power with PRP and PRF therapies for hair regeneration and facial rejuvenation.',
+    image: '/images/services/prp.jpg',
+    color: '#66A6AC',
+  },
+  {
+    title: 'Laser Hair Removal',
+    desc: 'Achieve long-lasting hair-free skin with advanced laser technology and expert precision.',
+    image: '/images/services/laser-hair.jpg',
+    color: '#219169',
+  },
+  {
+    title: 'HydraFacial',
+    desc: 'Experience revolutionary skin resurfacing with vortex fusion technology for deep cleansing and hydration.',
+    image: '/images/services/hydra-facial.jpg',
+    color: '#0C2E3C',
+  },
+  {
+    title: 'Weight Management',
+    desc: 'Achieve lasting health with our personalized, medically supervised diet and weight loss programs.',
+    image: '/images/services/weight-loss.jpg',
+    color: '#219169',
+  },
+  {
+    title: 'Cupping Therapy',
+    desc: 'Ancient healing meets modern clinical standards. Experience detoxification and improved circulation through hijamah.',
+    image: '/images/services/cupping.jpg',
+    color: '#66A6AC',
+  },
+  {
+    title: 'Microneedling',
+    desc: 'Trigger your skin\'s natural collagen production to reduce fine lines, scars, and sun damage.',
+    image: '/images/services/microneedling.jpg',
+    color: '#0C2E3C',
+  },
+  {
+    title: 'Mesotherapy',
+    desc: 'Targeted renewal and rejuvenation through specialized micro-injections tailored to your unique skin needs.',
+    image: '/images/services/mesotherapy.jpg',
+    color: '#219169',
+  },
+  {
+    title: 'Botox and Fillers',
+    desc: 'Smooth dynamic wrinkles and restore volume with our expert-administered injectables for timeless results.',
+    image: '/images/services/botox.jpg',
+    color: '#66A6AC',
+  },
+];
+
+const highlights = [
+  'Medically Supervised',
+  'Precision Equipment',
+  'Certified Practitioners',
+];
+---
+
+<Base
+  title="Clinic | Dr. Tasneem's Institute of Health — Aesthetic & Wellness Treatments Karachi"
+  description="Advanced aesthetic and wellness treatments in Malir Cantt, Karachi. PRP, HydraFacial, Laser Hair Removal, Botox, Microneedling & more — 12% off all services."
+>
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOLD 1 — CLINIC HERO                                   -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="fold clinic-hero" data-hero>
+
+      <!-- Bg image + overlay -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/images/certified-bg.jpg"
+          alt=""
+          class="w-full h-full object-cover object-center"
+          loading="eager"
+        />
+        <div
+          class="absolute inset-0"
+          style="background: linear-gradient(135deg, #0C2E3C 0%, rgba(12,46,60,0.72) 60%, rgba(12,46,60,0.45) 100%)"
+        ></div>
+      </div>
+
+      <!-- Content — bottom-left -->
+      <div class="absolute bottom-16 lg:bottom-20 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16">
+
+          <!-- Eyebrow -->
+          <p class="font-button font-medium text-lime text-sm tracking-widest uppercase mb-4">
+            Dr. Tasneem's Clinic · Malir Cantt, Karachi
+          </p>
+
+          <h1
+            class="font-heading font-bold text-white leading-[1.1] max-w-2xl"
+            style="font-size: clamp(2rem, 4.5vw, 3.5rem);"
+          >
+            Transform Your
+            <span class="text-lime">Confidence</span>—<br />Inside &amp; Out
+          </h1>
+
+          <p class="font-body text-white/65 text-sm lg:text-base mt-5 max-w-md leading-relaxed">
+            Contemporary aesthetic and wellness solutions — from PRP therapies and
+            HydraFacials to Body Weight Management and Cupping Therapy — delivered
+            with precision and care.
+          </p>
+
+          <!-- Service tag pills -->
+          <div class="flex flex-wrap gap-2.5 mt-6">
+            {['PRP Therapies', 'HydraFacials', 'Weight Management', 'Cupping Therapy'].map((tag) => (
+              <span
+                class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-button font-medium text-white/80 border border-white/20"
+                style="backdrop-filter: blur(8px); background: rgba(255,255,255,0.07);"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <!-- CTA -->
+          <a
+            href="#book"
+            class="mt-8 inline-flex items-center gap-2.5 bg-teal text-white font-button font-semibold text-sm px-8 py-4 rounded-full transition-all duration-200 hover:bg-cta-hover hover:scale-105 group"
+          >
+            Book Appointment
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 13L13 3" />
+              <path d="M6 3H13V10" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <ScrollIndicator class="absolute bottom-8 right-8 lg:right-16 z-10 text-white/80" />
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2 — SERVICES GRID                              -->
+    <!--                                                        -->
+    <!-- Deliberately NOT using .fold here. The .fold class     -->
+    <!-- enforces overflow:hidden + absolute children, which    -->
+    <!-- would clip an 8-card grid taller than 100dvh.          -->
+    <!-- scroll-snap-align:start is applied directly so the     -->
+    <!-- snap sequence (Hero → Services → Booking) is intact.   -->
+    <!-- With y mandatory, a section taller than the viewport   -->
+    <!-- snaps to its top then lets you scroll through it.      -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section
+      class="clinic-services relative"
+      style="scroll-snap-align: start; min-height: 100dvh; background: linear-gradient(160deg, #dff5cd 0%, #eef9f0 35%, #f5fdf6 65%, #f9fdfb 100%);"
+    >
+      <!-- Ambient blobs -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          class="absolute -top-24 -left-24 w-[480px] h-[480px] rounded-full blur-3xl"
+          style="background: rgba(192, 241, 128, 0.22)"
+        ></div>
+        <div
+          class="absolute bottom-0 right-[10%] w-[360px] h-[360px] rounded-full blur-3xl"
+          style="background: rgba(102, 166, 172, 0.12)"
+        ></div>
+      </div>
+
+      <!-- Normal document flow — padding-based layout -->
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-28">
+
+        <!-- Heading -->
+        <div class="text-center mb-12">
+          <h2
+            class="font-heading font-bold text-dark-blue leading-[1.15]"
+            style="font-size: clamp(1.875rem, 3.5vw, 2.75rem)"
+          >
+            Our <span class="text-teal">Treatments</span>
+          </h2>
+          <p class="font-body text-dark-blue/55 text-sm lg:text-base mt-3 max-w-md mx-auto leading-relaxed">
+            Advanced aesthetic and wellness procedures delivered by certified
+            practitioners with clinical precision
+          </p>
+          <div class="flex flex-wrap justify-center gap-2.5 mt-5">
+            {highlights.map((h) => (
+              <span class="px-4 py-1.5 rounded-full border border-dark-blue/20 text-dark-blue/65 text-xs font-button font-medium">
+                {h}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- 4-column grid (2-column on mobile) -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          {services.map((s) => (
+            <article class="rounded-2xl overflow-hidden flex flex-col bg-white shadow-[0_4px_24px_rgba(12,46,60,0.08)] hover:shadow-[0_8px_32px_rgba(12,46,60,0.13)] transition-shadow duration-300">
+
+              <!-- Image / color header -->
+              <div
+                class="relative shrink-0 overflow-hidden"
+                style={`height: 140px; background: ${s.color}22`}
+              >
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <span class="absolute top-3 right-3 bg-teal text-white text-[0.65rem] font-button font-semibold px-2.5 py-1 rounded-full leading-none">
+                  12% off
+                </span>
+              </div>
+
+              <!-- Body -->
+              <div class="flex flex-col flex-1 p-4 gap-2.5">
+                <h3 class="font-heading font-semibold text-[0.9375rem] text-teal leading-snug">
+                  {s.title}
+                </h3>
+                <p class="font-body text-[0.72rem] text-dark-blue/58 leading-relaxed flex-1 line-clamp-3">
+                  {s.desc}
+                </p>
+                <a
+                  href="#book"
+                  class="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-teal text-white font-button font-semibold text-[0.8125rem] hover:bg-cta-hover transition-all duration-200 hover:scale-[1.02]"
+                >
+                  Book Now
+                  <svg class="w-3 h-3 shrink-0" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12L12 2M12 2H4.5M12 2V9.5" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOLD 3 — BOOK APPOINTMENT CTA                         -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section id="book" class="fold clinic-book">
+
+      <!-- Bg image + overlay -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/images/journey-bg.jpg"
+          alt=""
+          class="w-full h-full object-cover object-center opacity-30"
+          loading="lazy"
+        />
+        <div
+          class="absolute inset-0"
+          style="background: linear-gradient(100deg, #0C2E3C 30%, rgba(12,46,60,0.85) 55%, rgba(12,46,60,0.65) 100%)"
+        ></div>
+      </div>
+
+      <!-- Content — lower-left -->
+      <div class="absolute z-10 inset-x-0" style="bottom: 16%;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16">
+          <div class="max-w-2xl">
+
+            <p class="font-button font-medium text-lime text-sm tracking-widest uppercase mb-4">
+              Ready to Begin?
+            </p>
+
+            <h2
+              class="font-heading font-bold text-white leading-[1.15]"
+              style="font-size: clamp(1.75rem, 3.5vw, 3rem);"
+            >
+              Book your <span class="text-lime">Appointment</span> Today!
+            </h2>
+
+            <p class="font-body text-white/60 text-base mt-4 max-w-lg leading-relaxed">
+              Experience world-class aesthetic care in Malir Cantt, Karachi.
+              Our certified practitioners are ready to help you look and feel
+              your best.
+            </p>
+
+            <!-- CTA buttons -->
+            <div class="flex flex-wrap gap-4 mt-8">
+              <a
+                href="https://wa.me/923000000000"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2.5 bg-lime text-dark-blue font-button font-semibold text-sm px-8 py-4 rounded-full transition-all duration-200 hover:scale-105 hover:bg-white group"
+              >
+                <!-- WhatsApp icon -->
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                WhatsApp Us
+              </a>
+              <a
+                href="tel:+923000000000"
+                class="inline-flex items-center gap-2.5 border border-white/30 text-white font-button font-semibold text-sm px-8 py-4 rounded-full transition-all duration-200 hover:bg-white/10 hover:border-white/50 group"
+              >
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 9.14a16 16 0 006 6l1.5-1.5a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                </svg>
+                Call Now
+              </a>
+            </div>
+
+            <!-- Location note -->
+            <p class="font-body text-white/40 text-xs mt-6 flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Malir Cantt, Karachi, Sindh — Pakistan
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Base>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function snapReveal(selector: string, staggerMs = 70) {
+    if (reduced) return;
+    const els = [...document.querySelectorAll<HTMLElement>(selector)];
+    if (!els.length) return;
+    els.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = `opacity .55s ease ${i * staggerMs}ms, transform .55s ease ${i * staggerMs}ms`;
+    });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement;
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        io.unobserve(el);
+      });
+    }, { threshold: 0.05 });
+    els.forEach(el => io.observe(el));
+  }
+
+  if (!reduced) {
+    gsap.from('.clinic-hero .absolute.bottom-16 > div > *', {
+      y: 32, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', delay: 0.2,
+    });
+    gsap.from('.clinic-book .max-w-2xl > *', {
+      scrollTrigger: { trigger: '.clinic-book', start: 'top 65%' },
+      y: 28, opacity: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out',
+    });
+  }
+
+  snapReveal('.clinic-services .text-center > *', 80);
+  snapReveal('.clinic-services article', 60);
+</script>

@@ -1,0 +1,355 @@
+---
+import Base from '../../layouts/Base.astro';
+import ScrollIndicator from '../../components/global/ScrollIndicator.astro';
+
+const allCourses = [
+  {
+    slug: 'non-invasive-beautician',
+    title: 'Non-Invasive Beautician',
+    tagline: 'Master non-surgical skin and beauty techniques',
+    desc: 'Master non-surgical skin and beauty treatments including facials, chemical peels, and advanced skincare routines. Designed for those looking to provide professional non-invasive beauty services in clinics, spas, and salons.',
+    image: '/images/courses/non-invasive.jpg',
+    color: '#219169',
+    duration: '3 Months',
+    level: 'Beginner to Intermediate',
+    accreditation: 'SBTE Professional Certification',
+    modules: [
+      'Skin Anatomy & Physiology',
+      'Facial Treatment Techniques',
+      'Chemical Peels & Exfoliation',
+      'Advanced Skincare Routines',
+      'Non-Invasive Body Contouring',
+      'Client Consultation & Safety',
+    ],
+    outcomes: [
+      'Perform professional facial treatments confidently',
+      'Apply chemical peels safely and effectively',
+      'Develop personalised skincare regimens for clients',
+      'Operate in clinics, spas, and independent practice',
+      'Earn an SBTE-accredited professional certification',
+    ],
+  },
+  {
+    slug: 'health-wellness-specialist',
+    title: 'Health & Wellness Specialist',
+    tagline: 'Advanced injectable and aesthetic treatments',
+    desc: 'Dive into advanced procedures including PRP (hair & face), dermal fillers, threads, Botox, HydraFacial, and skin rejuvenation. Become fully skilled in injectable health and wellness treatments.',
+    image: '/images/courses/health-wellness.jpg',
+    color: '#0C2E3C',
+    duration: '4 Months',
+    level: 'Intermediate to Advanced',
+    accreditation: 'SBTE Professional Certification',
+    modules: [
+      'PRP & PRF Therapy (Face & Hair)',
+      'Dermal Fillers — Techniques & Safety',
+      'Thread Lifts',
+      'Botox Administration & Anatomy',
+      'HydraFacial Protocols',
+      'Skin Rejuvenation & Resurfacing',
+      'Patient Assessment & Aftercare',
+    ],
+    outcomes: [
+      'Administer PRP and PRF therapies safely',
+      'Perform dermal filler injections with precision',
+      'Conduct Botox treatments confidently',
+      'Operate HydraFacial equipment to clinical standard',
+      'Earn an SBTE-accredited professional certification',
+    ],
+  },
+  {
+    slug: 'health-nutrition',
+    title: 'Health and Nutrition',
+    tagline: 'Holistic wellness through science-based nutrition',
+    desc: 'Explore beauty nutrition and wellness diet education. Learn holistic methods to improve skin health, hair growth, and body wellness via nutrition and discover the science behind how diet shapes your appearance.',
+    image: '/images/courses/nutrition.jpg',
+    color: '#66A6AC',
+    duration: '2 Months',
+    level: 'All Levels',
+    accreditation: 'SBTE Professional Certification',
+    modules: [
+      'Fundamentals of Nutrition Science',
+      'Diet, Skin Health & Ageing',
+      'Hair Growth & Nutritional Deficiencies',
+      'Weight Management Principles',
+      'Supplement Science & Evidence',
+      'Client Wellness Planning',
+    ],
+    outcomes: [
+      'Create evidence-based nutrition plans for skin & hair',
+      'Advise clients on wellness diets and supplementation',
+      'Understand the science behind beauty nutrition',
+      'Build holistic wellness programs for individuals',
+      'Earn an SBTE-accredited professional certification',
+    ],
+  },
+  {
+    slug: 'cupping-therapy',
+    title: 'Cupping Therapy',
+    tagline: 'Traditional Hijama meets modern clinical standards',
+    desc: 'Combine traditional Hijama methods with modern safety standards. Learn wet and dry cupping techniques, patient safety protocols, and the therapeutic benefits of this ancient healing practice in a clinical setting.',
+    image: '/images/courses/cupping.jpg',
+    color: '#219169',
+    duration: '6 Weeks',
+    level: 'All Levels',
+    accreditation: 'SBTE Professional Certification',
+    modules: [
+      'History & Theory of Cupping Therapy',
+      'Hijama (Wet Cupping) Techniques',
+      'Dry Cupping Protocols',
+      'Patient Safety & Contraindications',
+      'Sterilization & Hygiene Standards',
+      'Treatment Planning & Documentation',
+    ],
+    outcomes: [
+      'Perform wet and dry cupping safely and confidently',
+      'Apply Hijama techniques to clinical standards',
+      'Assess patient suitability and contraindications',
+      'Maintain rigorous clinical hygiene standards',
+      'Earn an SBTE-accredited professional certification',
+    ],
+  },
+  {
+    slug: 'aesthetic-nursing',
+    title: 'Aesthetic Nursing',
+    tagline: 'Clinical expertise for nursing professionals',
+    desc: 'Develop clinical expertise in aesthetic procedures specifically designed for nursing professionals. Covers injectable techniques, patient assessment, bespoke treatment planning, and advanced skincare protocols.',
+    image: '/images/courses/aesthetic-nursing.jpg',
+    color: '#0C2E3C',
+    duration: '4 Months',
+    level: 'Nursing Graduates',
+    accreditation: 'DUHS Affiliated · SBTE Certified',
+    modules: [
+      'Aesthetic Medicine Overview',
+      'Facial Anatomy for Aesthetics',
+      'Injectable Techniques (Botox & Fillers)',
+      'Patient Assessment & Informed Consent',
+      'Advanced Skincare Protocols',
+      'Practice Management & Ethics',
+    ],
+    outcomes: [
+      'Perform aesthetic injectables to clinical standards',
+      'Conduct thorough patient assessments and consultations',
+      'Develop bespoke, outcome-focused treatment plans',
+      'Maintain rigorous clinical safety and ethical standards',
+      'Earn DUHS-affiliated, SBTE-certified recognition',
+    ],
+  },
+  {
+    slug: 'laser-aesthetics',
+    title: 'Laser Aesthetics',
+    tagline: 'Master laser and light-based treatment technologies',
+    desc: 'Gain proficiency in laser and light-based treatments. Learn hair removal, skin resurfacing, pigmentation correction, and safe laser operation protocols used in modern aesthetic clinics.',
+    image: '/images/courses/laser-aesthetics.jpg',
+    color: '#66A6AC',
+    duration: '3 Months',
+    level: 'Intermediate',
+    accreditation: 'SBTE Professional Certification',
+    modules: [
+      'Laser Physics & Safety Fundamentals',
+      'Laser Hair Removal Protocols',
+      'Skin Resurfacing Techniques',
+      'Pigmentation & Vascular Treatments',
+      'IPL & Broad-Band Light Therapy',
+      'Equipment Operation & Maintenance',
+    ],
+    outcomes: [
+      'Operate laser and IPL equipment safely and accurately',
+      'Perform laser hair removal to clinical standards',
+      'Conduct skin resurfacing and rejuvenation treatments',
+      'Treat pigmentation and vascular concerns effectively',
+      'Earn an SBTE-accredited professional certification',
+    ],
+  },
+];
+
+export function getStaticPaths() {
+  return allCourses.map((c) => ({ params: { slug: c.slug }, props: { course: c } }));
+}
+
+interface Props { course: typeof allCourses[0]; }
+const { course } = Astro.props;
+---
+
+<Base
+  title={`${course.title} | Dr. Tasneem's Institute of Health`}
+  description={`${course.desc} ${course.accreditation}. ${course.duration} program in Karachi.`}
+>
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOLD 1 — HERO                                          -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="fold course-detail-hero" data-hero>
+      <div class="absolute inset-0 z-0">
+        <img src={course.image} alt={course.title} class="w-full h-full object-cover object-center" loading="eager" />
+        <div class="absolute inset-0" style={`background: linear-gradient(135deg, #0C2E3C 0%, rgba(12,46,60,0.80) 60%, rgba(12,46,60,0.50) 100%)`}></div>
+      </div>
+
+      <div class="absolute bottom-16 lg:bottom-20 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16">
+          <a href="/courses" class="inline-flex items-center gap-2 text-white/55 hover:text-white font-button text-xs font-medium mb-6 transition-colors duration-200 group">
+            <svg class="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 7H2M6 3L2 7l4 4" />
+            </svg>
+            All Courses
+          </a>
+          <p class="font-button font-medium text-lime text-sm tracking-widest uppercase mb-3">{course.tagline}</p>
+          <h1
+            class="font-heading font-bold text-white leading-[1.1] max-w-2xl"
+            style="font-size: clamp(2rem, 4.5vw, 3.5rem);"
+          >
+            {course.title}
+          </h1>
+          <p class="font-body text-white/65 text-sm lg:text-base mt-5 max-w-lg leading-relaxed">
+            {course.desc}
+          </p>
+
+          <!-- Meta badges -->
+          <div class="flex flex-wrap gap-3 mt-7">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-lime/40 text-lime font-button text-xs font-medium">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="7"/><path d="M8 5v3.5l2 2"/></svg>
+              {course.duration}
+            </span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-white/75 font-button text-xs font-medium">
+              {course.level}
+            </span>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-white/75 font-button text-xs font-medium">
+              <svg class="w-3.5 h-3.5 text-lime" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2.5l-8 8-3-3"/></svg>
+              {course.accreditation}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <ScrollIndicator class="absolute bottom-8 right-8 lg:right-16 z-10 text-white/80" />
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2 — CURRICULUM + OUTCOMES                      -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section
+      class="course-detail-content relative"
+      style="scroll-snap-align: start; min-height: 100dvh; background: linear-gradient(160deg, #dff5cd 0%, #eef9f0 40%, #f9fdfb 100%);"
+    >
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl" style="background: rgba(192,241,128,0.20)"></div>
+        <div class="absolute bottom-0 left-[5%] w-[320px] h-[320px] rounded-full blur-3xl" style="background: rgba(102,166,172,0.10)"></div>
+      </div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-28">
+        <div class="grid lg:grid-cols-2 gap-14 lg:gap-20">
+
+          <!-- Curriculum modules -->
+          <div>
+            <p class="font-button font-medium text-teal text-xs tracking-widest uppercase mb-3">What You'll Study</p>
+            <h2 class="font-heading font-bold text-dark-blue mb-8" style="font-size: clamp(1.5rem, 2.5vw, 2rem);">Course Curriculum</h2>
+            <ol class="flex flex-col gap-3">
+              {course.modules.map((m, i) => (
+                <li class="flex items-center gap-4 p-4 rounded-xl bg-white shadow-[0_2px_12px_rgba(12,46,60,0.06)] hover:shadow-[0_4px_20px_rgba(12,46,60,0.10)] transition-shadow duration-200">
+                  <span
+                    class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-heading font-bold text-dark-blue text-xs"
+                    style="background: #C0F180;"
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span class="font-body text-dark-blue text-sm font-medium">{m}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <!-- Learning outcomes -->
+          <div class="flex flex-col gap-10">
+            <div>
+              <p class="font-button font-medium text-teal text-xs tracking-widest uppercase mb-3">Career Ready</p>
+              <h2 class="font-heading font-bold text-dark-blue mb-6" style="font-size: clamp(1.5rem, 2.5vw, 2rem);">What You'll Achieve</h2>
+              <ul class="flex flex-col gap-3">
+                {course.outcomes.map((o) => (
+                  <li class="flex items-start gap-3">
+                    <span class="w-5 h-5 rounded-full bg-teal flex items-center justify-center shrink-0 mt-0.5">
+                      <svg class="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 6l3 3 5-5" />
+                      </svg>
+                    </span>
+                    <span class="font-body text-dark-blue/70 text-sm leading-relaxed">{o}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Accreditation callout -->
+            <div class="p-6 rounded-2xl" style="background: #0C2E3C;">
+              <p class="font-button font-medium text-lime text-xs tracking-widest uppercase mb-2">Accreditation</p>
+              <p class="font-heading font-bold text-white text-lg leading-snug">{course.accreditation}</p>
+              <p class="font-body text-white/55 text-sm mt-2 leading-relaxed">
+                Qualifications from DTIOH are respected across Pakistan and carry weight internationally — opening doors at clinics, hospitals, and spas worldwide.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOLD 3 — ENROLL CTA                                    -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="fold course-detail-cta">
+      <div class="absolute inset-0 z-0">
+        <img src="/images/course-cta-bg.png" alt="" class="w-full h-full object-cover object-center opacity-40" loading="lazy" />
+        <div class="absolute inset-0" style="background: linear-gradient(100deg, #0C2E3C 30%, rgba(12,46,60,0.88) 60%, rgba(12,46,60,0.65) 100%)"></div>
+      </div>
+
+      <div class="absolute z-10 inset-x-0" style="bottom: 16%;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16">
+          <div class="max-w-xl">
+            <p class="font-button font-medium text-lime text-sm tracking-widest uppercase mb-4">Ready to Enroll?</p>
+            <h2
+              class="font-heading font-bold text-white leading-[1.15]"
+              style="font-size: clamp(1.75rem, 3.5vw, 3rem);"
+            >
+              Start your journey in<br />
+              <span class="text-lime">{course.title}</span>
+            </h2>
+            <p class="font-body text-white/60 text-base mt-4 leading-relaxed">
+              {course.duration} · {course.level} · {course.accreditation}
+            </p>
+            <div class="flex flex-wrap gap-4 mt-8">
+              <a href="/contact?subject=Course Information" class="inline-flex items-center gap-2.5 bg-lime text-dark-blue font-button font-semibold text-sm px-8 py-4 rounded-full hover:scale-105 hover:bg-white transition-all duration-200">
+                Enroll Now
+              </a>
+              <a href="/contact" class="inline-flex items-center gap-2.5 border border-white/30 text-white font-button font-semibold text-sm px-8 py-4 rounded-full hover:bg-white/10 transition-all duration-200">
+                Free Consultation
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Base>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.from('.course-detail-hero .absolute.bottom-16 > div > *', {
+      y: 32, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', delay: 0.2,
+    });
+    gsap.from('.course-detail-content .grid > *', {
+      scrollTrigger: { trigger: '.course-detail-content', start: 'top 65%' },
+      y: 32, opacity: 0, stagger: 0.15, duration: 0.75, ease: 'power3.out',
+    });
+    gsap.from('.course-detail-content ol li', {
+      scrollTrigger: { trigger: '.course-detail-content', start: 'top 55%' },
+      x: -24, opacity: 0, stagger: 0.06, duration: 0.5, ease: 'power3.out',
+    });
+    gsap.from('.course-detail-cta .max-w-xl > *', {
+      scrollTrigger: { trigger: '.course-detail-cta', start: 'top 65%' },
+      y: 28, opacity: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out',
+    });
+  }
+</script>

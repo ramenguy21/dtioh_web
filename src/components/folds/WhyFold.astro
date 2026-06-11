@@ -1,0 +1,217 @@
+---
+const groups = [
+  [
+    {
+      title: 'Expert Team',
+      desc: 'Led by Dr. Tasneem and supported by internationally trained practitioners specialising in aesthetic medicine and education.',
+      bg: '#219169',
+      text: 'white',
+      icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="24" cy="14" r="7"/>
+        <path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16"/>
+        <path d="M24 26v6M21 29h6"/>
+      </svg>`,
+    },
+    {
+      title: 'Advanced Technology',
+      desc: 'Utilisation of state-of-the-art equipment and evidence-based treatment protocols to ensure safe, effective, and optimal outcomes.',
+      bg: '#0C2E3C',
+      text: 'white',
+      icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="12" y="12" width="24" height="24" rx="3"/>
+        <rect x="18" y="18" width="12" height="12" rx="1.5"/>
+        <path d="M18 8v4M24 8v4M30 8v4M18 36v4M24 36v4M30 36v4M8 18h4M8 24h4M8 30h4M36 18h4M36 24h4M36 30h4"/>
+      </svg>`,
+    },
+    {
+      title: 'Accredited Programs',
+      desc: 'Certification programmes affiliated with SBTE and DUHS, recognised for their national and international credibility.',
+      bg: '#C0F180',
+      text: '#0C2E3C',
+      icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="24" cy="24" r="16"/>
+        <path d="M16 24l6 6 10-12"/>
+      </svg>`,
+    },
+  ],
+  [
+    {
+      title: 'Patient-Centric Care',
+      desc: 'Personalised consultations, transparent communication, and dedicated aftercare support tailored to individual needs.',
+      bg: '#219169',
+      text: 'white',
+      icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="24" cy="14" r="7"/>
+        <path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16"/>
+        <path d="M30 32h6M33 29v6"/>
+      </svg>`,
+    },
+    {
+      title: 'Holistic Approach',
+      desc: 'Integration of aesthetic treatments with wellness, nutrition, and mental health support for comprehensive care.',
+      bg: '#0C2E3C',
+      text: 'white',
+      icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M38 18a16 16 0 1 0 1.6 8"/>
+        <path d="M38 10v8h-8"/>
+      </svg>`,
+    },
+    {
+      title: 'Proven Track Record',
+      desc: 'Over 20 years of excellence, with thousands of satisfied patients and trained industry professionals.',
+      bg: '#C0F180',
+      text: '#0C2E3C',
+      icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 36l10-12 8 6 14-18"/>
+        <circle cx="18" cy="24" r="2.5" fill="currentColor" stroke="none"/>
+        <circle cx="26" cy="30" r="2.5" fill="currentColor" stroke="none"/>
+        <circle cx="40" cy="12" r="2.5" fill="currentColor" stroke="none"/>
+        <circle cx="8" cy="36" r="2.5" fill="currentColor" stroke="none"/>
+      </svg>`,
+    },
+  ],
+];
+---
+
+<section class="fold why-fold" style="background: #F4F4F4; overflow: hidden;">
+
+  <!-- Subtle background texture on the top half -->
+  <div class="absolute inset-0 pointer-events-none z-0" style="background: linear-gradient(180deg, rgba(102,166,172,0.06) 0%, transparent 48%)"></div>
+  <img
+    src="/images/certified-bg.jpg"
+    alt=""
+    class="absolute inset-0 w-full h-full object-cover opacity-[0.04] pointer-events-none"
+    aria-hidden="true"
+    loading="lazy"
+  />
+
+  <!-- ── Heading area ──────────────────────────────────────── -->
+  <div class="absolute z-10 inset-x-0 flex flex-col items-center justify-center gap-6" style="top: 0; height: 38%;">
+    <h2
+      class="font-heading font-bold text-dark-blue text-center leading-[1.15]"
+      style="font-size: clamp(1.875rem, 3.5vw, 2.75rem);"
+    >
+      Why choose <span class="text-teal">DTIOH?</span>
+    </h2>
+
+    <!-- Slide dots -->
+    <div class="flex items-center gap-3" role="tablist" aria-label="Why DTIOH slides">
+      {groups.map((_, i) => (
+        <button
+          class="why-dot rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+          data-why-dot={i}
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          aria-label={`Slide ${i + 1}`}
+          style={i === 0
+            ? 'width: 24px; height: 7px; background: #219169; border: none; padding: 0; cursor: pointer;'
+            : 'width: 7px; height: 7px; background: rgba(12,46,60,0.2); border: none; padding: 0; cursor: pointer;'}
+        />
+      ))}
+    </div>
+  </div>
+
+  <!-- ── Sliding columns ──────────────────────────────────── -->
+  <div
+    class="absolute inset-x-0"
+    style="bottom: 0; height: 62%; overflow: hidden;"
+  >
+    <div
+      id="why-track"
+      class="flex h-full"
+      style="width: 200%; transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);"
+    >
+      {groups.map((group, gi) => (
+        <div
+          class="flex h-full shrink-0"
+          style="width: 50%;"
+          aria-hidden={gi !== 0 ? 'true' : undefined}
+        >
+          {group.map((item) => (
+            <div
+              class="flex-1 flex flex-col items-center justify-center gap-5 px-8 text-center"
+              style={`background: ${item.bg}; color: ${item.text};`}
+            >
+              <div class="w-12 h-12 shrink-0" set:html={item.icon} />
+              <div>
+                <h3
+                  class="font-heading font-bold leading-snug"
+                  style="font-size: clamp(1rem, 1.5vw, 1.25rem);"
+                >
+                  {item.title}
+                </h3>
+                <p
+                  class="font-body mt-2 leading-relaxed max-w-xs mx-auto"
+                  style={`font-size: clamp(0.75rem, 1vw, 0.875rem); opacity: ${item.text === 'white' ? '0.75' : '0.72'};`}
+                >
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const track  = document.getElementById('why-track') as HTMLElement;
+  const dots   = [...document.querySelectorAll<HTMLElement>('[data-why-dot]')];
+  const slides = [...track.querySelectorAll<HTMLElement>(':scope > div')];
+  let current  = 0;
+  let timer: ReturnType<typeof setInterval> | null = null;
+
+  function goTo(index: number) {
+    if (index === current) return;
+
+    // outgoing dot
+    dots[current].style.width      = '7px';
+    dots[current].style.background = 'rgba(12,46,60,0.2)';
+    dots[current].setAttribute('aria-selected', 'false');
+
+    // incoming dot
+    current = index;
+    dots[current].style.width      = '24px';
+    dots[current].style.background = '#219169';
+    dots[current].setAttribute('aria-selected', 'true');
+
+    // slide track
+    track.style.transform = `translateX(-${current * 50}%)`;
+
+    slides.forEach((s, i) => s.setAttribute('aria-hidden', i !== current ? 'true' : 'false'));
+  }
+
+  function restartTimer() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(() => goTo((current + 1) % slides.length), 4000);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { goTo(i); restartTimer(); });
+  });
+
+  // Pause when not in view, resume when in view
+  ScrollTrigger.create({
+    trigger: '.why-fold',
+    start: 'top 80%',
+    end: 'bottom 20%',
+    onEnter:     restartTimer,
+    onLeave:     () => { if (timer) { clearInterval(timer); timer = null; } },
+    onEnterBack: restartTimer,
+    onLeaveBack: () => { if (timer) { clearInterval(timer); timer = null; } },
+  });
+
+  // Heading entrance
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.from('.why-fold h2, .why-fold [role="tablist"]', {
+      scrollTrigger: { trigger: '.why-fold', start: 'top 65%' },
+      y: 24, opacity: 0, stagger: 0.12, duration: 0.7, ease: 'power3.out',
+    });
+  }
+</script>
