@@ -49,130 +49,222 @@ const services = [
     href: '/clinics/botox-fillers',
   },
 ];
+
+// Split into pages of 4 (2×2 grid each)
+const pages: (typeof services)[] = [];
+for (let i = 0; i < services.length; i += 4) pages.push(services.slice(i, i + 4));
 ---
 
-<!--
-  All content is absolutely positioned so the fold's height is determined
-  solely by min-height: 100dvh, giving scroll-snap a consistent snap target.
--->
-<section class="fold" style="background: #0C2E3C;">
-
-  <!-- Subtle background image (drop transform-bg.jpg into public/images/ to activate) -->
+<section class="fold transform-fold">
+  <!-- ── Background: dark brand gradient + faint texture + teal glow ── -->
+  <div class="absolute inset-0 z-0" style="background: #0C2E3C;"></div>
   <img
     src="/images/transform-bg.jpg"
     alt=""
-    class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
+    class="absolute inset-0 w-full h-full object-cover opacity-[0.10] pointer-events-none"
     aria-hidden="true"
     loading="lazy"
   />
+  <div
+    class="absolute inset-0 z-0 pointer-events-none"
+    style="background: linear-gradient(105deg, rgba(12,46,60,0.97) 0%, rgba(12,46,60,0.86) 42%, rgba(12,46,60,0.62) 100%)"
+  ></div>
+  <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/3 right-[-6%] w-[420px] h-[420px] rounded-full blur-3xl" style="background: rgba(33,145,105,0.22)"></div>
+    <div class="absolute bottom-[-10%] right-1/4 w-[320px] h-[320px] rounded-full blur-3xl" style="background: rgba(192,241,128,0.10)"></div>
+  </div>
 
-  <!-- ── Text block (upper-right) ──────────────────────────── -->
-  <div class="absolute z-10 inset-x-0" style="top: 5.5rem;">
-    <div class="max-w-7xl mx-auto px-6 lg:px-16">
-      <div class="flex justify-end">
-        <div class="max-w-lg text-right">
-          <h2
-            class="font-heading font-bold text-white leading-[1.1]"
-            style="font-size: clamp(1.875rem, 3.2vw, 3.25rem)"
-          >
-            Transform Your<br />
-            <span class="text-lime">Confidence</span>—Inside &amp; Out
-          </h2>
-          <p class="font-body text-white/55 text-sm lg:text-base mt-4 leading-relaxed">
-            At Dr. Tasneem's Clinic, we offer advanced aesthetic and wellness
-            treatments designed to enhance your
-            <strong class="text-teal font-medium">natural beauty</strong>. From
-            regenerative therapies to cutting-edge skincare and body solutions,
-            each service is delivered with clinical precision, personalised care,
-            and a refined patient experience.
-          </p>
+  <!-- ── Content: split layout ─────────────────────────────── -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-0">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <!-- LEFT — copy + CTA -->
+      <div class="transform-copy max-w-xl">
+        <p class="font-button font-medium text-lime text-xs tracking-[0.18em] uppercase mb-4 inline-flex items-center gap-2.5">
+          <span class="w-6 h-px bg-lime/60"></span> Our Clinic
+        </p>
+        <h2
+          class="font-heading font-bold text-white leading-[1.08]"
+          style="font-size: clamp(2rem, 3.6vw, 3.25rem)"
+        >
+          Transform Your<br />
+          <span class="text-lime">Confidence</span> — Inside &amp; Out
+        </h2>
+        <p class="font-body text-white/60 text-sm lg:text-base mt-5 leading-relaxed">
+          At Dr. Tasneem's Clinic, we offer advanced aesthetic and wellness
+          treatments designed to enhance your
+          <strong class="text-teal font-medium">natural beauty</strong>. From
+          regenerative therapies to cutting-edge skincare and body solutions,
+          each service is delivered with clinical precision and personalised care.
+        </p>
+        <a
+          href="/contact"
+          class="mt-8 inline-flex items-center gap-2.5 bg-lime text-dark-blue font-button font-semibold text-sm px-7 py-3.5 rounded-full transition-all duration-200 hover:scale-105 hover:bg-white group"
+        >
+          Book a Consultation
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 13L13 3M6 3H13V10" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- RIGHT — paginated 2×2 service grid -->
+      <div class="transform-cards">
+        <div class="overflow-hidden">
+          <div id="svc-track" class="flex" style="width: 200%; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);">
+            {pages.map((page, pi) => (
+              <div
+                class="shrink-0 grid grid-cols-2 gap-3.5 sm:gap-4 pr-0.5"
+                style="width: 50%;"
+                aria-hidden={pi !== 0 ? 'true' : undefined}
+              >
+                {page.map((s) => (
+                  <a
+                    href={s.href}
+                    class="svc-card group flex flex-col rounded-2xl overflow-hidden"
+                    style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);"
+                  >
+                    <div class="relative overflow-hidden" style="aspect-ratio: 16/10; background: rgba(102,166,172,0.18);">
+                      <img
+                        src={s.image}
+                        alt={s.title}
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="flex flex-col flex-1 p-3.5 sm:p-4 gap-1.5">
+                      <h3 class="font-heading font-semibold text-sm text-lime leading-snug">{s.title}</h3>
+                      <p class="font-body text-[0.72rem] text-white/55 leading-relaxed line-clamp-2 flex-1">{s.desc}</p>
+                      <span class="inline-flex items-center gap-1.5 mt-1 text-[0.72rem] font-button font-medium text-white/70 group-hover:text-lime transition-colors">
+                        Learn More
+                        <svg class="w-3 h-3 shrink-0 transition-transform group-hover:translate-x-0.5" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M2 10L10 2M10 2H4.5M10 2V7.5" />
+                        </svg>
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center justify-between mt-6">
+          <div class="flex items-center gap-2.5" role="tablist" aria-label="Service pages">
+            {pages.map((_, i) => (
+              <button
+                class="svc-dot rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime"
+                data-svc-dot={i}
+                role="tab"
+                aria-selected={i === 0 ? 'true' : 'false'}
+                aria-label={`Service page ${i + 1}`}
+                style={i === 0
+                  ? 'width: 22px; height: 7px; background: #C0F180; border: none; padding: 0; cursor: pointer;'
+                  : 'width: 7px; height: 7px; background: rgba(255,255,255,0.3); border: none; padding: 0; cursor: pointer;'}
+              />
+            ))}
+          </div>
+          <div class="flex items-center gap-2.5">
+            <button id="svc-prev" class="svc-arrow" aria-label="Previous services">
+              <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5" /></svg>
+            </button>
+            <button id="svc-next" class="svc-arrow" aria-label="Next services">
+              <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5" /></svg>
+            </button>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
-
-  <!-- ── Marquee (pinned to bottom) ────────────────────────── -->
-  <div class="absolute z-10 left-0 right-0" style="bottom: 2.5rem;">
-
-    <!-- Left fade -->
-    <div
-      class="absolute inset-y-0 left-0 w-28 z-20 pointer-events-none"
-      style="background: linear-gradient(to right, #0C2E3C 20%, transparent)"
-    ></div>
-    <!-- Right fade -->
-    <div
-      class="absolute inset-y-0 right-0 w-28 z-20 pointer-events-none"
-      style="background: linear-gradient(to left, #0C2E3C 20%, transparent)"
-    ></div>
-
-    <!--
-      Track rendered twice. translateX(-50%) shifts by one full set → seamless loop.
-      Duplicate set is aria-hidden.
-    -->
-    <div class="marquee-track flex gap-6">
-      {
-        [services, services].map((set, i) =>
-          set.map((s) => (
-            <article
-              class="shrink-0 w-72 rounded-2xl overflow-hidden flex flex-col"
-              style={[
-                'backdrop-filter: blur(18px);',
-                '-webkit-backdrop-filter: blur(18px);',
-                'background: rgba(255, 255, 255, 0.07);',
-                'border: 1px solid rgba(255, 255, 255, 0.12);',
-                'box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);',
-              ].join(' ')}
-              aria-hidden={i === 1 ? 'true' : undefined}
-            >
-              <!-- Image -->
-              <div
-                class="relative shrink-0 overflow-hidden"
-                style="height: 168px; background: rgba(102,166,172,0.25);"
-              >
-                <img
-                  src={s.image}
-                  alt={i === 0 ? s.title : ''}
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <span class="absolute top-3 right-3 bg-teal text-white text-[0.65rem] font-button font-semibold px-2.5 py-1 rounded-full leading-none">
-                  12% off
-                </span>
-              </div>
-
-              <!-- Body -->
-              <div class="flex flex-col flex-1 p-4 gap-2.5">
-                <h3 class="font-heading font-semibold text-[0.9375rem] text-lime leading-snug">
-                  {s.title}
-                </h3>
-                <p class="font-body text-[0.72rem] text-white/55 leading-relaxed flex-1 line-clamp-3">
-                  {s.desc}
-                </p>
-                <a
-                  href={s.href}
-                  class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-[0.72rem] font-button font-medium text-white/85 transition-all duration-200 hover:bg-white/10"
-                  style="border: 1px solid rgba(255,255,255,0.22);"
-                  tabindex={i === 1 ? '-1' : undefined}
-                >
-                  Learn More
-                  <svg
-                    class="w-3 h-3 shrink-0"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M2 10L10 2M10 2H4.5M10 2V7.5" />
-                  </svg>
-                </a>
-              </div>
-            </article>
-          ))
-        )
-      }
-    </div>
-  </div>
-
 </section>
+
+<style>
+  /* Mobile: let the fold flow so the grid + controls never clip. */
+  @media (max-width: 1023px) {
+    .transform-fold {
+      display: block;
+      height: auto;
+      overflow: visible;
+      scroll-snap-align: none;
+    }
+  }
+
+  .svc-card { transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; }
+  .svc-card:hover {
+    border-color: rgba(192, 241, 128, 0.45) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .svc-arrow {
+    width: 38px; height: 38px; border-radius: 9999px;
+    display: grid; place-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+  }
+  .svc-arrow:hover { background: rgba(192, 241, 128, 0.14); color: #C0F180; border-color: rgba(192, 241, 128, 0.4); }
+  .svc-arrow:focus-visible { outline: 2px solid #C0F180; outline-offset: 2px; }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const track = document.getElementById('svc-track') as HTMLElement | null;
+
+  if (track) {
+    const pages = [...track.querySelectorAll<HTMLElement>(':scope > div')];
+    const dots  = [...document.querySelectorAll<HTMLElement>('[data-svc-dot]')];
+    const prev  = document.getElementById('svc-prev');
+    const next  = document.getElementById('svc-next');
+    const count = pages.length;
+    let current = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    function goTo(i: number) {
+      current = (i + count) % count;
+      track!.style.transform = `translateX(-${current * 50}%)`;
+      dots.forEach((d, di) => {
+        const active = di === current;
+        d.style.width = active ? '22px' : '7px';
+        d.style.background = active ? '#C0F180' : 'rgba(255,255,255,0.3)';
+        d.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      pages.forEach((p, pi) => p.setAttribute('aria-hidden', pi !== current ? 'true' : 'false'));
+    }
+
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function restart() { stop(); timer = setInterval(() => goTo(current + 1), 5500); }
+
+    dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); restart(); }));
+    prev?.addEventListener('click', () => { goTo(current - 1); restart(); });
+    next?.addEventListener('click', () => { goTo(current + 1); restart(); });
+
+    ScrollTrigger.create({
+      trigger: '.transform-fold',
+      start: 'top 80%',
+      end: 'bottom 20%',
+      onEnter: restart,
+      onLeave: stop,
+      onEnterBack: restart,
+      onLeaveBack: stop,
+    });
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.from('.transform-copy > *', {
+        scrollTrigger: { trigger: '.transform-fold', start: 'top 65%' },
+        y: 28, opacity: 0, stagger: 0.1, duration: 0.7, ease: 'power3.out',
+      });
+      gsap.from('.transform-cards', {
+        scrollTrigger: { trigger: '.transform-fold', start: 'top 65%' },
+        x: 40, opacity: 0, duration: 0.8, ease: 'power3.out',
+      });
+    }
+  }
+</script>

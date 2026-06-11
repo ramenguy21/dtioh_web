@@ -3,40 +3,92 @@ import ScrollIndicator from '../global/ScrollIndicator.astro';
 ---
 
 <section class="fold" data-hero>
-  <!-- Background image + gradient overlay -->
+  <!-- Background image + layered overlay for strong text legibility -->
   <div class="absolute inset-0 z-0">
     <img
       src="/images/hero.jpg"
       alt=""
+      width="1920"
+      height="1080"
       class="w-full h-full object-cover object-center"
       loading="eager"
+      fetchpriority="high"
+      decoding="async"
     />
+    <!-- Brand diagonal tint -->
     <div
       class="absolute inset-0"
-      style="background: linear-gradient(135deg, #0C2E3C 0%, #0C2E3C80 100%)"
+      style="background: linear-gradient(120deg, rgba(12,46,60,0.92) 0%, rgba(12,46,60,0.55) 55%, rgba(12,46,60,0.30) 100%)"
+    ></div>
+    <!-- Bottom-up scrim so the headline always pops -->
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(0deg, rgba(12,46,60,0.85) 0%, rgba(12,46,60,0.20) 38%, transparent 60%)"
     ></div>
   </div>
 
   <!-- Content — bottom-left -->
-  <div class="absolute bottom-16 lg:bottom-20 left-0 right-0 z-10">
-    <div class="max-w-7xl mx-auto px-6 lg:px-16">
-      <h1
-        class="font-heading font-bold text-[2rem] leading-tight lg:text-[3.5rem] lg:leading-[1.1] text-white max-w-xl"
-      >
-        Leaders of professional<br />
-        <span class="text-lime">healthcare</span> and
-        <span class="text-lime">aesthetic<br />education</span> Pakistan
-      </h1>
-      <p
-        class="font-body text-white/70 text-sm lg:text-base mt-4 max-w-[340px] leading-relaxed"
-      >
-        Paving the way for professional healthcare and aesthetic education in
-        Pakistan. Since 2020, our focus has been on shaping the next generation
-        of certified professionals
+  <div class="absolute bottom-14 sm:bottom-16 lg:bottom-20 left-0 right-0 z-10">
+    <div class="hero-content max-w-7xl mx-auto px-6 lg:px-16">
+      <!-- Eyebrow / trust kicker -->
+      <p class="hero-line inline-flex items-center gap-2.5 font-button font-medium text-lime text-[0.7rem] sm:text-xs tracking-[0.18em] uppercase mb-4 sm:mb-5">
+        <span class="w-6 h-px bg-lime/60"></span>
+        DUHS &amp; SBTE Accredited · Since 2020
       </p>
+
+      <h1
+        class="hero-line font-heading font-bold text-white max-w-3xl"
+        style="font-size: clamp(2.5rem, 6.5vw, 4rem); line-height: 1.05; letter-spacing: -0.02em; text-shadow: 0 2px 24px rgba(0,0,0,0.35);"
+      >
+        Leaders of professional
+        <span class="text-lime">healthcare</span> &amp;
+        <span class="text-lime">aesthetic education</span> in Pakistan
+      </h1>
+
+      <p
+        class="hero-line font-body text-white/85 text-base lg:text-lg mt-5 max-w-xl leading-relaxed"
+      >
+        Shaping the next generation of certified professionals with hands-on,
+        industry-recognised training — and world-class aesthetic care.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-line flex flex-col sm:flex-row sm:items-center gap-3.5 mt-8">
+        <a
+          href="/courses"
+          class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-teal text-white font-button font-semibold text-sm sm:text-base hover:bg-cta-hover hover:scale-[1.03] transition-all duration-200 group"
+        >
+          Explore Courses
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 13L13 3M6 3H13V10" />
+          </svg>
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full border border-white/40 text-white font-button font-semibold text-sm sm:text-base hover:bg-white/10 hover:border-white/70 transition-all duration-200"
+          style="backdrop-filter: blur(6px);"
+        >
+          Book a Consultation
+        </a>
+      </div>
     </div>
   </div>
 
   <!-- Scroll indicator — bottom-right -->
-  <ScrollIndicator class="absolute bottom-8 right-8 lg:right-16 z-10 text-white/80" />
+  <ScrollIndicator class="max-sm:hidden absolute bottom-8 right-8 lg:right-16 z-10 text-white/80" />
 </section>
+
+<script>
+  import gsap from 'gsap';
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.from('.hero-content .hero-line', {
+      y: 32,
+      opacity: 0,
+      stagger: 0.12,
+      duration: 0.85,
+      ease: 'power3.out',
+      delay: 0.15,
+    });
+  }
+</script>

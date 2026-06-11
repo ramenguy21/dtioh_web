@@ -5,75 +5,60 @@ const features = [
   'Industry-Standard Curriculum',
 ];
 
+// The four programs DTIOH actually offers — kept in sync with /courses and the footer.
 const courses = [
   {
     title: 'Non-Invasive Beautician',
     image: '/images/courses/non-invasive.jpg',
     desc: 'Master non-surgical skin and beauty techniques. Learn facial treatments, advanced skincare routines, and non-invasive body contouring for a complete beautician skill set.',
-    href: '/courses/non-invasive-beautician',
+    href: '/courses/listing/non-invasive-beautician',
   },
   {
     title: 'Health & Wellness Specialist',
     image: '/images/courses/health-wellness.jpg',
-    desc: 'This course dives into advanced procedures like PRP (hair & face), fillers, threads, Botox, hydrofacial, and skin rejuvenation. If you want to become skilled in injectable health and wellness treatments and skin rejuvenation training, this is your choice.',
-    href: '/courses/health-wellness-specialist',
+    desc: 'Advanced procedures including PRP (hair & face), fillers, threads, Botox, HydraFacial, and skin rejuvenation — the complete injectable and wellness specialist course.',
+    href: '/courses/listing/health-wellness-specialist',
   },
   {
     title: 'Health and Nutrition',
     image: '/images/courses/nutrition.jpg',
-    desc: 'Understand how diet, wellness, and metabolism affect appearance. Learn holistic methods of improving hair growth and body wellness via nutrition and discover the science behind beauty nutrition education.',
-    href: '/courses/health-nutrition',
+    desc: 'Understand how diet, wellness, and metabolism affect appearance. Learn holistic methods to improve skin, hair growth, and body wellness through nutrition.',
+    href: '/courses/listing/health-and-nutrition',
   },
   {
-    title: 'Aesthetic Nursing',
-    image: '/images/courses/aesthetic-nursing.jpg',
-    desc: 'Develop clinical expertise in aesthetic procedures for nursing professionals. Covers injectable techniques, patient assessment, treatment planning, and advanced skincare protocols.',
-    href: '/courses/aesthetic-nursing',
-  },
-  {
-    title: 'Laser Aesthetics',
-    image: '/images/courses/laser-aesthetics.jpg',
-    desc: 'Gain proficiency in laser and light-based treatments. Learn hair removal, skin resurfacing, pigmentation correction, and safe laser operation protocols used in modern clinics.',
-    href: '/courses/laser-aesthetics',
+    title: 'Cupping Therapy',
+    image: '/images/courses/cupping.jpg',
+    desc: 'Combine traditional Hijama methods with modern clinical safety standards. Covers wet cupping, dry cupping, and therapeutic protocols for overall wellness.',
+    href: '/courses/listing/cupping-therapy',
   },
 ];
 ---
 
-<!--
-  All content is absolutely positioned so the fold's height is determined
-  solely by min-height: 100dvh, giving scroll-snap a consistent snap target.
--->
 <section
-  class="fold"
+  class="fold courses-fold"
   style="background: linear-gradient(160deg, #dff5cd 0%, #eef9f0 35%, #f5fdf6 65%, #f9fdfb 100%)"
 >
   <!-- Background blobs -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
-    <div
-      class="absolute -top-24 -left-24 w-[480px] h-[480px] rounded-full blur-3xl"
-      style="background: rgba(192, 241, 128, 0.22)"
-    ></div>
-    <div
-      class="absolute bottom-0 right-[10%] w-[360px] h-[360px] rounded-full blur-3xl"
-      style="background: rgba(102, 166, 172, 0.12)"
-    ></div>
+    <div class="absolute -top-24 -left-24 w-[480px] h-[480px] rounded-full blur-3xl" style="background: rgba(192, 241, 128, 0.22)"></div>
+    <div class="absolute bottom-0 right-[10%] w-[360px] h-[360px] rounded-full blur-3xl" style="background: rgba(102, 166, 172, 0.12)"></div>
   </div>
 
-  <!-- ── Heading block (upper-center) ─────────────────────── -->
-  <div class="absolute z-10 inset-x-0 px-6 text-center" style="top: 5.5rem;">
-    <div class="max-w-2xl mx-auto">
+  <!-- ── Centered content ──────────────────────────────────── -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-16 flex flex-col items-center">
+
+    <!-- Heading -->
+    <div class="text-center max-w-2xl">
       <h2
         class="font-heading font-bold text-dark-blue leading-[1.15]"
         style="font-size: clamp(1.875rem, 3.5vw, 2.75rem)"
       >
-        The <span class="text-teal">Programs</span> we<br />Offer at DTIOH
+        The <span class="text-teal">Programs</span> we Offer at DTIOH
       </h2>
       <p class="font-body text-dark-blue/55 text-sm lg:text-base mt-3 max-w-md mx-auto leading-relaxed">
         Comprehensive certification programs designed to transform your career
         in health and wellness
       </p>
-
-      <!-- Feature badge pills -->
       <div class="flex flex-wrap justify-center gap-2.5 mt-5">
         {features.map((f) => (
           <span class="px-4 py-1.5 rounded-full border border-dark-blue/20 text-dark-blue/65 text-xs font-button font-medium">
@@ -82,81 +67,86 @@ const courses = [
         ))}
       </div>
     </div>
-  </div>
 
-  <!-- ── Course cards row (pinned to bottom) ───────────────── -->
-  <div class="absolute z-10 left-0 right-0" style="bottom: 2.5rem;">
-    <div class="overflow-x-auto hide-scrollbar">
-      <div class="flex gap-5 px-6 lg:px-16 pb-1">
-        {
-          courses.map((course) => (
-            <article class="shrink-0 w-80 rounded-2xl overflow-hidden flex flex-col bg-white shadow-[0_4px_24px_rgba(12,46,60,0.08)]">
+    <!-- ── Course cards — responsive grid (4-up on desktop) ──── -->
+    <div class="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+      {courses.map((course) => (
+        <article class="course-card group flex flex-col rounded-2xl overflow-hidden bg-white shadow-[0_4px_24px_rgba(12,46,60,0.08)]">
 
-              <!-- Image -->
-              <div
-                class="relative shrink-0 overflow-hidden"
-                style="height: 176px; background: rgba(102,166,172,0.18)"
-              >
-                <img
-                  src={course.image}
-                  alt={course.title}
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
+          <!-- Image -->
+          <div class="relative shrink-0 overflow-hidden" style="aspect-ratio: 16/11; background: rgba(102,166,172,0.18)">
+            <img
+              src={course.image}
+              alt={course.title}
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
 
-              <!-- Body -->
-              <div class="flex flex-col flex-1 p-4 gap-2.5">
-                <h3 class="font-heading font-semibold text-[1rem] text-teal leading-snug">
-                  {course.title}
-                </h3>
+          <!-- Body -->
+          <div class="flex flex-col flex-1 p-4 gap-2.5">
+            <h3 class="font-heading font-semibold text-base text-teal leading-snug">
+              {course.title}
+            </h3>
 
-                <!-- Accreditation badges -->
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="px-2.5 py-1 rounded-full border border-dark-blue/15 text-dark-blue/50 text-[0.65rem] font-button leading-none">
-                    Accredited by SBTE
-                  </span>
-                  <span class="px-2.5 py-1 rounded-full border border-dark-blue/15 text-dark-blue/50 text-[0.65rem] font-button leading-none">
-                    Professional Certification
-                  </span>
-                </div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded-full border border-dark-blue/15 text-dark-blue/50 text-[0.65rem] font-button leading-none">
+                Accredited by SBTE
+              </span>
+              <span class="px-2.5 py-1 rounded-full border border-dark-blue/15 text-dark-blue/50 text-[0.65rem] font-button leading-none">
+                Professional Certification
+              </span>
+            </div>
 
-                <!-- Description + read more -->
-                <div class="flex-1">
-                  <p class="font-body text-[0.75rem] text-dark-blue/58 leading-relaxed line-clamp-2">
-                    {course.desc}
-                  </p>
-                  <a
-                    href={course.href}
-                    class="text-teal text-[0.75rem] font-body font-medium hover:underline mt-0.5 inline-block"
-                  >
-                    read more
-                  </a>
-                </div>
+            <div class="flex-1">
+              <p class="font-body text-[0.75rem] text-dark-blue/58 leading-relaxed line-clamp-3">
+                {course.desc}
+              </p>
+            </div>
 
-                <!-- View Curriculum CTA -->
-                <a
-                  href={course.href}
-                  class="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-teal text-white font-button font-semibold text-sm hover:bg-cta-hover transition-all duration-200 hover:scale-[1.02]"
-                >
-                  View Curriculum
-                  <svg
-                    class="w-3.5 h-3.5 shrink-0"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M2 12L12 2M12 2H4.5M12 2V9.5" />
-                  </svg>
-                </a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
+            <a
+              href={course.href}
+              class="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-teal text-white font-button font-semibold text-sm hover:bg-cta-hover transition-all duration-200 hover:scale-[1.02] mt-1"
+            >
+              View Curriculum
+              <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12L12 2M12 2H4.5M12 2V9.5" />
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>
+
+<style>
+  /* Mobile/tablet: let the fold flow so stacked cards never clip. */
+  @media (max-width: 1023px) {
+    .courses-fold {
+      display: block;
+      height: auto;
+      overflow: visible;
+      scroll-snap-align: none;
+    }
+  }
+
+  .course-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(12, 46, 60, 0.14);
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.from('.courses-fold .course-card', {
+      scrollTrigger: { trigger: '.courses-fold', start: 'top 70%' },
+      y: 32, opacity: 0, stagger: 0.1, duration: 0.7, ease: 'power3.out',
+    });
+  }
+</script>

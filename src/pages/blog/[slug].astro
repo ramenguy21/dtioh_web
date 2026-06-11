@@ -1,8 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ScrollIndicator from '../../components/global/ScrollIndicator.astro';
+import type { InferGetStaticPropsType } from 'astro';
 
-const allPosts = [
+export function getStaticPaths() {
+  const allPosts = [
   {
     slug: 'hydrafacial-benefits',
     title: 'HydraFacial Benefits: The Science Behind Hydration-Based Skincare',
@@ -145,13 +147,11 @@ const allPosts = [
       },
     ],
   },
-];
-
-export function getStaticPaths() {
+  ];
   return allPosts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
 }
 
-interface Props { post: typeof allPosts[0]; }
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { post } = Astro.props;
 ---
 

@@ -38,12 +38,13 @@ html {
 
 /* ── Navbar ─────────────────────────────────────────────── */
 
-/* Header stays transparent at all times — only the pill has a bg */
+/* Header stays transparent at all times — only the pills have a bg */
 .logo-text   { color: rgba(255, 255, 255, 0.92); transition: color 0.35s ease; }
 .navbar-icon { color: rgba(255, 255, 255, 0.9);  transition: color 0.35s ease; }
 
-/* Glass pill — dark state (over hero) */
-#nav-pill {
+/* Glass pills — dark state (over hero) */
+#nav-pill,
+#logo-pill {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   background: rgba(255, 255, 255, 0.10);
@@ -55,8 +56,9 @@ html {
 .nav-link            { color: rgba(255, 255, 255, 0.82); transition: color 0.2s, background 0.2s; }
 .nav-link:hover      { color: #ffffff; background: rgba(255, 255, 255, 0.10); }
 
-/* Glass pill — light state (scrolled / non-hero pages) */
-#navbar.scrolled #nav-pill {
+/* Glass pills — light state (scrolled / non-hero pages) */
+#navbar.scrolled #nav-pill,
+#navbar.scrolled #logo-pill {
   background: rgba(255, 255, 255, 0.80);
   border-color: rgba(12, 46, 60, 0.08);
   box-shadow: 0 4px 28px rgba(12, 46, 60, 0.10);

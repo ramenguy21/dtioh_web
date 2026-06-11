@@ -1,8 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ScrollIndicator from '../../components/global/ScrollIndicator.astro';
+import type { InferGetStaticPropsType } from 'astro';
 
-const allCourses = [
+export function getStaticPaths() {
+  const allCourses = [
   {
     slug: 'non-invasive-beautician',
     title: 'Non-Invasive Beautician',
@@ -160,13 +162,11 @@ const allCourses = [
       'Earn an SBTE-accredited professional certification',
     ],
   },
-];
-
-export function getStaticPaths() {
+  ];
   return allCourses.map((c) => ({ params: { slug: c.slug }, props: { course: c } }));
 }
 
-interface Props { course: typeof allCourses[0]; }
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { course } = Astro.props;
 ---
 

@@ -71,11 +71,13 @@ const groups = [
     },
   ],
 ];
+
+const allItems = groups.flat();
 ---
 
-<section class="fold why-fold" style="background: #F4F4F4; overflow: hidden;">
+<section class="fold why-fold" aria-labelledby="why-heading">
 
-  <!-- Subtle background texture on the top half -->
+  <!-- Subtle background texture -->
   <div class="absolute inset-0 pointer-events-none z-0" style="background: linear-gradient(180deg, rgba(102,166,172,0.06) 0%, transparent 48%)"></div>
   <img
     src="/images/certified-bg.jpg"
@@ -85,8 +87,48 @@ const groups = [
     loading="lazy"
   />
 
-  <!-- ── Heading area ──────────────────────────────────────── -->
-  <div class="absolute z-10 inset-x-0 flex flex-col items-center justify-center gap-6" style="top: 0; height: 38%;">
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- MOBILE / TABLET — vertical stacked cards                   -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div class="why-mobile lg:hidden relative z-10 w-full px-6 py-16">
+    <div class="max-w-xl mx-auto">
+      <h2
+        id="why-heading"
+        class="font-heading font-bold text-dark-blue text-center leading-[1.15]"
+        style="font-size: clamp(1.875rem, 7vw, 2.5rem);"
+      >
+        Why choose <span class="text-teal">DTIOH?</span>
+      </h2>
+      <p class="font-body text-dark-blue/55 text-sm text-center mt-3 max-w-md mx-auto leading-relaxed">
+        Everything that makes us Pakistan's trusted name in aesthetic and healthcare education.
+      </p>
+
+      <div class="flex flex-col gap-4 mt-10">
+        {allItems.map((item) => (
+          <div
+            class="why-card flex items-start gap-4 p-5 rounded-2xl shadow-[0_8px_24px_rgba(12,46,60,0.08)]"
+            style={`background: ${item.bg}; color: ${item.text};`}
+          >
+            <div class="w-9 h-9 shrink-0 mt-0.5" set:html={item.icon} />
+            <div>
+              <h3 class="font-heading font-bold text-lg leading-snug">{item.title}</h3>
+              <p
+                class="font-body text-sm mt-1.5 leading-relaxed"
+                style={`opacity: ${item.text === 'white' ? '0.78' : '0.72'};`}
+              >
+                {item.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- DESKTOP — heading + horizontal slider                      -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div class="why-desktop hidden lg:flex absolute z-10 inset-x-0 flex-col items-center justify-center gap-6" style="top: 0; height: 38%;">
     <h2
       class="font-heading font-bold text-dark-blue text-center leading-[1.15]"
       style="font-size: clamp(1.875rem, 3.5vw, 2.75rem);"
@@ -111,9 +153,8 @@ const groups = [
     </div>
   </div>
 
-  <!-- ── Sliding columns ──────────────────────────────────── -->
   <div
-    class="absolute inset-x-0"
+    class="why-desktop hidden lg:block absolute inset-x-0"
     style="bottom: 0; height: 62%; overflow: hidden;"
   >
     <div
@@ -156,62 +197,91 @@ const groups = [
 
 </section>
 
+<style>
+  /* Base (mobile): the fold becomes a normal flowing block so the stacked
+     cards can grow past the viewport without being clipped by .fold's
+     overflow:hidden, and without fighting the scroll-snap. */
+  .why-fold {
+    background: #f4f4f4;
+    display: block;
+    height: auto;
+    overflow: visible;
+    scroll-snap-align: none;
+  }
+
+  @media (min-width: 1024px) {
+    .why-fold {
+      display: flex;
+      align-items: center;
+      height: 100dvh;
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+  }
+</style>
+
 <script>
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
 
-  const track  = document.getElementById('why-track') as HTMLElement;
-  const dots   = [...document.querySelectorAll<HTMLElement>('[data-why-dot]')];
-  const slides = [...track.querySelectorAll<HTMLElement>(':scope > div')];
-  let current  = 0;
-  let timer: ReturnType<typeof setInterval> | null = null;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const desktop = window.matchMedia('(min-width: 1024px)');
 
-  function goTo(index: number) {
-    if (index === current) return;
+  // ── Desktop slider ─────────────────────────────────────────
+  const track = document.getElementById('why-track') as HTMLElement | null;
 
-    // outgoing dot
-    dots[current].style.width      = '7px';
-    dots[current].style.background = 'rgba(12,46,60,0.2)';
-    dots[current].setAttribute('aria-selected', 'false');
+  if (track) {
+    const dots   = [...document.querySelectorAll<HTMLElement>('[data-why-dot]')];
+    const slides = [...track.querySelectorAll<HTMLElement>(':scope > div')];
+    let current  = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
 
-    // incoming dot
-    current = index;
-    dots[current].style.width      = '24px';
-    dots[current].style.background = '#219169';
-    dots[current].setAttribute('aria-selected', 'true');
+    function goTo(index: number) {
+      if (index === current) return;
+      dots[current].style.width      = '7px';
+      dots[current].style.background = 'rgba(12,46,60,0.2)';
+      dots[current].setAttribute('aria-selected', 'false');
+      current = index;
+      dots[current].style.width      = '24px';
+      dots[current].style.background = '#219169';
+      dots[current].setAttribute('aria-selected', 'true');
+      track!.style.transform = `translateX(-${current * 50}%)`;
+      slides.forEach((s, i) => s.setAttribute('aria-hidden', i !== current ? 'true' : 'false'));
+    }
 
-    // slide track
-    track.style.transform = `translateX(-${current * 50}%)`;
+    function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
+    function restartTimer() {
+      stopTimer();
+      if (!desktop.matches) return;
+      timer = setInterval(() => goTo((current + 1) % slides.length), 4000);
+    }
 
-    slides.forEach((s, i) => s.setAttribute('aria-hidden', i !== current ? 'true' : 'false'));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); restartTimer(); }));
+
+    ScrollTrigger.create({
+      trigger: '.why-fold',
+      start: 'top 80%',
+      end: 'bottom 20%',
+      onEnter: restartTimer,
+      onLeave: stopTimer,
+      onEnterBack: restartTimer,
+      onLeaveBack: stopTimer,
+    });
+
+    // Only auto-advance on desktop
+    desktop.addEventListener('change', () => { if (!desktop.matches) stopTimer(); });
   }
 
-  function restartTimer() {
-    if (timer) clearInterval(timer);
-    timer = setInterval(() => goTo((current + 1) % slides.length), 4000);
-  }
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => { goTo(i); restartTimer(); });
-  });
-
-  // Pause when not in view, resume when in view
-  ScrollTrigger.create({
-    trigger: '.why-fold',
-    start: 'top 80%',
-    end: 'bottom 20%',
-    onEnter:     restartTimer,
-    onLeave:     () => { if (timer) { clearInterval(timer); timer = null; } },
-    onEnterBack: restartTimer,
-    onLeaveBack: () => { if (timer) { clearInterval(timer); timer = null; } },
-  });
-
-  // Heading entrance
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  // ── Heading entrance (both layouts) ────────────────────────
+  if (!reduced) {
     gsap.from('.why-fold h2, .why-fold [role="tablist"]', {
-      scrollTrigger: { trigger: '.why-fold', start: 'top 65%' },
+      scrollTrigger: { trigger: '.why-fold', start: 'top 75%' },
       y: 24, opacity: 0, stagger: 0.12, duration: 0.7, ease: 'power3.out',
+    });
+    gsap.from('.why-mobile .why-card', {
+      scrollTrigger: { trigger: '.why-mobile', start: 'top 75%' },
+      y: 28, opacity: 0, stagger: 0.08, duration: 0.6, ease: 'power3.out',
     });
   }
 </script>

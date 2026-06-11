@@ -6,12 +6,45 @@ import Footer from '../components/global/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  ogType?: string;
 }
 
 const {
   title = "Dr. Tasneem's Institute of Health — Aesthetic & Healthcare Education",
   description = "Pakistan's leading DUHS & SBTE accredited aesthetic and healthcare training institute in Malir Cantt, Karachi.",
+  image = '/images/hero.jpg',
+  ogType = 'website',
 } = Astro.props;
+
+const siteBase = Astro.site ?? new URL(Astro.url.origin);
+const canonicalURL = new URL(Astro.url.pathname, siteBase).href;
+const ogImage = new URL(image, siteBase).href;
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: "Dr. Tasneem's Institute of Health",
+  alternateName: 'DTIOH',
+  description,
+  url: siteBase.href,
+  logo: new URL('/favicon.svg', siteBase).href,
+  image: ogImage,
+  telephone: '+92-302-2301918',
+  email: 'hello@dtioh.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Malir Cantt',
+    addressLocality: 'Karachi',
+    addressRegion: 'Sindh',
+    addressCountry: 'PK',
+  },
+  sameAs: [
+    'https://www.facebook.com/profile.php?id=61564899703862',
+    'https://www.instagram.com/dtioht/',
+  ],
+  hasCredential: ['DUHS Affiliated', 'SBTE Recognized'],
+};
 ---
 
 <!doctype html>
@@ -22,8 +55,26 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Dr. Tasneem's Institute of Health" />
+    <meta property="og:locale" content="en_PK" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

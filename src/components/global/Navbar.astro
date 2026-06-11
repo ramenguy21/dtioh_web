@@ -16,10 +16,13 @@ const navLinks = [
   <div class="max-w-7xl mx-auto px-6 lg:px-16">
     <div class="flex items-center justify-between gap-6">
 
-      <!-- Logo — floats freely, no pill background -->
-      <a href="/" class="flex items-center gap-2.5 shrink-0">
+      <!--
+        Logo sits in its own glass pill (mirrors #nav-pill states) so it
+        stays legible over any section — dark hero, light folds, or dark folds.
+      -->
+      <a id="logo-pill" href="/" class="flex items-center gap-2.5 shrink-0 rounded-full pl-2.5 pr-4 py-2" aria-label="Dr. Tasneem's Institute of Health — home">
         <div class="w-8 h-8 shrink-0">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect width="32" height="32" rx="7" fill="#219169" fill-opacity="0.18"/>
             <rect x="13" y="5" width="6" height="22" rx="2.5" fill="#C0F180"/>
             <rect x="5" y="13" width="22" height="6" rx="2.5" fill="#C0F180"/>
