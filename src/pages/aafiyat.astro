@@ -270,3 +270,16 @@ const phases = [
 
   </main>
 </Base>
+
+<style>
+  /*
+    This page is a plain long-scroll layout, not the fold-based homepage.
+    Base.astro's global html has scroll-snap-type: y mandatory for the fold
+    pages; with no scroll-snap-align targets in this page's own sections,
+    the only snap point left is the Footer, so desktop scrolling was forced
+    straight down to it. Disable snapping here.
+  */
+  :global(html) {
+    scroll-snap-type: none;
+  }
+</style>
