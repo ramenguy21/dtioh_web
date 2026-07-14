@@ -1,0 +1,141 @@
+---
+const steps = [
+  {
+    n: '01',
+    title: 'Full Baseline',
+    desc: "Measurements, health history and vitals — a complete starting picture, not a guess.",
+  },
+  {
+    n: '02',
+    title: 'A Plan Built Around You',
+    desc: 'Your physician reviews your baseline and activates a treatment plan tailored to your body.',
+  },
+  {
+    n: '03',
+    title: 'Momentum, Every Two Weeks',
+    desc: 'Vitals, labs and how you\'re actually feeling are reviewed in person — so your plan keeps adapting as you progress.',
+  },
+  {
+    n: '04',
+    title: 'See Your Progress',
+    desc: 'A clear, easy-to-read update after every visit, in English or Urdu.',
+  },
+];
+---
+
+<section class="fold aafiyat-fold" style="background: #F4F4F4;">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- LEFT — text block -->
+      <div class="aafiyat-left max-w-lg">
+        <p class="font-button font-medium text-teal text-sm tracking-widest uppercase mb-4">
+          An Aafiyat Programme · By DTIOH
+        </p>
+
+        <h2
+          class="font-heading font-bold text-dark-blue leading-[1.15]"
+          style="font-size: clamp(2rem, 3.5vw, 2.75rem);"
+        >
+          A <span class="text-teal">physician-led</span> path to lasting wellness
+        </h2>
+
+        <p class="font-body text-dark-blue/60 text-base mt-6 leading-relaxed">
+          Aafiyat is Dr. Tasneem's Institute of Health's structured wellness
+          programme — every patient is paired with a physician who builds a
+          personalized plan from a full baseline screening, then tracks it
+          through fortnightly, in-clinic check-ins that combine vitals, labs and
+          how you're actually feeling.
+        </p>
+
+        <p class="font-body text-dark-blue/60 text-sm mt-4 leading-relaxed">
+          No guesswork, no generic plans — just a programme that keeps adjusting
+          to you, delivered through a trusted network of clinics and parlours
+          across Pakistan.
+        </p>
+
+        <a
+          href="/aafiyat"
+          class="mt-8 inline-flex items-center gap-2.5 bg-teal text-white font-button font-semibold text-sm px-8 py-4 rounded-full transition-all duration-200 hover:bg-cta-hover hover:scale-105 group"
+        >
+          Learn About Aafiyat
+          <svg
+            class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 13L13 3" />
+            <path d="M6 3H13V10" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- RIGHT — how it works card -->
+      <div class="aafiyat-right">
+        <div
+          class="rounded-2xl bg-white p-7 lg:p-8"
+          style="box-shadow: 0 16px 48px rgba(12,46,60,0.12);"
+        >
+          <p class="font-button font-semibold text-dark-blue/40 text-xs uppercase tracking-widest mb-6">
+            How it works
+          </p>
+          <div class="flex flex-col gap-6">
+            {steps.map((s, i) => (
+              <div class="aafiyat-step flex items-start gap-4">
+                <span
+                  class="font-heading font-bold text-teal shrink-0 leading-none"
+                  style="font-size: 1.125rem;"
+                >
+                  {s.n}
+                </span>
+                <div>
+                  <h3 class="font-heading font-semibold text-dark-blue text-base leading-snug">
+                    {s.title}
+                  </h3>
+                  <p class="font-body text-dark-blue/55 text-sm mt-1 leading-relaxed">
+                    {s.desc}
+                  </p>
+                </div>
+                {i < steps.length - 1 && (
+                  <span class="sr-only">Then</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.from('.aafiyat-left > *', {
+      scrollTrigger: { trigger: '.aafiyat-fold', start: 'top 65%' },
+      y: 32,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 0.8,
+      ease: 'power3.out',
+    });
+    gsap.from('.aafiyat-step', {
+      scrollTrigger: { trigger: '.aafiyat-fold', start: 'top 65%' },
+      y: 20,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 0.6,
+      ease: 'power3.out',
+      delay: 0.15,
+    });
+  }
+</script>

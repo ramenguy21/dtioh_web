@@ -81,51 +81,19 @@ const socials = [
     class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 pt-16 pb-8 flex flex-col gap-12"
   >
     <!-- ── Main grid ──────────────────────────────────────── -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-10">
       <!-- Brand column -->
       <div class="col-span-2 md:col-span-1 flex flex-col gap-5">
         <!-- Logo mark -->
         <a href="/" class="flex items-center gap-3 group w-fit">
-          <!-- Botanical icon matching the footer screenshot -->
-          <svg
-            class="w-10 h-10 shrink-0"
-            viewBox="0 0 40 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <!-- Stacked line bars -->
-            <rect x="4" y="28" width="14" height="2.5" rx="1.25" fill="#C0F180"
-            ></rect>
-            <rect
-              x="4"
-              y="23"
-              width="18"
-              height="2.5"
-              rx="1.25"
-              fill="#C0F180"
-              opacity="0.75"></rect>
-            <rect
-              x="4"
-              y="18"
-              width="12"
-              height="2.5"
-              rx="1.25"
-              fill="#C0F180"
-              opacity="0.5"></rect>
-            <!-- Leaf / stem -->
-            <path
-              d="M20 27 C20 20 26 14 32 10 C28 10 22 13 20 20 C18 13 12 10 8 10 C14 14 20 20 20 27Z"
-              fill="#C0F180"></path>
-            <line
-              x1="20"
-              y1="10"
-              x2="20"
-              y2="27"
-              stroke="#C0F180"
-              stroke-width="1.2"
-              stroke-linecap="round"></line>
-          </svg>
+          <div class="w-10 h-10 shrink-0 rounded-lg bg-cool-cream p-1.5">
+            <img
+              src="/dtioh_logo.svg"
+              alt=""
+              class="w-full h-full object-contain"
+              aria-hidden="true"
+            />
+          </div>
           <div>
             <p
               class="font-button font-bold text-white uppercase leading-snug"
@@ -297,6 +265,58 @@ const socials = [
             Malir Cantt & Clifton,<br />Karachi, Pakistan
           </p>
         </div>
+      </div>
+
+      <!-- Aafiyat -->
+      <div class="flex flex-col gap-4">
+        <p
+          class="font-button font-semibold text-white text-xs uppercase tracking-widest"
+        >
+          Aafiyat
+        </p>
+        <p class="font-body text-white/45 text-xs leading-relaxed max-w-[180px]">
+          A physician-led wellness programme by DTIOH.
+        </p>
+        <ul class="flex flex-col gap-2.5">
+          <li>
+            <a
+              href="/aafiyat"
+              class="font-body text-white/55 text-sm hover:text-lime transition-colors duration-200 flex items-center gap-2 group"
+            >
+              <svg
+                class="w-2.5 h-2.5 text-white/20 group-hover:text-lime transition-colors duration-200 shrink-0"
+                viewBox="0 0 10 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 5h6M5 2l3 3-3 3" />
+              </svg>
+              Aafiyat Programme
+            </a>
+          </li>
+          <li>
+            <a
+              href="/aafiyat/privacy"
+              class="font-body text-white/55 text-sm hover:text-lime transition-colors duration-200 flex items-center gap-2 group"
+            >
+              <svg
+                class="w-2.5 h-2.5 text-white/20 group-hover:text-lime transition-colors duration-200 shrink-0"
+                viewBox="0 0 10 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 5h6M5 2l3 3-3 3" />
+              </svg>
+              Privacy Policy
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
 

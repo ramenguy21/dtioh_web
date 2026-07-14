@@ -1,0 +1,190 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const aaf = {
+  teal: '#0D7377',
+  tealLight: '#14A0A5',
+  tealDark: '#095457',
+  cream: '#FAF7F2',
+  ink: '#0F2D3D',
+};
+
+const sections = [
+  {
+    title: '1. Who this policy covers',
+    body: [
+      "This policy describes how Aafiyat, a wellness programme operated by Dr. Tasneem's Institute of Health (DTIOH), collects and handles information about patients enrolled in the programme.",
+      'Aafiyat is not a consumer app patients download. Patients interact with it only in person, through a Beauty & Wellness Volunteer (BVW) or physician at a partner clinic or parlour, and via WhatsApp messages sent to them. The information described below is recorded about patients by clinical staff — it is not typed in or self-reported by patients through an app.',
+    ],
+  },
+  {
+    title: '2. Information we collect',
+    body: [],
+    subsections: [
+      {
+        heading: 'Identity & contact',
+        items: ['Full name', 'WhatsApp number, used for identity verification and programme communication', 'Age, sex'],
+      },
+      {
+        heading: 'Screening baseline',
+        items: [
+          'Height, weight, waist circumference',
+          'Diabetes, hypertension and PCOS history (self-reported to clinical staff)',
+          'Computed BMI and waist-to-height ratio',
+        ],
+      },
+      {
+        heading: 'Fortnightly check-ins',
+        items: [
+          'Blood pressure and orthostatic drop',
+          'Activity, daily-living activities, sleep, and questionnaire responses',
+          'A mental-health screening item (PHQ-9). This is treated as sensitive health data with restricted, role-limited access — it includes a suicidal-ideation question that, if answered positively, triggers an internal clinical safety flag for review',
+          'Safety flags for adverse events',
+        ],
+      },
+      {
+        heading: 'Lab-based monitoring',
+        items: [
+          'Metabolic markers such as HOMA-IR, body fat percentage',
+          'Vitamin D, serum potassium, and other biomarkers as clinically indicated',
+          'Whether a related condition is medically treated (used to adjust scoring, not stored differently)',
+        ],
+      },
+    ],
+  },
+  {
+    title: '3. What we do not collect through WhatsApp',
+    body: [
+      'WhatsApp is used only to deliver a one-time verification code during screening and a link to a progress scorecard after each check-in. No health information is typed into, or read from, WhatsApp chat content by Aafiyat. It is a notification channel, not a clinical one, and is not a chatbot.',
+    ],
+  },
+  {
+    title: '4. How we use this information',
+    body: [
+      'To coordinate care between the BVW, physician, and Wellness Leader involved in a patient’s programme.',
+      'To build and adjust an individual treatment plan across screening, check-ins, and lab-based monitoring.',
+      'To generate the plain-language progress scorecard shared with the patient after each check-in.',
+      'To flag potential safety concerns — including the PHQ-9 suicidal-ideation item — for internal clinical review.',
+    ],
+  },
+  {
+    title: '5. Who can access your information',
+    body: [
+      'Access is role-based and enforced at the database level (Row-Level Security), not only in application code. A Beauty & Wellness Volunteer, physician, Wellness Leader, and Admin each have a different, limited scope of what they can see and edit. The PHQ-9 mental-health item carries additional access restrictions given its sensitivity.',
+    ],
+  },
+  {
+    title: '6. Your progress scorecard link',
+    body: [
+      'After each check-in, you receive a link to a scorecard page showing your own progress summary, in English and Urdu. This page is reachable by anyone who has the link — it is not protected by a login or password. It is gated only by the link itself being an unguessable, unique address, the same trust model as a shared file link. Treat your scorecard link as you would any private link, and avoid forwarding it to others.',
+    ],
+  },
+  {
+    title: '7. Where your data is stored',
+    body: [
+      'Patient data is stored on secure, access-controlled servers using Supabase (PostgreSQL), protected by industry-standard technical and organizational safeguards. Access is restricted to authorized clinical staff on a need-to-know basis, enforced through role-based database permissions rather than application logic alone.',
+      'Aafiyat does not use third-party analytics or advertising tracking technologies. If this changes, this policy will be updated accordingly.',
+    ],
+  },
+  {
+    title: '8. Data retention and deletion',
+    body: [
+      'We retain your data for as long as necessary to provide the Aafiyat programme, maintain accurate clinical records, and meet our legal and regulatory obligations. You may request access to, correction of, or deletion of your data at any time by contacting us using the details below. We will act on verified requests promptly, subject to any records we are required by law or clinical practice to retain.',
+    ],
+  },
+  {
+    title: '9. Your rights',
+    body: [
+      'You may ask to access, correct, or request deletion of the information we hold about you, subject to any clinical record-keeping obligations that apply to a medical programme. Contact us using the details below to make a request.',
+    ],
+  },
+  {
+    title: '10. Changes to this policy',
+    body: [
+      'We may update this policy from time to time to reflect changes to the Aafiyat programme or applicable law. Material changes will be reflected by updating the date below.',
+    ],
+  },
+  {
+    title: '11. Contact us',
+    body: [
+      "Dr. Tasneem's Institute of Health (DTIOH) — Aafiyat Programme",
+      'Malir Cantt, Karachi, Sindh, Pakistan',
+      'Email: hello@dtioh.com',
+      'Phone: +92 302 2301918',
+    ],
+  },
+];
+---
+
+<Base
+  title="Aafiyat Privacy Policy | Dr. Tasneem's Institute of Health"
+  description="How Aafiyat, a wellness programme by Dr. Tasneem's Institute of Health, collects and handles patient information."
+>
+  <main style={`background: ${aaf.cream};`}>
+
+    <section class="pt-36 pb-14 lg:pt-44 lg:pb-16 px-6 lg:px-16">
+      <div class="max-w-3xl mx-auto">
+        <p
+          class="font-button font-medium text-sm tracking-widest uppercase mb-5"
+          style={`color: ${aaf.teal};`}
+        >
+          Aafiyat · By Dr. Tasneem's Institute of Health
+        </p>
+        <h1
+          class="font-heading font-bold leading-[1.15]"
+          style={`font-size: clamp(1.875rem, 3.5vw, 2.75rem); color: ${aaf.ink};`}
+        >
+          Privacy Policy
+        </h1>
+        <p class="font-body text-sm mt-4" style={`color: ${aaf.ink}70;`}>
+          Last updated 14 July 2026.
+        </p>
+      </div>
+    </section>
+
+    <section class="pb-24 px-6 lg:px-16">
+      <div class="max-w-3xl mx-auto flex flex-col gap-12">
+        {sections.map((s) => (
+          <div>
+            <h2
+              class="font-heading font-semibold leading-snug"
+              style={`font-size: 1.25rem; color: ${aaf.ink};`}
+            >
+              {s.title}
+            </h2>
+
+            {s.body.map((p) => (
+              <p class="font-body text-sm mt-3 leading-relaxed" style={`color: ${aaf.ink}85;`}>
+                {p}
+              </p>
+            ))}
+
+            {s.subsections && (
+              <div class="flex flex-col gap-5 mt-4">
+                {s.subsections.map((sub) => (
+                  <div>
+                    <h3
+                      class="font-heading font-semibold text-sm"
+                      style={`color: ${aaf.tealDark};`}
+                    >
+                      {sub.heading}
+                    </h3>
+                    <ul class="mt-2 flex flex-col gap-1.5">
+                      {sub.items.map((item) => (
+                        <li class="font-body text-sm leading-relaxed flex items-start gap-2" style={`color: ${aaf.ink}85;`}>
+                          <span class="shrink-0 mt-2 w-1 h-1 rounded-full" style={`background: ${aaf.tealLight};`}></span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </main>
+</Base>
