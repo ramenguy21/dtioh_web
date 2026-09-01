@@ -1,359 +1,518 @@
 ---
 import Base from '../layouts/Base.astro';
-import ScrollIndicator from '../components/global/ScrollIndicator.astro';
+import {
+  bookingSteps,
+  buildWhatsAppUrl,
+  clinicContact,
+  clinicFaqs,
+  clinicServices,
+  clinicTrustIndicators,
+  heroBookingMessage,
+} from '../data/clinic';
 
-const services = [
-  {
-    title: 'PRP (Face & Hair)',
-    desc: 'Harness your body\'s natural healing power with PRP and PRF therapies for hair regeneration and facial rejuvenation.',
-    image: '/images/services/prp.webp',
-    color: '#66A6AC',
-  },
-  {
-    title: 'Laser Hair Removal',
-    desc: 'Achieve long-lasting hair-free skin with advanced laser technology and expert precision.',
-    image: '/images/services/laser-hair.webp',
-    color: '#219169',
-  },
-  {
-    title: 'HydraFacial',
-    desc: 'Experience revolutionary skin resurfacing with vortex fusion technology for deep cleansing and hydration.',
-    image: '/images/services/hydra-facial.webp',
-    color: '#0C2E3C',
-  },
-  {
-    title: 'Weight Management',
-    desc: 'Achieve lasting health with our personalized, medically supervised diet and weight loss programs.',
-    image: '/images/services/weight-loss.webp',
-    color: '#219169',
-  },
-  {
-    title: 'Cupping Therapy',
-    desc: 'Ancient healing meets modern clinical standards. Experience detoxification and improved circulation through hijamah.',
-    image: '/images/services/cupping.webp',
-    color: '#66A6AC',
-  },
-  {
-    title: 'Microneedling',
-    desc: 'Trigger your skin\'s natural collagen production to reduce fine lines, scars, and sun damage.',
-    image: '/images/services/microneedling.webp',
-    color: '#0C2E3C',
-  },
-  {
-    title: 'Mesotherapy',
-    desc: 'Targeted renewal and rejuvenation through specialized micro-injections tailored to your unique skin needs.',
-    image: '/images/services/mesotherapy.webp',
-    color: '#219169',
-  },
-  {
-    title: 'Botox and Fillers',
-    desc: 'Smooth dynamic wrinkles and restore volume with our expert-administered injectables for timeless results.',
-    image: '/images/services/botox.webp',
-    color: '#66A6AC',
-  },
-];
+const featuredServices = clinicServices.filter((service) =>
+  ['laser', 'weight-management', 'hydrafacial', 'prp'].includes(service.key),
+);
+const featuredServiceKeys = new Set(featuredServices.map((service) => service.key));
 
-const highlights = [
-  'Medically Supervised',
-  'Precision Equipment',
-  'Certified Practitioners',
+const clinicSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: clinicFaqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
 ];
 ---
 
 <Base
-  title="Clinic | Dr. Tasneem's Institute of Health — Aesthetic & Wellness Treatments Karachi"
-  description="Advanced aesthetic and wellness treatments in Malir Cantt, Karachi. PRP, HydraFacial, Laser Hair Removal, Botox, Microneedling & more — 12% off all services."
+  title="Clinic in Karachi | Dr. Tasneem's Clinic"
+  description="Consultation-led aesthetic and wellness treatments in Malir Cantt, Karachi. Book PRP, laser hair removal, HydraFacial, weight management and more on WhatsApp."
+  image="/images/services/hydra-facial.webp"
+  ogType="website"
+  schemaType="MedicalBusiness"
+  extraSchemas={clinicSchemas}
 >
-  <main>
-
-    <!-- ══════════════════════════════════════════════════════ -->
-    <!-- FOLD 1 — CLINIC HERO                                   -->
-    <!-- ══════════════════════════════════════════════════════ -->
-    <section class="fold clinic-hero" data-hero>
-
-      <!-- Bg image + overlay -->
-      <div class="absolute inset-0 z-0">
+  <main class="bg-cool-cream">
+    <section class="relative overflow-hidden bg-dark-blue pt-32 pb-20 lg:pt-40 lg:pb-28" data-hero>
+      <div class="absolute inset-0">
         <img
           src="/images/certified-bg.webp"
           alt=""
-          class="w-full h-full object-cover object-center"
+          class="h-full w-full object-cover opacity-35"
           loading="eager"
         />
-        <div
-          class="absolute inset-0"
-          style="background: linear-gradient(135deg, #0C2E3C 0%, rgba(12,46,60,0.72) 60%, rgba(12,46,60,0.45) 100%)"
-        ></div>
+        <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(12,46,60,0.94),rgba(12,46,60,0.72),rgba(33,145,105,0.45))]"></div>
       </div>
-
-      <!-- Content — bottom-left -->
-      <div class="absolute bottom-16 lg:bottom-20 left-0 right-0 z-10">
-        <div class="max-w-7xl mx-auto px-6 lg:px-16">
-
-          <!-- Eyebrow -->
-          <p class="font-button font-medium text-lime text-sm tracking-widest uppercase mb-4">
-            Dr. Tasneem's Clinic · Malir Cantt, Karachi
+      <div class="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-16">
+        <div class="max-w-2xl">
+          <p class="font-button text-sm font-semibold uppercase tracking-[0.3em] text-lime">
+            Dr. Tasneem's Clinic · {clinicContact.locationLabel}
           </p>
-
-          <h1
-            class="font-heading font-bold text-white leading-[1.1] max-w-2xl"
-            style="font-size: clamp(2rem, 4.5vw, 3.5rem);"
-          >
-            Transform Your
-            <span class="text-lime">Confidence</span>—<br />Inside &amp; Out
+          <h1 class="mt-5 font-heading text-4xl font-bold leading-tight text-white lg:text-6xl">
+            Personalised <span class="text-lime">Aesthetic</span> &amp; Wellness Care in Karachi
           </h1>
-
-          <p class="font-body text-white/65 text-sm lg:text-base mt-5 max-w-md leading-relaxed">
-            Contemporary aesthetic and wellness solutions — from PRP therapies and
-            HydraFacials to Body Weight Management and Cupping Therapy — delivered
-            with precision and care.
+          <p class="mt-5 max-w-xl font-body text-base leading-7 text-white/78 lg:text-lg">
+            Consultation-led skin, hair, laser and wellness treatments delivered with clinical care at Dr. Tasneem's Clinic.
           </p>
-
-          <!-- Service tag pills -->
-          <div class="flex flex-wrap gap-2.5 mt-6">
-            {['PRP Therapies', 'HydraFacials', 'Weight Management', 'Cupping Therapy'].map((tag) => (
-              <span
-                class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-button font-medium text-white/80 border border-white/20"
-                style="backdrop-filter: blur(8px); background: rgba(255,255,255,0.07);"
-              >
-                {tag}
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={buildWhatsAppUrl(heroBookingMessage, 'hero')}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-12 items-center justify-center rounded-full bg-teal px-8 py-4 font-button text-sm font-semibold text-white transition hover:bg-cta-hover hover:scale-[1.02]"
+              aria-label="Book an appointment on WhatsApp"
+              data-track-click
+              data-event="hero_whatsapp_click"
+              data-cta-location="hero"
+              data-page="clinic"
+            >
+              Book on WhatsApp
+            </a>
+            <a
+              href="#treatments"
+              class="inline-flex min-h-12 items-center justify-center rounded-full border border-white/24 px-8 py-4 font-button text-sm font-semibold text-white transition hover:bg-white/10"
+              data-track-click
+              data-event="booking_cta_click"
+              data-cta-location="hero-secondary"
+              data-page="clinic"
+            >
+              Explore Treatments
+            </a>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            {clinicTrustIndicators.map((item) => (
+              <span class="rounded-full border border-white/18 bg-white/8 px-4 py-2 font-button text-xs font-medium text-white/85 backdrop-blur">
+                {item}
               </span>
             ))}
           </div>
-
-          <!-- CTA -->
-          <a
-            href="#book"
-            class="mt-8 inline-flex items-center gap-2.5 bg-teal text-white font-button font-semibold text-sm px-8 py-4 rounded-full transition-all duration-200 hover:bg-cta-hover hover:scale-105 group"
-          >
-            Book Appointment
-            <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 13L13 3" />
-              <path d="M6 3H13V10" />
-            </svg>
-          </a>
         </div>
-      </div>
 
-      <ScrollIndicator class="absolute bottom-8 right-8 lg:right-16 z-10 text-white/80" />
+        <aside class="rounded-[2rem] border border-white/12 bg-white/10 p-6 text-white shadow-[0_18px_48px_rgba(0,0,0,0.18)] backdrop-blur md:p-8">
+          <p class="font-button text-xs font-semibold uppercase tracking-[0.25em] text-lime">Quick booking</p>
+          <h2 class="mt-4 font-heading text-2xl font-bold">Speak with the clinic team</h2>
+          <p class="mt-3 font-body text-sm leading-6 text-white/78">
+            Ask about timings, consultation fees, service availability, and preparation on WhatsApp.
+          </p>
+          <div class="mt-6 space-y-3">
+            <a
+              href={buildWhatsAppUrl(heroBookingMessage, 'hero-panel')}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-lime px-6 py-3 text-center font-button text-sm font-semibold text-dark-blue transition hover:bg-white"
+              aria-label={`Book an appointment on WhatsApp using ${clinicContact.phoneDisplay}`}
+              data-track-click
+              data-event="booking_cta_click"
+              data-cta-location="hero-panel"
+              data-page="clinic"
+            >
+              Book on WhatsApp
+            </a>
+            <a
+              href={`tel:${clinicContact.phoneE164}`}
+              class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/25 px-6 py-3 text-center font-button text-sm font-semibold text-white transition hover:bg-white/10"
+              aria-label={`Call Dr. Tasneem's Clinic at ${clinicContact.phoneDisplay}`}
+              data-track-click
+              data-event="phone_click"
+              data-cta-location="hero-panel"
+              data-page="clinic"
+            >
+              Call {clinicContact.phoneDisplay}
+            </a>
+          </div>
+          <dl class="mt-6 space-y-4 border-t border-white/12 pt-6 font-body text-sm text-white/78">
+            <div>
+              <dt class="font-button text-xs font-semibold uppercase tracking-[0.22em] text-white/50">Location</dt>
+              <dd class="mt-1">{clinicContact.addressLines.join(', ')}</dd>
+            </div>
+            <div>
+              <dt class="font-button text-xs font-semibold uppercase tracking-[0.22em] text-white/50">Hours</dt>
+              <dd class="mt-1">{clinicContact.hours[0]}</dd>
+              <dd>{clinicContact.hours[1]}</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════ -->
-    <!-- SECTION 2 — SERVICES GRID                              -->
-    <!--                                                        -->
-    <!-- Deliberately NOT using .fold here. The .fold class     -->
-    <!-- enforces overflow:hidden + absolute children, which    -->
-    <!-- would clip an 8-card grid taller than 100dvh.          -->
-    <!-- scroll-snap-align:start is applied directly so the     -->
-    <!-- snap sequence (Hero → Services → Booking) is intact.   -->
-    <!-- With y mandatory, a section taller than the viewport   -->
-    <!-- snaps to its top then lets you scroll through it.      -->
-    <!-- ══════════════════════════════════════════════════════ -->
-    <section
-      class="clinic-services relative"
-      style="scroll-snap-align: start; min-height: 100dvh; background: linear-gradient(160deg, #dff5cd 0%, #eef9f0 35%, #f5fdf6 65%, #f9fdfb 100%);"
-    >
-      <!-- Ambient blobs -->
-      <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          class="absolute -top-24 -left-24 w-[480px] h-[480px] rounded-full blur-3xl"
-          style="background: rgba(192, 241, 128, 0.22)"
-        ></div>
-        <div
-          class="absolute bottom-0 right-[10%] w-[360px] h-[360px] rounded-full blur-3xl"
-          style="background: rgba(102, 166, 172, 0.12)"
-        ></div>
+    <section class="border-y border-dark-blue/8 bg-white/70 py-5">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-3 px-6 lg:px-16">
+        {['Consultation-led care', 'WhatsApp booking', 'Priority services in Karachi', 'Telephone fallback available'].map((item) => (
+          <span class="rounded-full bg-dark-blue/5 px-4 py-2 font-button text-xs font-semibold uppercase tracking-[0.18em] text-dark-blue/80">
+            {item}
+          </span>
+        ))}
       </div>
+    </section>
 
-      <!-- Normal document flow — padding-based layout -->
-      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-28">
-
-        <!-- Heading -->
-        <div class="text-center mb-12">
-          <h2
-            class="font-heading font-bold text-dark-blue leading-[1.15]"
-            style="font-size: clamp(1.875rem, 3.5vw, 2.75rem)"
-          >
-            Our <span class="text-teal">Treatments</span>
+    <section id="treatments" class="relative overflow-hidden py-20 lg:py-24">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(192,241,128,0.24),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(102,166,172,0.16),transparent_30%)]"></div>
+      <div class="relative mx-auto max-w-7xl px-6 lg:px-16">
+        <div class="max-w-2xl">
+          <p class="font-button text-xs font-semibold uppercase tracking-[0.28em] text-teal">Priority treatments</p>
+          <h2 class="mt-4 font-heading text-3xl font-bold text-dark-blue lg:text-5xl">
+            Explore treatments with a <span class="text-teal">clear next step</span>
           </h2>
-          <p class="font-body text-dark-blue/55 text-sm lg:text-base mt-3 max-w-md mx-auto leading-relaxed">
-            Advanced aesthetic and wellness procedures delivered by certified
-            practitioners with clinical precision
+          <p class="mt-4 font-body text-base leading-7 text-dark-blue/70">
+            Each service below includes what it is generally used for, what the consultation covers, and a direct WhatsApp action so your inquiry reaches the clinic with context.
           </p>
-          <div class="flex flex-wrap justify-center gap-2.5 mt-5">
-            {highlights.map((h) => (
-              <span class="px-4 py-1.5 rounded-full border border-dark-blue/20 text-dark-blue/65 text-xs font-button font-medium">
-                {h}
-              </span>
-            ))}
-          </div>
         </div>
 
-        <!-- 4-column grid (2-column on mobile) -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
-          {services.map((s) => (
-            <article class="rounded-2xl overflow-hidden flex flex-col bg-white shadow-[0_4px_24px_rgba(12,46,60,0.08)] hover:shadow-[0_8px_32px_rgba(12,46,60,0.13)] transition-shadow duration-300">
-
-              <!-- Image / color header -->
-              <div
-                class="relative shrink-0 overflow-hidden"
-                style={`height: 140px; background: ${s.color}22`}
-              >
+        <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {clinicServices.map((service) => (
+            <article
+              class="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-dark-blue/8 bg-white shadow-[0_10px_36px_rgba(12,46,60,0.08)]"
+              data-track-view
+              data-event="treatment_viewed"
+              data-service={service.key}
+              data-page="clinic"
+            >
+              <div class="relative h-52 overflow-hidden" style={`background:${service.color}18`}>
                 <img
-                  src={s.image}
-                  alt={s.title}
-                  class="w-full h-full object-cover"
+                  src={service.image}
+                  alt={service.title}
+                  class="h-full w-full object-cover"
                   loading="lazy"
+                  width="640"
+                  height="480"
                 />
-                <span class="absolute top-3 right-3 bg-teal text-white text-[0.65rem] font-button font-semibold px-2.5 py-1 rounded-full leading-none">
-                  12% off
-                </span>
               </div>
-
-              <!-- Body -->
-              <div class="flex flex-col flex-1 p-4 gap-2.5">
-                <h3 class="font-heading font-semibold text-[0.9375rem] text-teal leading-snug">
-                  {s.title}
-                </h3>
-                <p class="font-body text-[0.72rem] text-dark-blue/58 leading-relaxed flex-1 line-clamp-3">
-                  {s.desc}
+              <div class="flex flex-1 flex-col p-5">
+                <p class="font-button text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-teal">
+                  Suitable for
                 </p>
-                <a
-                  href="#book"
-                  class="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-teal text-white font-button font-semibold text-[0.8125rem] hover:bg-cta-hover transition-all duration-200 hover:scale-[1.02]"
-                >
-                  Book Now
-                  <svg class="w-3 h-3 shrink-0" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M2 12L12 2M12 2H4.5M12 2V9.5" />
-                  </svg>
-                </a>
+                <p class="mt-1 font-body text-sm leading-6 text-dark-blue/70">{service.concern}</p>
+                <h3 class="mt-4 font-heading text-2xl font-semibold text-dark-blue">{service.title}</h3>
+                <p class="mt-3 font-body text-sm leading-6 text-dark-blue/68">{service.shortDescription}</p>
+                {service.details.priceLabel && (
+                  <p class="mt-4 rounded-2xl bg-lime/30 px-3 py-2 font-button text-xs font-semibold text-dark-blue">
+                    {service.details.priceLabel.includes('Starting') ? service.details.priceLabel : `Price: ${service.details.priceLabel}`}
+                  </p>
+                )}
+                <div class="mt-6 flex flex-col gap-3">
+                  {featuredServiceKeys.has(service.key) && (
+                    <a
+                      href={`#service-${service.key}`}
+                      class="inline-flex min-h-11 items-center justify-center rounded-full border border-dark-blue/12 px-4 py-3 font-button text-sm font-semibold text-dark-blue transition hover:border-teal hover:text-teal"
+                      data-track-click
+                      data-event="booking_cta_click"
+                      data-cta-location="treatment-card-learn-more"
+                      data-service={service.key}
+                      data-page="clinic"
+                    >
+                      Learn More
+                    </a>
+                  )}
+                  <a
+                    href={buildWhatsAppUrl(service.whatsappMessage, 'treatment-card', service.key)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex min-h-11 items-center justify-center rounded-full bg-teal px-4 py-3 font-button text-sm font-semibold text-white transition hover:bg-cta-hover"
+                    aria-label={`Book ${service.title} on WhatsApp`}
+                    data-track-click
+                    data-event="treatment_card_whatsapp_click"
+                    data-cta-location="treatment-card"
+                    data-service={service.key}
+                    data-page="clinic"
+                  >
+                    Book on WhatsApp
+                  </a>
+                </div>
               </div>
             </article>
           ))}
         </div>
-
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════ -->
-    <!-- FOLD 3 — BOOK APPOINTMENT CTA                         -->
-    <!-- ══════════════════════════════════════════════════════ -->
-    <section id="book" class="fold clinic-book">
-
-      <!-- Bg image + overlay -->
-      <div class="absolute inset-0 z-0">
-        <img
-          src="/images/journey-bg.webp"
-          alt=""
-          class="w-full h-full object-cover object-center opacity-30"
-          loading="lazy"
-        />
-        <div
-          class="absolute inset-0"
-          style="background: linear-gradient(100deg, #0C2E3C 30%, rgba(12,46,60,0.85) 55%, rgba(12,46,60,0.65) 100%)"
-        ></div>
-      </div>
-
-      <!-- Content — lower-left -->
-      <div class="absolute z-10 inset-x-0" style="bottom: 16%;">
-        <div class="max-w-7xl mx-auto px-6 lg:px-16">
-          <div class="max-w-2xl">
-
-            <p class="font-button font-medium text-lime text-sm tracking-widest uppercase mb-4">
-              Ready to Begin?
-            </p>
-
-            <h2
-              class="font-heading font-bold text-white leading-[1.15]"
-              style="font-size: clamp(1.75rem, 3.5vw, 3rem);"
-            >
-              Book your <span class="text-lime">Appointment</span> Today!
+    <section class="bg-dark-blue py-20 text-white lg:py-24">
+      <div class="mx-auto max-w-7xl px-6 lg:px-16">
+        <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <p class="font-button text-xs font-semibold uppercase tracking-[0.28em] text-lime">How booking works</p>
+            <h2 class="mt-4 font-heading text-3xl font-bold lg:text-5xl">
+              From first message to <span class="text-lime">consultation</span>
             </h2>
-
-            <p class="font-body text-white/60 text-base mt-4 max-w-lg leading-relaxed">
-              Experience world-class aesthetic care in Malir Cantt, Karachi.
-              Our certified practitioners are ready to help you look and feel
-              your best.
+            <p class="mt-4 max-w-lg font-body text-base leading-7 text-white/74">
+              Booking a consultation is simple, but treatment suitability is only confirmed after the clinic reviews your concern.
             </p>
-
-            <!-- CTA buttons -->
-            <div class="flex flex-wrap gap-4 mt-8">
-              <a
-                href="https://wa.me/923000000000"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2.5 bg-lime text-dark-blue font-button font-semibold text-sm px-8 py-4 rounded-full transition-all duration-200 hover:scale-105 hover:bg-white group"
-              >
-                <!-- WhatsApp icon -->
-                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                WhatsApp Us
-              </a>
-              <a
-                href="tel:+923000000000"
-                class="inline-flex items-center gap-2.5 border border-white/30 text-white font-button font-semibold text-sm px-8 py-4 rounded-full transition-all duration-200 hover:bg-white/10 hover:border-white/50 group"
-              >
-                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 9.14a16 16 0 006 6l1.5-1.5a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-                </svg>
-                Call Now
-              </a>
-            </div>
-
-            <!-- Location note -->
-            <p class="font-body text-white/40 text-xs mt-6 flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-              Malir Cantt, Karachi, Sindh — Pakistan
-            </p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-3">
+            {bookingSteps.map((step, index) => (
+              <article class="rounded-[1.5rem] border border-white/10 bg-white/8 p-6 backdrop-blur">
+                <p class="font-button text-xs font-semibold uppercase tracking-[0.2em] text-lime">Step {index + 1}</p>
+                <p class="mt-4 font-heading text-xl font-semibold">{step}</p>
+              </article>
+            ))}
           </div>
         </div>
       </div>
     </section>
 
+    <section class="py-20 lg:py-24">
+      <div class="mx-auto max-w-7xl px-6 lg:px-16">
+        <div class="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+          <div class="rounded-[2rem] bg-dark-blue p-8 text-white">
+            <p class="font-button text-xs font-semibold uppercase tracking-[0.28em] text-lime">Clinic credibility</p>
+            <h2 class="mt-4 font-heading text-3xl font-bold">Care shaped by consultation, hygiene, and practitioner oversight</h2>
+            <p class="mt-4 font-body text-base leading-7 text-white/76">
+              The clinic page now focuses on verified operational details only: consultation-led treatment planning, certified practitioners, and the Malir Cantt location already referenced in the project.
+            </p>
+          </div>
+          <div class="grid gap-6 md:grid-cols-2">
+            {featuredServices.map((service) => (
+              <article id={`service-${service.key}`} class="rounded-[2rem] border border-dark-blue/8 bg-white p-7 shadow-[0_10px_32px_rgba(12,46,60,0.06)]">
+                <p class="font-button text-xs font-semibold uppercase tracking-[0.22em] text-teal">{service.title}</p>
+                <p class="mt-4 font-body text-sm leading-6 text-dark-blue/72">{service.details.summary}</p>
+                <div class="mt-5">
+                  <h3 class="font-heading text-lg font-semibold text-dark-blue">Common reasons patients inquire</h3>
+                  <ul class="mt-3 space-y-2 font-body text-sm leading-6 text-dark-blue/70">
+                    {service.details.reasons.map((reason) => (
+                      <li class="flex gap-2">
+                        <span class="mt-2 h-1.5 w-1.5 rounded-full bg-teal"></span>
+                        <span>{reason}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="mt-5 space-y-3 font-body text-sm leading-6 text-dark-blue/70">
+                  <p><strong class="font-semibold text-dark-blue">Consultation:</strong> {service.details.consultation}</p>
+                  <p><strong class="font-semibold text-dark-blue">Sessions:</strong> {service.details.sessions}</p>
+                  <p><strong class="font-semibold text-dark-blue">Aftercare & downtime:</strong> {service.details.downtime}</p>
+                  <p><strong class="font-semibold text-dark-blue">Suitability:</strong> {service.details.disclaimer}</p>
+                </div>
+                <a
+                  href={buildWhatsAppUrl(service.whatsappMessage, 'service-detail', service.key)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-6 inline-flex min-h-11 items-center justify-center rounded-full bg-teal px-5 py-3 font-button text-sm font-semibold text-white transition hover:bg-cta-hover"
+                  aria-label={`Ask about ${service.title} on WhatsApp`}
+                  data-track-click
+                  data-event="treatment_card_whatsapp_click"
+                  data-cta-location="service-detail"
+                  data-service={service.key}
+                  data-page="clinic"
+                >
+                  Ask about {service.title}
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-dark-blue/8 bg-white py-20 lg:py-24">
+      <div class="mx-auto max-w-5xl px-6 lg:px-16">
+        <div class="max-w-2xl">
+          <p class="font-button text-xs font-semibold uppercase tracking-[0.28em] text-teal">Frequently asked questions</p>
+          <h2 class="mt-4 font-heading text-3xl font-bold text-dark-blue lg:text-5xl">
+            Questions patients often ask <span class="text-teal">before booking</span>
+          </h2>
+        </div>
+        <div class="mt-10 space-y-4">
+          {clinicFaqs.map((faq, index) => (
+            <details class="group rounded-[1.5rem] border border-dark-blue/10 bg-cool-cream/80 p-5" data-track-faq data-faq-index={index + 1} data-page="clinic">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-heading text-lg font-semibold text-dark-blue">
+                <span>{faq.question}</span>
+                <span class="flex h-9 w-9 items-center justify-center rounded-full bg-white text-teal transition group-open:rotate-45">+</span>
+              </summary>
+              <p class="mt-4 max-w-3xl font-body text-sm leading-6 text-dark-blue/72">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-24">
+      <div class="mx-auto max-w-7xl px-6 lg:px-16">
+        <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <article class="rounded-[2rem] bg-dark-blue p-8 text-white">
+            <p class="font-button text-xs font-semibold uppercase tracking-[0.28em] text-lime">Location & contact</p>
+            <h2 class="mt-4 font-heading text-3xl font-bold">Visit the clinic in Malir Cantt, Karachi</h2>
+            <p class="mt-4 font-body text-base leading-7 text-white/76">
+              The repository contains verified clinic contact details for Malir Cantt and the canonical phone number below. A public map URL was not present, so this section avoids inventing one.
+            </p>
+            <dl class="mt-8 space-y-5 font-body text-sm text-white/82">
+              <div>
+                <dt class="font-button text-xs font-semibold uppercase tracking-[0.22em] text-white/50">Phone</dt>
+                <dd class="mt-1">{clinicContact.phoneDisplay}</dd>
+              </div>
+              <div>
+                <dt class="font-button text-xs font-semibold uppercase tracking-[0.22em] text-white/50">Email</dt>
+                <dd class="mt-1">{clinicContact.email}</dd>
+              </div>
+              <div>
+                <dt class="font-button text-xs font-semibold uppercase tracking-[0.22em] text-white/50">Address</dt>
+                <dd class="mt-1">{clinicContact.addressLines[0]}</dd>
+                <dd>{clinicContact.addressLines[1]}</dd>
+              </div>
+              <div>
+                <dt class="font-button text-xs font-semibold uppercase tracking-[0.22em] text-white/50">Appointments</dt>
+                <dd class="mt-1">WhatsApp to confirm timings before visiting.</dd>
+              </div>
+            </dl>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={buildWhatsAppUrl(heroBookingMessage, 'location')}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex min-h-12 items-center justify-center rounded-full bg-lime px-6 py-3 font-button text-sm font-semibold text-dark-blue transition hover:bg-white"
+                aria-label="Book on WhatsApp from the contact section"
+                data-track-click
+                data-event="hero_whatsapp_click"
+                data-cta-location="location"
+                data-page="clinic"
+              >
+                Book on WhatsApp
+              </a>
+              <a
+                href={`tel:${clinicContact.phoneE164}`}
+                class="inline-flex min-h-12 items-center justify-center rounded-full border border-white/20 px-6 py-3 font-button text-sm font-semibold text-white transition hover:bg-white/10"
+                aria-label={`Call ${clinicContact.phoneDisplay}`}
+                data-track-click
+                data-event="phone_click"
+                data-cta-location="location"
+                data-page="clinic"
+              >
+                Call the clinic
+              </a>
+            </div>
+          </article>
+
+          <article class="rounded-[2rem] border border-dark-blue/8 bg-[linear-gradient(160deg,#ebf6ee,#f7fbf8)] p-8">
+            <p class="font-button text-xs font-semibold uppercase tracking-[0.28em] text-teal">Final booking CTA</p>
+            <h2 class="mt-4 font-heading text-3xl font-bold text-dark-blue">Ready to ask about timings or a treatment?</h2>
+            <p class="mt-4 max-w-xl font-body text-base leading-7 text-dark-blue/72">
+              Message the clinic on WhatsApp for appointment availability, pricing questions, and consultation guidance. If you prefer, call the clinic directly using the same canonical number.
+            </p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={buildWhatsAppUrl(heroBookingMessage, 'final-cta')}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex min-h-12 items-center justify-center rounded-full bg-teal px-6 py-3 font-button text-sm font-semibold text-white transition hover:bg-cta-hover"
+                aria-label="Open WhatsApp to book an appointment"
+                data-track-click
+                data-event="hero_whatsapp_click"
+                data-cta-location="final-cta"
+                data-page="clinic"
+              >
+                Book on WhatsApp
+              </a>
+              <a
+                href={`tel:${clinicContact.phoneE164}`}
+                class="inline-flex min-h-12 items-center justify-center rounded-full border border-dark-blue/14 px-6 py-3 font-button text-sm font-semibold text-dark-blue transition hover:border-teal hover:text-teal"
+                aria-label={`Call Dr. Tasneem's Clinic at ${clinicContact.phoneDisplay}`}
+                data-track-click
+                data-event="phone_click"
+                data-cta-location="final-cta"
+                data-page="clinic"
+              >
+                Call {clinicContact.phoneDisplay}
+              </a>
+            </div>
+            <div class="mt-8 rounded-[1.5rem] border border-dark-blue/8 bg-white p-5">
+              <p class="font-button text-xs font-semibold uppercase tracking-[0.2em] text-dark-blue/52">Booking note</p>
+              <p class="mt-3 font-body text-sm leading-6 text-dark-blue/68">
+                Booking a consultation does not guarantee a treatment until the clinic confirms suitability, timing, and any preparation needed.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <a
+      href={buildWhatsAppUrl(heroBookingMessage, 'mobile-sticky')}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mobile-whatsapp-cta fixed inset-x-4 bottom-4 z-40 inline-flex min-h-14 items-center justify-center rounded-full bg-teal px-6 py-4 font-button text-sm font-semibold text-white shadow-[0_14px_30px_rgba(12,46,60,0.24)] lg:hidden"
+      aria-label="Book an appointment on WhatsApp"
+      data-track-click
+      data-event="hero_whatsapp_click"
+      data-cta-location="mobile-sticky"
+      data-page="clinic"
+    >
+      Book on WhatsApp
+    </a>
   </main>
 </Base>
 
+<style>
+  .mobile-whatsapp-cta {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-whatsapp-cta,
+    [data-track-view] {
+      transition: none;
+      animation: none;
+    }
+  }
+  </style>
+
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
+  import { getCampaignParams, trackEvent } from '../utils/tracking';
 
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const campaignParams = getCampaignParams(new URLSearchParams(window.location.search));
 
-  function snapReveal(selector: string, staggerMs = 70) {
-    if (reduced) return;
-    const els = [...document.querySelectorAll<HTMLElement>(selector)];
-    if (!els.length) return;
-    els.forEach((el, i) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(28px)';
-      el.style.transition = `opacity .55s ease ${i * staggerMs}ms, transform .55s ease ${i * staggerMs}ms`;
-    });
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const el = e.target as HTMLElement;
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-        io.unobserve(el);
+  document.querySelectorAll<HTMLElement>('[data-track-click]').forEach((element) => {
+    element.addEventListener('click', () => {
+      trackEvent(element.dataset.event ?? 'booking_cta_click', {
+        page: element.dataset.page ?? 'clinic',
+        service: element.dataset.service,
+        cta_location: element.dataset.ctaLocation,
+        ...campaignParams,
       });
-    }, { threshold: 0.05 });
-    els.forEach(el => io.observe(el));
-  }
-
-  if (!reduced) {
-    gsap.from('.clinic-hero .absolute.bottom-16 > div > *', {
-      y: 32, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', delay: 0.2,
     });
-    gsap.from('.clinic-book .max-w-2xl > *', {
-      scrollTrigger: { trigger: '.clinic-book', start: 'top 65%' },
-      y: 28, opacity: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out',
-    });
-  }
+  });
 
-  snapReveal('.clinic-services .text-center > *', 80);
-  snapReveal('.clinic-services article', 60);
+  document.querySelectorAll<HTMLDetailsElement>('[data-track-faq]').forEach((detail) => {
+    detail.addEventListener('toggle', () => {
+      if (!detail.open) return;
+      trackEvent('faq_interaction', {
+        page: detail.dataset.page ?? 'clinic',
+        faq_index: detail.dataset.faqIndex,
+        ...campaignParams,
+      });
+    });
+  });
+
+  const viewedServices = new Set<string>();
+  const serviceObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const element = entry.target as HTMLElement;
+        const service = element.dataset.service;
+        if (!service || viewedServices.has(service)) return;
+        viewedServices.add(service);
+        trackEvent(element.dataset.event ?? 'treatment_viewed', {
+          page: element.dataset.page ?? 'clinic',
+          service,
+          ...campaignParams,
+        });
+      });
+    },
+    { threshold: 0.45 },
+  );
+
+  document.querySelectorAll<HTMLElement>('[data-track-view]').forEach((element) => {
+    serviceObserver.observe(element);
+  });
 </script>

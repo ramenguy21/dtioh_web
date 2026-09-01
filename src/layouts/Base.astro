@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/global/Navbar.astro';
 import Footer from '../components/global/Footer.astro';
+import { clinicContact } from '../data/clinic';
 
 interface Props {
   title?: string;
@@ -9,6 +10,8 @@ interface Props {
   image?: string;
   ogType?: string;
   preloadHero?: boolean;
+  schemaType?: string;
+  extraSchemas?: unknown[];
 }
 
 const {
@@ -17,6 +20,8 @@ const {
   image = '/images/hero.jpg',
   ogType = 'website',
   preloadHero = false,
+  schemaType = 'EducationalOrganization',
+  extraSchemas = [],
 } = Astro.props;
 
 const siteBase = Astro.site ?? new URL(Astro.url.origin);
@@ -25,18 +30,18 @@ const ogImage = new URL(image, siteBase).href;
 
 const orgSchema = {
   '@context': 'https://schema.org',
-  '@type': 'EducationalOrganization',
+  '@type': schemaType,
   name: "Dr. Tasneem's Institute of Health",
   alternateName: 'DTIOH',
   description,
   url: siteBase.href,
   logo: new URL('/favicon.svg', siteBase).href,
   image: ogImage,
-  telephone: '+92-302-2301918',
-  email: 'hello@dtioh.com',
+  telephone: clinicContact.phoneDisplay,
+  email: clinicContact.email,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Malir Cantt',
+    streetAddress: clinicContact.addressLines[0],
     addressLocality: 'Karachi',
     addressRegion: 'Sindh',
     addressCountry: 'PK',
@@ -47,6 +52,8 @@ const orgSchema = {
   ],
   hasCredential: ['DUHS Affiliated', 'SBTE Recognized'],
 };
+
+const schemas = [orgSchema, ...extraSchemas];
 ---
 
 <!doctype html>
@@ -86,7 +93,9 @@ const orgSchema = {
     <meta name="twitter:image" content={ogImage} />
 
     <!-- Structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {schemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
