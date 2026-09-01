@@ -1,0 +1,285 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Aafiyat sub-brand tokens — distinct from DTIOH's site palette.
+// Used only within this page; DTIOH tokens (Navbar/Footer chrome) stay untouched.
+const aaf = {
+  teal: '#0D7377',
+  tealLight: '#14A0A5',
+  tealDark: '#095457',
+  cream: '#FAF7F2',
+  ink: '#0F2D3D',
+};
+
+const steps = [
+  {
+    n: '01',
+    title: 'Full Baseline',
+    role: 'Beauty & Wellness Volunteer',
+    desc: 'A complete starting picture — measurements, health history and vitals — recorded at a partner clinic or parlour.',
+  },
+  {
+    n: '02',
+    title: 'A Plan Built Around You',
+    role: 'Physician',
+    desc: 'Your physician reviews your baseline and activates a treatment plan tailored to your body, not a one-size-fits-all template.',
+  },
+  {
+    n: '03',
+    title: 'Momentum, Every Two Weeks',
+    role: 'Physician',
+    desc: "Vitals, labs and how you're actually feeling are reviewed in person at every visit, so your plan keeps adapting as you progress.",
+  },
+  {
+    n: '04',
+    title: 'See Your Progress',
+    role: 'Wellness Leader',
+    desc: 'A Wellness Leader turns your results into a clear, plain-language update after every check-in — in English or Urdu.',
+  },
+];
+
+const phases = [
+  {
+    label: 'Phase 1',
+    title: 'Fortnightly Check-ins',
+    desc: "Blood pressure, activity, sleep and how you're feeling — reviewed in person every two weeks, so nothing slips through.",
+  },
+  {
+    label: 'Phase 2',
+    title: 'Lab-Based Monitoring',
+    desc: 'Metabolic, hormonal and nutritional markers, tracked on their own cadence to give your physician the full picture over time.',
+  },
+];
+---
+
+<Base
+  title="Aafiyat | Physician-Led Wellness Programme — Dr. Tasneem's Institute of Health"
+  description="Aafiyat is a physician-led, data-driven wellness programme from Dr. Tasneem's Institute of Health, delivered in person through partner clinics across Pakistan."
+>
+  <main id="aafiyat-page" style={`background: ${aaf.cream};`}>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- HERO                                                -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section class="pt-36 pb-20 lg:pt-44 lg:pb-28 px-6 lg:px-16">
+      <div class="max-w-3xl mx-auto text-center">
+        <p
+          class="font-button font-medium text-sm tracking-widest uppercase mb-5"
+          style={`color: ${aaf.teal};`}
+        >
+          By Dr. Tasneem's Institute of Health
+        </p>
+        <h1
+          class="font-heading font-bold leading-[1.15]"
+          style={`font-size: clamp(2.25rem, 4.5vw, 3.25rem); color: ${aaf.ink};`}
+        >
+          Aafiyat
+        </h1>
+        <p
+          class="font-body text-lg mt-5 leading-relaxed"
+          style={`color: ${aaf.ink}99;`}
+        >
+          A structured, physician-led wellness programme — built around your
+          body, tracked through real data, and delivered in person across
+          DTIOH's clinic network.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 mt-8">
+          <a
+            href="#how-it-works"
+            class="font-button font-semibold text-sm px-7 py-3.5 rounded-full text-white transition-all duration-200 hover:scale-105"
+            style={`background: ${aaf.teal};`}
+          >
+            How It Works
+          </a>
+          <a
+            href="#for-clinics"
+            class="font-button font-semibold text-sm px-7 py-3.5 rounded-full transition-all duration-200 hover:scale-105"
+            style={`border: 1px solid ${aaf.teal}55; color: ${aaf.teal};`}
+          >
+            For Clinics &amp; Parlours
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- HOW IT WORKS                                        -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="how-it-works" class="py-20 lg:py-24 px-6 lg:px-16" style="background: #FFFFFF;">
+      <div class="max-w-6xl mx-auto">
+        <h2
+          class="font-heading font-bold text-center leading-[1.15]"
+          style={`font-size: clamp(1.75rem, 3vw, 2.25rem); color: ${aaf.ink};`}
+        >
+          Your path, step by step
+        </h2>
+        <p
+          class="font-body text-center text-sm mt-3 max-w-xl mx-auto leading-relaxed"
+          style={`color: ${aaf.ink}80;`}
+        >
+          Four structured phases, entirely in-person and physician-led — each
+          one building on the last, so your plan keeps getting sharper.
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+          {steps.map((s) => (
+            <div
+              class="rounded-2xl p-6"
+              style={`background: ${aaf.cream}; border: 1px solid ${aaf.ink}0f;`}
+            >
+              <span
+                class="font-heading font-bold text-2xl leading-none"
+                style={`color: ${aaf.tealLight};`}
+              >
+                {s.n}
+              </span>
+              <h3
+                class="font-heading font-semibold text-base mt-3 leading-snug"
+                style={`color: ${aaf.ink};`}
+              >
+                {s.title}
+              </h3>
+              <p
+                class="font-button text-[0.6875rem] font-medium uppercase tracking-wide mt-1"
+                style={`color: ${aaf.teal};`}
+              >
+                {s.role}
+              </p>
+              <p
+                class="font-body text-sm mt-2 leading-relaxed"
+                style={`color: ${aaf.ink}85;`}
+              >
+                {s.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- BUILT ON REAL DATA                                  -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section class="py-20 lg:py-24 px-6 lg:px-16">
+      <div class="max-w-4xl mx-auto">
+        <h2
+          class="font-heading font-bold text-center leading-snug"
+          style={`font-size: clamp(1.5rem, 2.5vw, 2rem); color: ${aaf.ink};`}
+        >
+          Built on real data, not guesswork
+        </h2>
+        <p
+          class="font-body text-center text-sm mt-3 max-w-xl mx-auto leading-relaxed"
+          style={`color: ${aaf.ink}80;`}
+        >
+          Aafiyat tracks two layers of information, so every adjustment to your
+          plan is backed by evidence.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-5 mt-10">
+          {phases.map((p) => (
+            <div
+              class="rounded-2xl p-7 lg:p-8"
+              style={`background: ${aaf.ink}; box-shadow: 0 16px 48px ${aaf.ink}22;`}
+            >
+              <p
+                class="font-button font-semibold text-xs uppercase tracking-widest"
+                style={`color: ${aaf.tealLight};`}
+              >
+                {p.label}
+              </p>
+              <h3 class="font-heading font-semibold text-white text-lg mt-2 leading-snug">
+                {p.title}
+              </h3>
+              <p class="font-body text-white/65 text-sm mt-2.5 leading-relaxed">
+                {p.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- FOR CLINICS & PARLOURS                              -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="for-clinics" class="py-20 lg:py-24 px-6 lg:px-16" style="background: #FFFFFF;">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2
+          class="font-heading font-bold leading-snug"
+          style={`font-size: clamp(1.5rem, 2.5vw, 2rem); color: ${aaf.ink};`}
+        >
+          For clinics &amp; parlours
+        </h2>
+        <p
+          class="font-body text-sm mt-4 leading-relaxed max-w-xl mx-auto"
+          style={`color: ${aaf.ink}85;`}
+        >
+          Aafiyat operates through a growing network of partner physicians and
+          parlour-based Beauty &amp; Wellness Volunteers, bringing structured,
+          physician-led care to more patients across Pakistan. If your clinic
+          or parlour is interested in joining, reach out directly — this isn't
+          a public sign-up form.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 mt-7">
+          <a
+            href="mailto:hello@dtioh.com"
+            class="font-button font-semibold text-sm px-7 py-3.5 rounded-full text-white transition-all duration-200 hover:scale-105"
+            style={`background: ${aaf.teal};`}
+          >
+            hello@dtioh.com
+          </a>
+          <a
+            href="tel:+923022301918"
+            class="font-button font-semibold text-sm px-7 py-3.5 rounded-full transition-all duration-200 hover:scale-105"
+            style={`border: 1px solid ${aaf.teal}55; color: ${aaf.teal};`}
+          >
+            +92 302 2301918
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- TRUST STRIP                                         -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section class="py-14 px-6 lg:px-16">
+      <div
+        class="max-w-4xl mx-auto rounded-2xl p-7 lg:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5"
+        style={`background: ${aaf.cream}; border: 1px solid ${aaf.ink}0f;`}
+      >
+        <p class="font-body text-xs leading-relaxed" style={`color: ${aaf.ink}70;`}>
+          Aafiyat is operated by Dr. Tasneem's Institute of Health (DTIOH),
+          Malir Cantt, Karachi, Pakistan. WhatsApp is used only to verify your
+          identity during screening and to send a private link to your progress
+          update — never as a substitute for in-person care. See our{' '}
+          <a href="/aafiyat/privacy" class="underline hover:no-underline" style={`color: ${aaf.tealDark};`}>
+            Privacy Policy
+          </a>{' '}
+          for details on how your information is handled.
+        </p>
+        <a
+          href="/contact"
+          class="font-button font-semibold text-sm px-6 py-3 rounded-full text-white shrink-0 transition-all duration-200 hover:scale-105"
+          style={`background: ${aaf.tealDark};`}
+        >
+          Contact Us
+        </a>
+      </div>
+    </section>
+
+  </main>
+</Base>
+
+<style>
+  /*
+    This page is a plain long-scroll layout, not the fold-based homepage.
+    Base.astro's global html has scroll-snap-type: y mandatory for the fold
+    pages; with no scroll-snap-align targets in this page's own sections,
+    the only snap point left is the Footer, so desktop scrolling was forced
+    straight down to it. Disable snapping here.
+  */
+  :global(html) {
+    scroll-snap-type: none;
+  }
+</style>
